@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand tokens — tweak to taste */
+:root{
+  --bg: #0b0e13;
+  --card: #11161d;
+  --muted: #9aa4b2;
+  --fg: #e6edf5;
+  --brand: #6ee7ff;     /* cyan-blue */
+  --brand-2: #9b8cff;   /* violet */
+}
+
+html,body{ height:100%; }
+body{
+  background: radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,0.12), transparent 60%),
+              radial-gradient(800px 600px at -10% -10%, rgba(155,140,255,0.10), transparent 55%),
+              var(--bg);
+  color: var(--fg);
+}
+
+/* Nice container rhythm */
+.container{
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Cards */
+.ui-card{
+  @apply rounded-2xl border border-white/10 bg-[color:var(--card)] shadow-[0_10px_30px_rgba(0,0,0,0.25)];
+}
+
+/* Buttons */
+.btn{
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium transition;
+}
+.btn-primary{
+  background: linear-gradient(135deg,var(--brand),var(--brand-2));
+  color: #0b0e13;
+}
+.btn-primary:hover{ filter: brightness(1.1); }
+.btn-ghost{
+  @apply border border-white/20 text-white hover:bg-white/10;
+}
+
+/* Headings */
+.h1{ @apply text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight; }
+.h2{ @apply text-2xl sm:text-3xl font-semibold; }
+.muted{ color: var(--muted); }
+
+/* Enhanced Animations for Catalyst AI */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(3deg); }
+  66% { transform: translateY(10px) rotate(-2deg); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(15px) rotate(-3deg); }
+  66% { transform: translateY(-10px) rotate(2deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulse-bright {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expand-right {
+  0% { width: 0; }
+  100% { width: 3rem; }
+}
+
+@keyframes expand-left {
+  0% { width: 0; }
+  100% { width: 3rem; }
+}
+
+@keyframes beam-1 {
+  0%, 100% { opacity: 0; transform: translateY(-100%); }
+  50% { opacity: 0.8; transform: translateY(0); }
+}
+
+@keyframes beam-2 {
+  0%, 100% { opacity: 0; transform: translateY(100%); }
+  50% { opacity: 0.6; transform: translateY(0); }
+}
+
+@keyframes particle {
+  0% { opacity: 0; transform: translateY(0) scale(0); }
+  50% { opacity: 1; transform: translateY(-50px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100px) scale(0); }
+}
+
+@keyframes grid-flow {
+  0% { transform: translateX(-100px) translateY(-100px); }
+  100% { transform: translateX(100px) translateY(100px); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-bright {
+  animation: pulse-bright 2s ease-in-out infinite;
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+.animate-expand-right {
+  animation: expand-right 2s ease-out;
+}
+
+.animate-expand-left {
+  animation: expand-left 2s ease-out;
+}
+
+.animate-beam-1 {
+  animation: beam-1 4s ease-in-out infinite;
+}
+
+.animate-beam-2 {
+  animation: beam-2 5s ease-in-out infinite 1s;
+}
+
+.animate-particle {
+  animation: particle linear infinite;
+}
+
+.animate-grid-flow {
+  animation: grid-flow 20s linear infinite;
+}
+
+/* Utility classes for background effects */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.bg-size-200 {
+  background-size: 200% auto;
+}
+
+.bg-pos-0 {
+  background-position: 0% center;
+}
+
+.bg-pos-100 {
+  background-position: 100% center;
+}
+

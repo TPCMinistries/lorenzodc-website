@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Catalyst AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #CBD5E1;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .features h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #3B82F6;
+        }
+
+        .features ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+            color: #94A3B8;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #10B981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .retry-btn {
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 2rem;
+        }
+
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .icon {
+                font-size: 3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .features {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon pulse">📶</div>
+        <h1>You're Offline</h1>
+        <p>
+            No internet connection detected. Don't worry - Catalyst AI still works offline
+            with your cached data and previous conversations.
+        </p>
+
+        <div class="features">
+            <h2>Available Offline Features:</h2>
+            <ul>
+                <li>Review previous AI chat conversations</li>
+                <li>Access your goal tracking dashboard</li>
+                <li>Review assessment results and reports</li>
+                <li>Browse previously loaded content</li>
+                <li>Take notes and prepare for when you're back online</li>
+            </ul>
+        </div>
+
+        <button class="retry-btn" onclick="window.location.reload()">
+            Try Again
+        </button>
+
+        <script>
+            // Auto-retry when connection is restored
+            window.addEventListener('online', function() {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            });
+
+            // Update UI based on connection status
+            function updateConnectionStatus() {
+                if (navigator.onLine) {
+                    document.querySelector('.retry-btn').textContent = 'Back Online - Reload';
+                    document.querySelector('.retry-btn').style.background = 'linear-gradient(135deg, #10B981, #059669)';
+                } else {
+                    document.querySelector('.retry-btn').textContent = 'Try Again';
+                }
+            }
+
+            window.addEventListener('online', updateConnectionStatus);
+            window.addEventListener('offline', updateConnectionStatus);
+            updateConnectionStatus();
+        </script>
+    </div>
+</body>
+</html>

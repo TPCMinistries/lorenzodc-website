@@ -1,0 +1,66 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+
+declare global { interface Window { webkitSpeechRecognition?: any; SpeechRecognition?: any; } }
+
+export default function Chat(){
+  const [msg,setMsg]=useState("Help me plan a 90-day AI pilot.");
+  const [out,setOut]=useState<string>("");
+  const [busy,setBusy]=useState(false);
+  const [speaking,setSpeaking]=useState(true);
+  const [listening,setListening]=useState(false);
+
+  const recognitionRef=useRef<any>(null);
+  const canSpeak=typeof window!=="undefined"&&"speechSynthesis" in window;
+  const canListen=typeof window!=="undefined"&&(!!window.webkitSpeechRecognition||!!window.SpeechRecognition);
+
+  useEffect(()=>{
+    const SR=typeof window!=="undefined"?(window.SpeechRecognition||window.webkitSpeechRecognition):null;
+    if(!SR) return;
+    const rec=new SR(); rec.lang="en-US"; rec.interimResults=true;
+    rec.onresult=(e:any)=>{ let t=""; for(const r of e.results){ t+=r[0].transcript; } setMsg(t); };
+    rec.onend=()=>setListening(false); recognitionRef.current=rec;
+  },[]);
+
+  function tts(text:string){
+    if(!canSpeak||!speaking) return;
+    const u=new SpeechSynthesisUtterance(text);
+    u.rate=1.02; u.pitch=1; u.lang="en-US";
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+
+  async function send(){
+    setBusy(true);
+    const r=await fetch("/api/chat",{method:"POST",headers:{'content-type':'application/json'},body:JSON.stringify({message:msg})});
+    const j=await r.json(); setOut(j.text||""); setBusy(false); tts(j.text||"");
+  }
+
+  return (
+    <section className="container py-10">
+      <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">The Catalyst Terminal</h1>
+      <p className="text-white/70 mt-2">Your futurist co-pilot for strategy & systems. Speak or type; get a crisp next step.</p>
+
+      <div className="rounded-2xl border border-white/10 bg-[#11161d] p-8 mt-6 max-w-4xl">
+        <textarea
+          value={msg}
+          onChange={e=>setMsg(e.target.value)}
+          className="w-full rounded bg-white/10 p-4 h-36"
+          placeholder="Start your inquiry…"
+        />
+        <div className="flex flex-wrap items-center gap-3 mt-4">
+          <button onClick={send} disabled={busy} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium text-[#0b0e13]" style={{background:"linear-gradient(135deg,#6ee7ff,#9b8cff)"}}>
+            {busy?"Thinking…":"Send"}
+          </button>
+          {canListen && (listening
+            ? <button onClick={()=>recognitionRef.current?.stop()} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm border border-white/20 text-white hover:bg-white/10">Stop Mic</button>
+            : <button onClick={()=>{setOut(""); recognitionRef.current?.start(); setListening(true);}} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm border border-white/20 text-white hover:bg-white/10">Start Mic</button>
+          )}
+          {canSpeak && <button onClick={()=>setSpeaking(s=>!s)} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm border border-white/20 text-white hover:bg-white/10">Voice: {speaking?"On":"Off"}</button>}
+        </div>
+
+        {out && <div className="prose prose-invert mt-6 whitespace-pre-wrap">{out}</div>}
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,38 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="border-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#bg-gradient)" />
+
+  <!-- Border circle -->
+  <circle cx="100" cy="100" r="98" fill="none" stroke="url(#border-gradient)" stroke-width="3" />
+
+  <!-- Professional silhouette -->
+  <g transform="translate(100, 100)">
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="25" fill="rgba(255,255,255,0.9)" />
+
+    <!-- Suit jacket shoulders -->
+    <path d="M-35 20 Q-25 10 -15 15 L-10 25 Q0 30 10 25 L15 15 Q25 10 35 20 L35 80 L-35 80 Z"
+          fill="rgba(255,255,255,0.8)" />
+
+    <!-- Shirt -->
+    <path d="M-15 15 Q0 20 15 15 L15 80 L-15 80 Z" fill="rgba(255,255,255,0.95)" />
+
+    <!-- Tie -->
+    <path d="M-4 15 L4 15 L6 35 L3 45 L0 50 L-3 45 L-6 35 Z" fill="rgba(59,130,246,0.8)" />
+  </g>
+
+  <!-- Professional highlight -->
+  <ellipse cx="100" cy="100" rx="100" ry="100" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+</svg>
