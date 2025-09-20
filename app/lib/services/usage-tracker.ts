@@ -1,4 +1,4 @@
-import { supabase } // Supabase temporarily disabled for deployment
+// import { supabase } from supabase - temporarily disabled for deployment
 
 export interface UsageData {
   userId: string;

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { supabase } // Supabase temporarily disabled for deployment
+// import { supabase } from supabase - temporarily disabled for deployment
 import {
   EnterpriseAssessmentService,
   EnterpriseAssessment,

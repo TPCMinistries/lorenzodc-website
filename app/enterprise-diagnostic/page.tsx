@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } // Supabase temporarily disabled for deployment
+// import { supabase } from supabase - temporarily disabled for deployment
 import { EnterpriseAssessmentService, EnterpriseAssessmentQuestion } from '../lib/services/enterprise-assessment';
 import { useRouter } from 'next/navigation';
 
