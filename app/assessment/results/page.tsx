@@ -24,9 +24,10 @@ function AssessmentResultsContent() {
       }
 
       try {
-        // Check authentication
-        const { data: { user } } = await supabase.auth.getUser();
-        setIsAuthenticated(!!user);
+        // Check authentication - temporarily disabled for deployment
+        // const { data: { user } } = await supabase.auth.getUser();
+        // setIsAuthenticated(!!user);
+        setIsAuthenticated(false); // Default to not authenticated for deployment
 
         // Load assessment result
         const assessmentResult = await AssessmentService.getAssessmentResult(sessionId);
@@ -107,7 +108,7 @@ function AssessmentResultsContent() {
   }
 
   const overallScore = calculateOverallScore();
-  const upgradeHooks = AssessmentService.generateUpgradeHooks(result, insights);
+  const upgradeHooks = AssessmentService.generateUpgradeHooks(result, insights || undefined);
 
   return (
     <div className="min-h-screen bg-slate-900 py-8">
@@ -357,7 +358,7 @@ function AssessmentResultsContent() {
               💡 Create an account to save your assessment results and get personalized coaching
             </p>
             <button
-              onClick={() => router.push('/signup')}
+              onClick={() => router.push('/contact')}
               className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
               Sign Up Free

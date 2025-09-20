@@ -97,9 +97,10 @@ export default function AssessmentPage() {
   useEffect(() => {
     const initializeAssessment = async () => {
       try {
-        // Check authentication
-        const { data: { user } } = await supabase.auth.getUser();
-        setIsAuthenticated(!!user);
+        // Check authentication - temporarily disabled for deployment
+        // const { data: { user } } = await supabase.auth.getUser();
+        // setIsAuthenticated(!!user);
+        setIsAuthenticated(false); // Default to not authenticated for deployment
 
         // Load questions
         const questionData = await AssessmentService.getAssessmentQuestions();

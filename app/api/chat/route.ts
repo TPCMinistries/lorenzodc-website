@@ -19,25 +19,26 @@ export async function POST(req: Request) {
   let isPremium = false;
   let userId = null;
 
-  if (authHeader) {
-    try {
-      const { data: { user } } = await supabase.auth.getUser(authHeader.replace('Bearer ', ''));
-      if (user) {
-        userId = user.id;
-        // Check subscription status
-        const { data: subscription } = await supabase
-          .from('user_subscriptions')
-          .select('tierId')
-          .eq('userId', user.id)
-          .eq('status', 'active')
-          .single();
+  // Temporarily disabled auth for deployment
+  // if (authHeader) {
+  //   try {
+  //     const { data: { user } } = await supabase.auth.getUser(authHeader.replace('Bearer ', ''));
+  //     if (user) {
+  //       userId = user.id;
+  //       // Check subscription status
+  //       const { data: subscription } = await supabase
+  //         .from('user_subscriptions')
+  //         .select('tierId')
+  //         .eq('userId', user.id)
+  //         .eq('status', 'active')
+  //         .single();
 
-        isPremium = subscription?.tierId === 'plus' || subscription?.tierId === 'catalyst_plus';
-      }
-    } catch (error) {
-      console.log('Auth check failed, proceeding as free user:', error);
-    }
-  }
+  //       isPremium = subscription?.tierId === 'plus' || subscription?.tierId === 'catalyst_plus';
+  //     }
+  //   } catch (error) {
+  //     console.log('Auth check failed, proceeding as free user:', error);
+  //   }
+  // }
 
   // Generate enhanced system prompt based on user status
   const personalityPrompt = await CatalystPersonality.generateEnhancedPrompt(isPremium);

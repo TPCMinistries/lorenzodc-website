@@ -52,7 +52,7 @@ Key Guidelines:
   } catch (error) {
     console.error('Document chat error:', error);
 
-    if (error.code === 'insufficient_quota') {
+    if ((error as any)?.code === 'insufficient_quota') {
       return NextResponse.json(
         { error: 'AI service temporarily unavailable. Please try again later.' },
         { status: 503 }
