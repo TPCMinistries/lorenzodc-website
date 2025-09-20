@@ -4,7 +4,7 @@ import CtaBar from "../_components/CtaBar";
 import { DatabaseUsageTracker } from "../lib/subscription/database-usage";
 import { useAuth } from "../lib/hooks/useAuth";
 
-declare global { interface Window { webkitSpeechRecognition?: any; SpeechRecognition?: any; } }
+// Speech recognition types now defined in app/types/speech.d.ts
 
 const STARTERS = [
   "Give me 3 ways AI could save me 2 hours this week.",

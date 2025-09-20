@@ -8,12 +8,7 @@ import AuthModal from "../components/AuthModal";
 import UsageDisplay from "../components/UsageDisplay";
 import { useAuth } from "../lib/hooks/useAuth";
 
-declare global {
-  interface Window {
-    webkitSpeechRecognition: any;
-    SpeechRecognition: any;
-  }
-}
+// Speech recognition types now defined in app/types/speech.d.ts
 
 const COACHING_PROMPTS = {
   newbie: "I'm new to AI and need simple, step-by-step guidance. Help me understand how to apply AI to my specific situation without overwhelming technical details.",

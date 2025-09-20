@@ -4,7 +4,7 @@ import CtaBar from "./CtaBar";
 import { DatabaseUsageTracker } from "../lib/subscription/database-usage";
 import { useAuth } from "../lib/hooks/useAuth";
 
-declare global { interface Window { webkitSpeechRecognition?: any; SpeechRecognition?: any; } }
+// Speech recognition types now defined in app/types/speech.d.ts
 
 export default function InlineChat({ limit = 4, initial = "" }: { limit?: number; initial?: string }) {
   const [msg,setMsg]=useState(initial || "Give me 3 ways AI could save me 2 hours this week.");
