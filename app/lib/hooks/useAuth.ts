@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '../supabase/client';
+import { supabase } // Supabase temporarily disabled for deployment
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);

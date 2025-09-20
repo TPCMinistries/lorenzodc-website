@@ -1,4 +1,4 @@
-import { supabase } from '../supabase/client';
+import { supabase } // Supabase temporarily disabled for deployment
 
 export interface EmailEvent {
   user_id: string;

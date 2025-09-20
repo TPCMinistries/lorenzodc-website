@@ -1,4 +1,4 @@
-import { supabase } from '../supabase/client';
+import { supabase } // Supabase temporarily disabled for deployment
 import OpenAI from 'openai';
 
 const openai = new OpenAI({

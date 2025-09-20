@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '../supabase/server';
+import { supabase } // Supabase server temporarily disabled for deployment
 
 export interface UsageEnforcementOptions {
   featureType: 'chat' | 'voice' | 'document' | 'assessment';

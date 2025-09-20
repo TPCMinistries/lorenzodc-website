@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { saveConversation, getConversations, deleteConversation, type Conversation, type Message } from "../lib/supabase/conversations";
+import { saveConversation, getConversations, deleteConversation, type Conversation, type Message } // Supabase conversations temporarily disabled for deployment
 import { useSubscription, incrementMessageUsage } from "../lib/subscription";
 import { DatabaseUsageTracker } from "../lib/subscription/database-usage";
 import UpgradeModal from "../components/UpgradeModal";
