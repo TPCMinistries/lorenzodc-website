@@ -3,7 +3,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: { typedRoutes: true },
+  experimental: { typedRoutes: false },
   images: { remotePatterns: [] },
 };
 

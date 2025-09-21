@@ -1,4 +1,4 @@
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../../lib/supabase/client";
 
 export interface DocumentUpload {
   id: string;
@@ -169,7 +169,7 @@ export class DocumentProcessingService {
         .eq('id', documentId);
 
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error processing document:', error);
       await this.markDocumentFailed(documentId, error.message);
       return false;

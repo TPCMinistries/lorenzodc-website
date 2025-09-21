@@ -40,7 +40,7 @@ export default function HistoryUpgradePrompt({
   };
 
   const handleUpgrade = (plan: 'basic' | 'plus') => {
-    router.push(`/pricing?plan=${plan}&feature=conversation_history`);
+    router.push(`/pricing?plan=${plan}&feature=conversation_history` as any);
   };
 
   const handleClose = () => {
@@ -225,7 +225,7 @@ export default function HistoryUpgradePrompt({
                 Maybe Later
               </button>
               <button
-                onClick={() => router.push('/pricing')}
+                onClick={() => router.push('/pricing' as any)}
                 className="flex-1 px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600 transition-colors"
               >
                 Compare All Plans

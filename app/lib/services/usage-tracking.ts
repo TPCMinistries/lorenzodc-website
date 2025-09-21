@@ -1,4 +1,4 @@
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../../lib/supabase/client";
 
 export interface UsageLimits {
   tier_id: string;
@@ -266,7 +266,7 @@ export class UsageTrackingService {
 
   // Check if user needs upgrade prompt
   static shouldShowUpgradePrompt(usage: UsageStatus): boolean {
-    return !usage.canPerform && usage.upgradeRequired;
+    return !usage.canPerform && (usage.upgradeRequired ?? false);
   }
 
   // Get next tier recommendation

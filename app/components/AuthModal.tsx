@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../lib/supabase/client";
 
 interface AuthModalProps {
   isOpen: boolean;

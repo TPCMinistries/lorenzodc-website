@@ -191,7 +191,7 @@ export default function VoiceRecorder({
         });
       }, 1000);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error starting recording:', error);
 
       if (error.name === 'NotAllowedError') {
@@ -245,7 +245,7 @@ export default function VoiceRecorder({
         onError?.('No speech detected. Please try speaking more clearly.');
       }
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Transcription error:', error);
       onError?.(error.message || 'Failed to transcribe audio');
     } finally {

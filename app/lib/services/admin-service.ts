@@ -1,4 +1,4 @@
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../../lib/supabase/client";
 
 export interface AdminUser {
   id: string;
@@ -266,22 +266,6 @@ export class AdminService {
     }
   }
 
-  // Get admin activity logs
-  static async getActivityLogs(limit: number = 50): Promise<AdminActivityLog[]> {
-    try {
-      const { data, error } = await supabase
-        .from('admin_activity_logs')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(limit);
-
-      if (error) throw error;
-      return data || [];
-    } catch (error) {
-      console.error('Error getting activity logs:', error);
-      return [];
-    }
-  }
 
   // Log admin activity
   static async logActivity(

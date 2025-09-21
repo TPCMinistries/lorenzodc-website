@@ -18,7 +18,7 @@ export class CatalystPersonality {
         const insights = await AssessmentService.getAssessmentInsights(assessmentId);
 
         if (result) {
-          assessmentContext = AssessmentService.generateCoachingContext(result, insights);
+          assessmentContext = AssessmentService.generateCoachingContext(result, insights || undefined);
         }
       } catch (error) {
         console.error('Error loading assessment context:', error);
@@ -30,7 +30,7 @@ export class CatalystPersonality {
       return this.generateBasicPrompt();
     }
 
-    return this.generatePersonalizedPrompt(context, assessmentContext);
+    return this.generatePersonalizedPrompt(context || undefined, assessmentContext || undefined);
   }
 
   private static generateBasicPrompt(): AIPersonalityPrompt {

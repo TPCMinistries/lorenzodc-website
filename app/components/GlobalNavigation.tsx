@@ -208,7 +208,7 @@ export default function GlobalNavigation() {
           {/* Optimized Action Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
             <Link
-              href="/login"
+              href="/chat"
               className="group relative px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white border border-amber-500/50 hover:border-amber-400/50 rounded-xl transition-all duration-300 font-medium text-sm tracking-wide overflow-hidden shadow-lg hover:shadow-xl"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-transparent group-hover:from-white/10 group-hover:to-white/10 transition-all duration-300" />

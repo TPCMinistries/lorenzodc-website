@@ -52,6 +52,8 @@ export class LeadNurturingService {
 
   // Immediate SMS after assessment
   private static async sendImmediateSMS(leadData: LeadData) {
+    if (!leadData.phone) return;
+
     const message = this.getImmediateSMSContent(leadData);
 
     await twilioClient.messages.create({
@@ -63,6 +65,8 @@ export class LeadNurturingService {
 
   // 24-hour follow-up SMS
   private static async send24HourFollowUpSMS(leadData: LeadData) {
+    if (!leadData.phone) return;
+
     const message = this.get24HourSMSContent(leadData);
 
     await twilioClient.messages.create({

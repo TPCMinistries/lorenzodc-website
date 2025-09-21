@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import { supabase } from supabase/server - temporarily disabled for deployment
+import { supabaseAdmin } from "../../../lib/supabase/server";
 
 export interface UsageEnforcementOptions {
   featureType: 'chat' | 'voice' | 'document' | 'assessment';
@@ -13,7 +13,7 @@ export async function enforceUsageLimit(
 ): Promise<NextResponse | null> {
   try {
     // Get authenticated user
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser();
 
     if (authError || !user) {
       return NextResponse.json(
@@ -43,7 +43,7 @@ export async function enforceUsageLimit(
     }
 
     // Check feature usage limits
-    const { data: canPerform, error: permError } = await supabase.rpc('can_user_perform_action', {
+    const { data: canPerform, error: permError } = await supabaseAdmin.rpc('can_user_perform_action', {
       user_id_param: user.id,
       action_type: options.featureType
     });
@@ -58,7 +58,7 @@ export async function enforceUsageLimit(
 
     if (!canPerform) {
       // Get detailed limits for error message
-      const { data: limits } = await supabase.rpc('get_user_usage_limits', {
+      const { data: limits } = await supabaseAdmin.rpc('get_user_usage_limits', {
         user_id_param: user.id
       });
 
@@ -82,7 +82,7 @@ export async function enforceUsageLimit(
 
     // Track usage if requested
     if (options.trackUsage) {
-      await supabase.rpc('track_feature_usage', {
+      await supabaseAdmin.rpc('track_feature_usage', {
         user_id_param: user.id,
         feature_type_param: options.featureType,
         feature_action_param: `api_${request.method.toLowerCase()}`,
@@ -120,7 +120,7 @@ async function checkRateLimit(
   resetTime: number;
 }> {
   try {
-    const { data: allowed, error } = await supabase.rpc('check_api_rate_limit', {
+    const { data: allowed, error } = await supabaseAdmin.rpc('check_api_rate_limit', {
       user_id_param: userId,
       endpoint_param: endpoint,
       method_param: method

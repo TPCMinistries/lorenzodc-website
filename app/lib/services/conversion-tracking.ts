@@ -13,7 +13,7 @@ export interface ConversionEvent {
 export class ConversionTrackingService {
 
   // Track Facebook Pixel events
-  static trackFacebookEvent(eventName: string, parameters: ConversionEvent = {}): void {
+  static trackFacebookEvent(eventName: string, parameters: Partial<ConversionEvent> = {}): void {
     if (typeof window === 'undefined' || !(window as any).fbq) return;
 
     try {
@@ -37,7 +37,7 @@ export class ConversionTrackingService {
   }
 
   // Track Google Analytics events
-  static trackGoogleEvent(action: string, parameters: ConversionEvent = {}): void {
+  static trackGoogleEvent(action: string, parameters: Partial<ConversionEvent> = {}): void {
     if (typeof window === 'undefined' || !(window as any).gtag) return;
 
     try {
@@ -63,7 +63,7 @@ export class ConversionTrackingService {
   }
 
   // Track LinkedIn Insight events
-  static trackLinkedInEvent(eventType: string, parameters: ConversionEvent = {}): void {
+  static trackLinkedInEvent(eventType: string, parameters: Partial<ConversionEvent> = {}): void {
     if (typeof window === 'undefined' || !(window as any).lintrk) return;
 
     try {
@@ -128,7 +128,7 @@ export class ConversionTrackingService {
   // Unified tracking method that sends to all platforms
   static trackConversion(
     eventType: string,
-    parameters: ConversionEvent = {}
+    parameters: Partial<ConversionEvent> = {}
   ): void {
     // Track on Facebook Pixel
     const fbEventName = this.getFacebookEventName(eventType);

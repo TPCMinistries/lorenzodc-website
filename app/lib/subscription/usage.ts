@@ -1,4 +1,4 @@
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../../lib/supabase/client";
 import { SubscriptionLimits, UsageStats, UserSubscription } from './types';
 import { getTierById, FREE_TIER } from './tiers';
 

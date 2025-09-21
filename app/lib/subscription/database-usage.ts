@@ -1,4 +1,4 @@
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabase } from "../../../lib/supabase/client";
 
 export class DatabaseUsageTracker {
   static async getCurrentUser() {

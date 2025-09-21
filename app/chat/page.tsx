@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-// import { saveConversation, getConversations, deleteConversation, type Conversation, type Message } from supabase/conversations - temporarily disabled
+import { supabase } from "../../lib/supabase/client";
+// TODO: Implement conversation functions (saveConversation, getConversations, deleteConversation) and types (Conversation, Message)
 import { useSubscription, incrementMessageUsage } from "../lib/subscription";
 import { DatabaseUsageTracker } from "../lib/subscription/database-usage";
 import UpgradeModal from "../components/UpgradeModal";
@@ -298,7 +299,7 @@ export default function Chat() {
       id: crypto.randomUUID(),
       role: 'user',
       content: voiceMessage.trim(),
-      timestamp: new Date().toISOString()
+      timestamp: new Date()
     };
 
     // Add user message immediately
@@ -483,7 +484,7 @@ export default function Chat() {
       id: crypto.randomUUID(),
       role: 'user',
       content: msg.trim(),
-      timestamp: new Date().toISOString()
+      timestamp: new Date()
     };
 
     // Add user message immediately
@@ -493,7 +494,9 @@ export default function Chat() {
 
     try {
       // Increment usage
-      await incrementMessageUsage(userId);
+      if (userId) {
+        await incrementMessageUsage(userId);
+      }
 
       // Refresh subscription to get updated usage
       await refreshSubscription();
@@ -757,7 +760,7 @@ export default function Chat() {
                       {conv.title}
                     </div>
                     <div className="text-xs text-slate-400 mt-1">
-                      {new Date(conv.updated_at).toLocaleDateString()} • {conv.messages.length} messages
+                      {new Date(conv.createdAt).toLocaleDateString()} • {conv.messages.length} messages
                     </div>
                   </button>
                   <button

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { CatalystPersonality } from "../../lib/coaching/personality";
 import { GoalTrackingService } from "../../lib/services/goal-tracking";
-// import { supabase } from supabase - temporarily disabled for deployment
+import { supabaseAdmin } from "../../../lib/supabase/server";
 
 interface Message {
   id: string;
