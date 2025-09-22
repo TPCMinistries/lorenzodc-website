@@ -93,7 +93,7 @@ export default function NewsletterSignup({ variant = 'inline', className = '' }:
               placeholder="Enter your email address"
               required
               className={`flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                variant === 'footer' ? 'bg-slate-800 text-white placeholder-slate-400 border-slate-600' : 'bg-white'
+                variant === 'footer' ? 'bg-slate-800 text-white placeholder-slate-400 border-slate-600' : 'bg-white text-slate-900 placeholder-slate-500'
               }`}
               disabled={status === 'loading'}
             />
