@@ -34,29 +34,23 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#3B82F6" />
 
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180x180.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-167x167.png" />
-
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3B82F6" />
         <link rel="shortcut icon" href="/favicon.ico" />
 
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:url" content="https://catalyst-ai.com" />
-        <meta name="twitter:title" content="Catalyst AI - Enterprise AI Platform" />
-        <meta name="twitter:description" content="Transform your business with AI-powered coaching, goal tracking, and enterprise solutions" />
-        <meta name="twitter:image" content="/icons/icon-192x192.png" />
+        <meta name="twitter:url" content="https://www.lorenzodc.com" />
+        <meta name="twitter:title" content="The Catalyst Path — Futurist AI Strategy" />
+        <meta name="twitter:description" content="From first prompt to enterprise pilots: diagnostics, ROI, RAG, and a 90-day plan." />
+        <meta name="twitter:image" content="/favicon.ico" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Catalyst AI - Enterprise AI Platform" />
-        <meta property="og:description" content="Transform your business with AI-powered coaching, goal tracking, and enterprise solutions" />
-        <meta property="og:site_name" content="Catalyst AI" />
-        <meta property="og:url" content="https://catalyst-ai.com" />
-        <meta property="og:image" content="/icons/icon-512x512.png" />
+        <meta property="og:title" content="The Catalyst Path — Futurist AI Strategy" />
+        <meta property="og:description" content="From first prompt to enterprise pilots: diagnostics, ROI, RAG, and a 90-day plan." />
+        <meta property="og:site_name" content="The Catalyst Path" />
+        <meta property="og:url" content="https://www.lorenzodc.com" />
+        <meta property="og:image" content="/favicon.ico" />
 
         {/* PWA Install Prompt Script */}
         <script
