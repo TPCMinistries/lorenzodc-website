@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { UsageTracker } from '../lib/subscription/UsageTracker';
+import { loadStripe } from '@stripe/stripe-js';
+import { useAuth } from '../lib/hooks/useAuth';
 
 interface UpgradeModalProps {
   isOpen: boolean;
@@ -8,24 +9,54 @@ interface UpgradeModalProps {
   onUpgrade: () => void;
 }
 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
 export default function UpgradeModal({ isOpen, onClose, onUpgrade }: UpgradeModalProps) {
   const [loading, setLoading] = useState(false);
+  const { userId, userEmail } = useAuth();
 
   if (!isOpen) return null;
 
-  const handleUpgrade = async () => {
+  const handleUpgrade = async (tier: 'basic' | 'plus' = 'basic') => {
+    if (!userId || !userEmail) {
+      alert('Please sign in to upgrade your subscription');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      // In production, this would integrate with Stripe
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Map tiers to Stripe price IDs
+      const priceIds = {
+        basic: process.env.NEXT_PUBLIC_STRIPE_PRICE_BASIC || 'price_1234', // $19/month
+        plus: process.env.NEXT_PUBLIC_STRIPE_PRICE_PLUS || 'price_5678'   // $29/month
+      };
 
-      UsageTracker.upgradeToPlus('demo_customer', 'demo_subscription');
-      onUpgrade();
-      onClose();
-    } catch (error) {
+      // Create checkout session
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          priceId: priceIds[tier],
+          userId,
+          email: userEmail
+        })
+      });
+
+      const { sessionId, url, error } = await response.json();
+
+      if (error) {
+        throw new Error(error);
+      }
+
+      // Redirect to Stripe Checkout
+      if (url) {
+        window.location.href = url;
+      }
+
+    } catch (error: any) {
       console.error('Upgrade failed:', error);
-    } finally {
+      alert(`Upgrade failed: ${error.message}`);
       setLoading(false);
     }
   };
@@ -141,19 +172,28 @@ export default function UpgradeModal({ isOpen, onClose, onUpgrade }: UpgradeModa
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="space-y-3">
+          <div className="flex gap-3">
+            <button
+              onClick={() => handleUpgrade('basic')}
+              disabled={loading}
+              className="flex-1 px-4 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white rounded-xl font-medium disabled:opacity-50 transition-all duration-200"
+            >
+              {loading ? 'Processing...' : 'Basic - $19/month'}
+            </button>
+            <button
+              onClick={() => handleUpgrade('plus')}
+              disabled={loading}
+              className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-medium disabled:opacity-50 transition-all duration-200"
+            >
+              {loading ? 'Processing...' : 'Plus - $29/month'}
+            </button>
+          </div>
           <button
             onClick={onClose}
-            className="flex-1 px-4 py-2 border border-slate-600 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors"
+            className="w-full px-4 py-2 border border-slate-600 text-slate-300 rounded-xl hover:bg-slate-700 transition-colors"
           >
             Maybe Later
-          </button>
-          <button
-            onClick={handleUpgrade}
-            disabled={loading}
-            className="flex-1 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white rounded-xl font-medium disabled:opacity-50 transition-all duration-200"
-          >
-            {loading ? 'Processing...' : 'Upgrade to Plus'}
           </button>
         </div>
 
