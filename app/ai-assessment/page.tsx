@@ -143,18 +143,23 @@ const assessmentSections: AssessmentSection[] = [
 
 export default function AIAssessmentPage() {
   const router = useRouter();
-  const [currentSection, setCurrentSection] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [responses, setResponses] = useState<Record<string, any>>({});
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const currentSectionData = assessmentSections[currentSection];
-  const isLastSection = currentSection === assessmentSections.length - 1;
-  const totalQuestions = assessmentSections.reduce((sum, section) => sum + section.questions.length, 0);
-  const answeredQuestions = Object.keys(responses).length;
-  const progress = (answeredQuestions / totalQuestions) * 100;
+  // Flatten all questions into a single array
+  const allQuestions = assessmentSections.flatMap(section =>
+    section.questions.map(q => ({ ...q, sectionTitle: section.title, sectionIcon: section.icon }))
+  );
+
+  const totalQuestions = allQuestions.length;
+  const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
+  const isContactForm = currentQuestionIndex >= totalQuestions;
+  const currentQuestion = allQuestions[currentQuestionIndex];
+  const progress = isContactForm ? 100 : ((currentQuestionIndex + 1) / totalQuestions) * 100;
 
   const handleResponse = (questionId: string, value: any) => {
     setResponses(prev => ({
@@ -164,17 +169,26 @@ export default function AIAssessmentPage() {
   };
 
   const canProceed = () => {
-    return currentSectionData.questions.every(q => responses[q.id] !== undefined);
+    if (isContactForm) return email && name;
+    return responses[currentQuestion?.id] !== undefined;
   };
 
   const handleNext = () => {
     if (canProceed()) {
-      if (isLastSection) {
-        // Move to contact form instead of submitting
-        setCurrentSection(prev => prev + 1);
+      if (isLastQuestion) {
+        // Move to contact form
+        setCurrentQuestionIndex(prev => prev + 1);
+      } else if (isContactForm) {
+        handleSubmit();
       } else {
-        setCurrentSection(prev => prev + 1);
+        setCurrentQuestionIndex(prev => prev + 1);
       }
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1);
     }
   };
 
@@ -255,7 +269,7 @@ export default function AIAssessmentPage() {
               <p className="text-slate-400">Discover your AI transformation roadmap</p>
             </div>
             <div className="text-right">
-              <div className="text-sm text-slate-400">Progress</div>
+              <div className="text-sm text-slate-400">Question {isContactForm ? totalQuestions : currentQuestionIndex + 1} of {totalQuestions}</div>
               <div className="text-lg font-semibold text-cyan-400">{Math.round(progress)}%</div>
             </div>
           </div>
@@ -272,76 +286,75 @@ export default function AIAssessmentPage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {currentSection <= assessmentSections.length ? (
-          currentSection < assessmentSections.length ? (
+        {!isContactForm ? (
           <div className="space-y-8">
-            {/* Section Header */}
+            {/* Question Header */}
             <div className="text-center">
-              <div className="text-6xl mb-4">{currentSectionData.icon}</div>
-              <h2 className="text-3xl font-bold mb-2">{currentSectionData.title}</h2>
-              <p className="text-slate-400 text-lg">{currentSectionData.description}</p>
+              <div className="text-6xl mb-4">{currentQuestion?.sectionIcon}</div>
+              <h2 className="text-2xl font-bold mb-2">{currentQuestion?.sectionTitle}</h2>
+              <div className="text-cyan-400 text-sm font-medium mb-4">
+                Question {currentQuestionIndex + 1} of {totalQuestions}
+              </div>
             </div>
 
-            {/* Questions */}
-            <div className="space-y-6">
-              {currentSectionData.questions.map((question, index) => (
-                <div key={question.id} className="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
-                  <h3 className="text-lg font-medium mb-4">
-                    {index + 1}. {question.text}
-                  </h3>
+            {/* Single Question */}
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
+                <h3 className="text-xl font-medium mb-6 text-center">
+                  {currentQuestion?.text}
+                </h3>
 
-                  {question.type === 'scale' && (
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm text-slate-400">
-                        <span>Not at all</span>
-                        <span>Extremely</span>
-                      </div>
-                      <div className="flex space-x-2">
-                        {[1, 2, 3, 4, 5].map(value => (
-                          <button
-                            key={value}
-                            onClick={() => handleResponse(question.id, value)}
-                            className={`flex-1 py-3 rounded-lg border transition-all ${
-                              responses[question.id] === value
-                                ? 'bg-cyan-500 border-cyan-400 text-white'
-                                : 'bg-slate-700 border-slate-600 hover:border-slate-500'
-                            }`}
-                          >
-                            {value}
-                          </button>
-                        ))}
-                      </div>
+                {currentQuestion?.type === 'scale' && (
+                  <div className="space-y-4">
+                    <div className="flex justify-between text-sm text-slate-400">
+                      <span>Not at all</span>
+                      <span>Extremely</span>
                     </div>
-                  )}
-
-                  {question.type === 'choice' && question.options && (
-                    <div className="space-y-2">
-                      {question.options.map(option => (
+                    <div className="grid grid-cols-5 gap-3">
+                      {[1, 2, 3, 4, 5].map(value => (
                         <button
-                          key={option}
-                          onClick={() => handleResponse(question.id, option)}
-                          className={`w-full p-4 text-left rounded-lg border transition-all ${
-                            responses[question.id] === option
-                              ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
-                              : 'bg-slate-700 border-slate-600 hover:border-slate-500'
+                          key={value}
+                          onClick={() => handleResponse(currentQuestion.id, value)}
+                          className={`py-4 rounded-lg border transition-all text-lg font-medium ${
+                            responses[currentQuestion.id] === value
+                              ? 'bg-cyan-500 border-cyan-400 text-white'
+                              : 'bg-slate-700 border-slate-600 hover:border-slate-500 hover:bg-slate-600'
                           }`}
                         >
-                          {option}
+                          {value}
                         </button>
                       ))}
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                )}
+
+                {currentQuestion?.type === 'choice' && currentQuestion.options && (
+                  <div className="space-y-3">
+                    {currentQuestion.options.map(option => (
+                      <button
+                        key={option}
+                        onClick={() => handleResponse(currentQuestion.id, option)}
+                        className={`w-full p-4 text-left rounded-lg border transition-all ${
+                          responses[currentQuestion.id] === option
+                            ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
+                            : 'bg-slate-700 border-slate-600 hover:border-slate-500 hover:bg-slate-600'
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center max-w-2xl mx-auto">
               <button
-                onClick={() => setCurrentSection(prev => Math.max(0, prev - 1))}
-                disabled={currentSection === 0}
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0}
                 className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  currentSection === 0
+                  currentQuestionIndex === 0
                     ? 'bg-slate-700 text-slate-500 cursor-not-allowed'
                     : 'bg-slate-700 hover:bg-slate-600 text-white'
                 }`}
@@ -358,11 +371,11 @@ export default function AIAssessmentPage() {
                     : 'bg-slate-700 text-slate-500 cursor-not-allowed'
                 }`}
               >
-                {isLastSection ? 'Continue to Results →' : 'Next Section'}
+                {isLastQuestion ? 'Continue to Results →' : 'Next Question'}
               </button>
             </div>
           </div>
-          ) : (
+        ) : (
           // Final step - contact info
           <div className="max-w-md mx-auto space-y-6">
             <div className="text-center">
