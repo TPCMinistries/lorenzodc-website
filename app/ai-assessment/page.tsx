@@ -228,7 +228,15 @@ export default function AIAssessmentPage() {
 
       if (response.ok) {
         console.log('Success! Redirecting...');
-        router.push('/assessment-complete');
+        const urlParams = new URLSearchParams({
+          overall: scores.overall.toString(),
+          current_state: scores.current_state.toString(),
+          strategy_vision: scores.strategy_vision.toString(),
+          team_capabilities: scores.team_capabilities.toString(),
+          implementation: scores.implementation.toString(),
+          name: name
+        });
+        router.push(`/assessment-complete?${urlParams.toString()}`);
       } else {
         console.error('API error:', data);
         alert(`Error: ${data.error || 'Something went wrong'}`);
