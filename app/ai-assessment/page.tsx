@@ -170,7 +170,8 @@ export default function AIAssessmentPage() {
   const handleNext = () => {
     if (canProceed()) {
       if (isLastSection) {
-        handleSubmit();
+        // Move to contact form instead of submitting
+        setCurrentSection(prev => prev + 1);
       } else {
         setCurrentSection(prev => prev + 1);
       }
@@ -271,7 +272,8 @@ export default function AIAssessmentPage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-8">
-        {currentSection < assessmentSections.length ? (
+        {currentSection <= assessmentSections.length ? (
+          currentSection < assessmentSections.length ? (
           <div className="space-y-8">
             {/* Section Header */}
             <div className="text-center">
@@ -356,11 +358,11 @@ export default function AIAssessmentPage() {
                     : 'bg-slate-700 text-slate-500 cursor-not-allowed'
                 }`}
               >
-                {isLastSection ? 'Get My Results' : 'Next Section'}
+                {isLastSection ? 'Continue to Results →' : 'Next Section'}
               </button>
             </div>
           </div>
-        ) : (
+          ) : (
           // Final step - contact info
           <div className="max-w-md mx-auto space-y-6">
             <div className="text-center">
@@ -413,7 +415,7 @@ export default function AIAssessmentPage() {
               Your information is secure and will only be used to send your assessment results.
             </p>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
