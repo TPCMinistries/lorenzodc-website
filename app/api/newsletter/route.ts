@@ -32,26 +32,23 @@ export async function POST(request: NextRequest) {
       throw error;
     }
 
-    // Send welcome email via N8N if webhook is configured
-    if (process.env.N8N_EMAIL_WEBHOOK_URL) {
+    // Send welcome email via Resend
+    if (process.env.RESEND_API_KEY) {
       try {
-        await fetch(process.env.N8N_EMAIL_WEBHOOK_URL, {
+        await fetch(`${process.env.NEXTAUTH_URL || 'https://www.lorenzodc.com'}/api/send-welcome-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.N8N_EMAIL_SECRET || ''}`,
           },
           body: JSON.stringify({
-            type: 'newsletter_signup',
             email,
             leadMagnet,
-            source,
-            timestamp: new Date().toISOString()
+            source
           })
         });
-      } catch (webhookError) {
-        // Don't fail the whole request if webhook fails
-        console.error('N8N webhook error:', webhookError);
+      } catch (emailError) {
+        // Don't fail the whole request if email fails
+        console.error('Welcome email error:', emailError);
       }
     }
 
