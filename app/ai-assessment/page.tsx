@@ -193,13 +193,20 @@ export default function AIAssessmentPage() {
   };
 
   const handleSubmit = async () => {
-    if (!email || !name) return;
+    console.log('Submit clicked!', { email, name, hasResponses: Object.keys(responses).length });
+
+    if (!email || !name) {
+      console.log('Missing email or name:', { email, name });
+      alert('Please enter your name and email');
+      return;
+    }
 
     setLoading(true);
 
     try {
       // Calculate scores
       const scores = calculateScores(responses);
+      console.log('Calculated scores:', scores);
 
       // Save assessment and send results
       const response = await fetch('/api/assessment-results', {
@@ -215,14 +222,20 @@ export default function AIAssessmentPage() {
         })
       });
 
+      console.log('API response status:', response.status);
+      const data = await response.json();
+      console.log('API response data:', data);
+
       if (response.ok) {
+        console.log('Success! Redirecting...');
         router.push('/assessment-complete');
       } else {
-        alert('Something went wrong. Please try again.');
+        console.error('API error:', data);
+        alert(`Error: ${data.error || 'Something went wrong'}`);
       }
     } catch (error) {
       console.error('Assessment submission error:', error);
-      alert('Something went wrong. Please try again.');
+      alert(`Network error: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -413,7 +426,10 @@ export default function AIAssessmentPage() {
             </div>
 
             <button
-              onClick={handleSubmit}
+              onClick={() => {
+                console.log('Button clicked!');
+                handleSubmit();
+              }}
               disabled={!email || !name || loading}
               className={`w-full py-3 rounded-lg font-medium transition-all ${
                 email && name && !loading
