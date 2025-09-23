@@ -2,12 +2,25 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { supabaseAdmin } from '../../../../lib/supabase/server';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-10-28.acacia',
+// Check if Stripe is configured
+if (!process.env.STRIPE_SECRET_KEY) {
+  console.error('STRIPE_SECRET_KEY environment variable not set');
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_demo', {
+  apiVersion: '2024-06-20',
 });
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Stripe is properly configured
+    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_demo') {
+      return NextResponse.json(
+        { error: 'Stripe not configured. Please contact support.' },
+        { status: 503 }
+      );
+    }
+
     const { priceId, userId, email } = await request.json();
 
     if (!priceId || !userId || !email) {
