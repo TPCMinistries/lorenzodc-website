@@ -234,7 +234,9 @@ export default function AIAssessmentPage() {
           strategy_vision: scores.strategy_vision.toString(),
           team_capabilities: scores.team_capabilities.toString(),
           implementation: scores.implementation.toString(),
-          name: name
+          name: name,
+          email: email,
+          userCreated: data.userCreated ? 'true' : 'false'
         });
         router.push(`/assessment-complete?${urlParams.toString()}`);
       } else {

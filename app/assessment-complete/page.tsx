@@ -10,6 +10,8 @@ export default function AssessmentCompletePage() {
   const teamCapabilities = searchParams.get('team_capabilities');
   const implementation = searchParams.get('implementation');
   const name = searchParams.get('name');
+  const email = searchParams.get('email');
+  const userCreated = searchParams.get('userCreated') === 'true';
 
   // Determine readiness level based on overall score
   const getReadinessLevel = (score: number) => {
@@ -94,6 +96,23 @@ export default function AssessmentCompletePage() {
             <p className="text-slate-400 text-sm">
               📧 Your detailed report with personalized recommendations is being sent to your email within 2 minutes.
             </p>
+
+            {/* Account Creation Notice */}
+            {userCreated && email && (
+              <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-6 text-left">
+                <h3 className="text-lg font-semibold text-blue-400 mb-3">🎉 Your AI Chat Account is Ready!</h3>
+                <p className="text-slate-300 mb-3">
+                  We've automatically created your personal AI chat account. Check your email for login credentials and start getting instant AI strategy guidance!
+                </p>
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                  <p className="text-sm text-slate-400 mb-2">Login Email:</p>
+                  <p className="text-cyan-400 font-mono text-sm">{email}</p>
+                </div>
+                <p className="text-xs text-slate-500 mt-3">
+                  💡 Your temporary password was sent to your email. Please change it after your first login.
+                </p>
+              </div>
+            )}
           </div>
         ) : (
           <div className="space-y-4">
@@ -133,9 +152,11 @@ export default function AssessmentCompletePage() {
         <div className="space-y-3">
           <a
             href="/chat"
-            className="block w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 text-center"
+            className={`block w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 text-center ${
+              userCreated ? 'animate-pulse shadow-lg' : ''
+            }`}
           >
-            🤖 Get AI Strategy Guidance
+            {userCreated ? '🚀 Access Your AI Chat Now' : '🤖 Get AI Strategy Guidance'}
           </a>
 
           <a
