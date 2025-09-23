@@ -277,7 +277,7 @@ export default function AIAssessmentPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                AI Readiness Assessment
+                AI Readiness Assessment v2.0
               </h1>
               <p className="text-slate-400">Discover your AI transformation roadmap</p>
             </div>
