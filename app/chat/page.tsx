@@ -483,8 +483,8 @@ export default function Chat() {
         }
       } catch (error) {
         console.error('Error checking chat status:', error);
-        // Fallback to original subscription check
-        if (!canSendMessage) {
+        // Fallback to original subscription check (only for authenticated users)
+        if (!canSendMessage && isAuthenticated) {
           setShowLimitOverlay(true);
           return;
         }
@@ -1013,14 +1013,14 @@ export default function Chat() {
                 {/* Enhanced Primary Action */}
                 <button
                   onClick={handleSubmit}
-                  disabled={!msg.trim() || busy || !canSendMessage}
+                  disabled={!msg.trim() || busy || (!canSendMessage && isAuthenticated)}
                   className={`group relative px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
-                    busy || !canSendMessage
+                    busy || (!canSendMessage && isAuthenticated)
                       ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
                       : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white shadow-lg hover:shadow-2xl hover:shadow-cyan-500/30'
                   }`}
                 >
-                  {!busy && !(!canSendMessage) && (
+                  {!busy && !((!canSendMessage && isAuthenticated)) && (
                     <div className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/0 group-hover:from-white/10 group-hover:to-white/10 rounded-xl transition-all duration-300"></div>
                   )}
                   <span className="relative flex items-center gap-2">
