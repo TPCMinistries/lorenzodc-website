@@ -54,6 +54,8 @@ export default function Chat() {
   const [showLimitOverlay, setShowLimitOverlay] = useState(false);
   const [coachMode, setCoachMode] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [guestMessageCount, setGuestMessageCount] = useState(0);
+  const GUEST_MESSAGE_LIMIT = 3;
 
   // Conversation state
   const [messages, setMessages] = useState<Message[]>([]);
@@ -277,10 +279,14 @@ export default function Chat() {
   async function handleVoiceSubmit(voiceMessage: string) {
     if (!voiceMessage.trim() || busy) return;
 
-    // Check authentication first
+    // Check authentication and guest limits for voice messages
     if (!isAuthenticated) {
-      setShowAuthModal(true);
-      return;
+      if (guestMessageCount >= GUEST_MESSAGE_LIMIT) {
+        setShowAuthModal(true);
+        return;
+      }
+      // Allow guest users but increment counter
+      setGuestMessageCount(prev => prev + 1);
     }
 
     setBusy(true);
@@ -457,25 +463,31 @@ export default function Chat() {
   async function handleSubmit() {
     if (!msg.trim() || busy) return;
 
-    // Check authentication first
+    // Check authentication and guest limits
     if (!isAuthenticated) {
-      setShowAuthModal(true);
-      return;
-    }
-
-    // Double-check usage limits with real database data
-    try {
-      const chatStatus = await DatabaseUsageTracker.canUserChat();
-      if (!chatStatus.canChat) {
-        setShowLimitOverlay(true);
+      if (guestMessageCount >= GUEST_MESSAGE_LIMIT) {
+        setShowAuthModal(true);
         return;
       }
-    } catch (error) {
-      console.error('Error checking chat status:', error);
-      // Fallback to original subscription check
-      if (!canSendMessage) {
-        setShowLimitOverlay(true);
-        return;
+      // Allow guest users but increment counter
+      setGuestMessageCount(prev => prev + 1);
+    }
+
+    // Double-check usage limits with real database data (only for authenticated users)
+    if (isAuthenticated) {
+      try {
+        const chatStatus = await DatabaseUsageTracker.canUserChat();
+        if (!chatStatus.canChat) {
+          setShowLimitOverlay(true);
+          return;
+        }
+      } catch (error) {
+        console.error('Error checking chat status:', error);
+        // Fallback to original subscription check
+        if (!canSendMessage) {
+          setShowLimitOverlay(true);
+          return;
+        }
       }
     }
 
@@ -670,11 +682,22 @@ export default function Chat() {
             </button>
 
             {/* Real-time Usage Display */}
-            <UsageDisplay
-              userId={userId}
-              isAuthenticated={isAuthenticated}
-              onUpgradeClick={() => setShowUpgradeModal(true)}
-            />
+            {isAuthenticated ? (
+              <UsageDisplay
+                userId={userId}
+                isAuthenticated={isAuthenticated}
+                onUpgradeClick={() => setShowUpgradeModal(true)}
+              />
+            ) : (
+              <div className={`text-xs px-3 py-2 rounded-lg ${
+                guestMessageCount >= GUEST_MESSAGE_LIMIT - 1
+                  ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30'
+                  : 'text-slate-400 bg-slate-800/50'
+              }`}>
+                Guest: {guestMessageCount}/{GUEST_MESSAGE_LIMIT} free messages
+                {guestMessageCount >= GUEST_MESSAGE_LIMIT - 1 && <div className="text-xs mt-1">Sign up for unlimited!</div>}
+              </div>
+            )}
           </div>
 
           <div className="text-center flex-1">
