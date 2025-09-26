@@ -830,7 +830,7 @@ export default function Chat() {
 
                 <div className="mb-8">
                   <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-text-shimmer bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-1000">
-                    AI Strategy Coach
+                    AI Strategy Coach v2
                   </h2>
                   <p className="text-xl text-slate-200 mb-6 max-w-3xl mx-auto leading-relaxed">
                     Get expert AI implementation guidance from Lorenzo's proven methodology. I create custom roadmaps, calculate ROI, and help you implement AI that actually drives business results.
