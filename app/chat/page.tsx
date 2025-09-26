@@ -27,10 +27,10 @@ interface Conversation {
 }
 
 const COACHING_PROMPTS = {
-  newbie: "I'm new to AI and need simple, step-by-step guidance. Help me understand how to apply AI to my specific situation without overwhelming technical details.",
-  business: "I need strategic business advice. Help me think like a successful entrepreneur and identify opportunities I might be missing.",
-  automation: "Help me identify tasks I can automate to save 10+ hours per week. Focus on practical, implementable solutions.",
-  strategy: "Help me think more strategically about AI adoption. Coach me on the questions I should be asking and the framework I should use for decision-making."
+  strategy: "Create a 90-day AI implementation roadmap for my business, including specific tools, budget estimates, and ROI projections.",
+  automation: "Identify the top 3 processes in my business that could be automated with AI to save 20+ hours per week, with implementation steps.",
+  competitive: "Show me how my competitors might be using AI and help me develop a strategy to gain competitive advantage through AI adoption.",
+  roi: "Calculate the potential ROI of implementing AI in my business, including costs, timeline, and expected returns based on my industry."
 };
 
 const VOICE_OPTIONS = [
@@ -55,7 +55,7 @@ export default function Chat() {
   const [coachMode, setCoachMode] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [guestMessageCount, setGuestMessageCount] = useState(0);
-  const GUEST_MESSAGE_LIMIT = 3;
+  const GUEST_MESSAGE_LIMIT = 5;
 
   // Conversation state
   const [messages, setMessages] = useState<Message[]>([]);
@@ -830,11 +830,19 @@ export default function Chat() {
 
                 <div className="mb-8">
                   <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-purple-400 to-blue-400 bg-clip-text text-transparent animate-text-shimmer bg-size-200 bg-pos-0 hover:bg-pos-100 transition-all duration-1000">
-                    Your AI assistant for everything
+                    AI Strategy Coach
                   </h2>
                   <p className="text-xl text-slate-200 mb-6 max-w-3xl mx-auto leading-relaxed">
-                    Get instant help with work, personal projects, learning, and daily tasks. Every conversation is automatically saved and secured.
+                    Get expert AI implementation guidance from Lorenzo's proven methodology. I create custom roadmaps, calculate ROI, and help you implement AI that actually drives business results.
                   </p>
+
+                  {!isAuthenticated && (
+                    <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-xl p-4 max-w-2xl mx-auto">
+                      <p className="text-amber-300 text-sm font-medium">
+                        🎯 Get {GUEST_MESSAGE_LIMIT} free strategy sessions • Complete your <a href="/ai-assessment" className="underline hover:text-amber-200">AI Readiness Assessment</a> for unlimited access
+                      </p>
+                    </div>
+                  )}
 
                   {/* Decorative elements */}
                   <div className="flex justify-center items-center space-x-4 mb-8">
@@ -844,9 +852,9 @@ export default function Chat() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                   <button
-                    onClick={() => setMsg("Give me 3 ways AI could save me 2 hours this week")}
+                    onClick={() => setMsg(COACHING_PROMPTS.strategy)}
                     className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/30 rounded-xl p-6 text-left transition-all duration-500 hover:scale-105 hover:border-cyan-400/60 hover:shadow-2xl hover:shadow-cyan-500/20 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -854,15 +862,15 @@ export default function Chat() {
 
                     <div className="relative z-10">
                       <div className="text-cyan-400 mb-3 text-lg font-semibold flex items-center gap-2 group-hover:text-cyan-300 transition-colors">
-                        💡 Quick Win
+                        🗺️ 90-Day Roadmap
                       </div>
                       <div className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-100 transition-colors">
-                        "Give me 3 ways AI could save me 2 hours this week"
+                        "Create a strategic AI implementation plan with specific tools, budgets, and ROI projections"
                       </div>
                     </div>
                   </button>
                   <button
-                    onClick={() => setMsg("Help me learn something new - what should I focus on?")}
+                    onClick={() => setMsg(COACHING_PROMPTS.roi)}
                     className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/30 rounded-xl p-6 text-left transition-all duration-500 hover:scale-105 hover:border-purple-400/60 hover:shadow-2xl hover:shadow-purple-500/20 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -870,15 +878,15 @@ export default function Chat() {
 
                     <div className="relative z-10">
                       <div className="text-purple-400 mb-3 text-lg font-semibold flex items-center gap-2 group-hover:text-purple-300 transition-colors">
-                        🎓 Learning
+                        💰 ROI Calculator
                       </div>
                       <div className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-100 transition-colors">
-                        "Help me learn something new - what should I focus on?"
+                        "Calculate potential ROI of AI in my business with costs and timeline"
                       </div>
                     </div>
                   </button>
                   <button
-                    onClick={() => setMsg("What tasks should I automate first?")}
+                    onClick={() => setMsg(COACHING_PROMPTS.automation)}
                     className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/30 rounded-xl p-6 text-left transition-all duration-500 hover:scale-105 hover:border-emerald-400/60 hover:shadow-2xl hover:shadow-emerald-500/20 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -886,29 +894,42 @@ export default function Chat() {
 
                     <div className="relative z-10">
                       <div className="text-emerald-400 mb-3 text-lg font-semibold flex items-center gap-2 group-hover:text-emerald-300 transition-colors">
-                        ⚡ Productivity
+                        ⚡ Automation Audit
                       </div>
                       <div className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-100 transition-colors">
-                        "What tasks should I automate first?"
+                        "Identify top 3 processes to automate and save 20+ hours per week"
                       </div>
                     </div>
                   </button>
                   <button
-                    onClick={() => setMsg("Help me plan my week for maximum productivity")}
+                    onClick={() => setMsg(COACHING_PROMPTS.competitive)}
                     className="group relative bg-slate-800/40 backdrop-blur-xl border border-slate-700/30 rounded-xl p-6 text-left transition-all duration-500 hover:scale-105 hover:border-orange-400/60 hover:shadow-2xl hover:shadow-orange-500/20 overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-amber-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="absolute top-3 right-3 w-2 h-2 bg-orange-400/60 rounded-full animate-ping"></div>
 
                     <div className="relative z-10">
                       <div className="text-orange-400 mb-3 text-lg font-semibold flex items-center gap-2 group-hover:text-orange-300 transition-colors">
-                        📋 Planning
+                        🏆 Competitive Edge
                       </div>
                       <div className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-100 transition-colors">
-                        "Help me plan my week for maximum productivity"
+                        "Analyze competitor AI strategies and develop my competitive advantage"
                       </div>
                     </div>
                   </button>
+                </div>
+
+                {/* Unique Value Indicators */}
+                <div className="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto mt-8">
+                  <div className="flex items-center gap-2 bg-slate-800/60 px-4 py-2 rounded-full text-xs text-slate-300">
+                    ✅ <span>500+ Businesses Helped</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-800/60 px-4 py-2 rounded-full text-xs text-slate-300">
+                    📊 <span>ROI-Focused Strategy</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-800/60 px-4 py-2 rounded-full text-xs text-slate-300">
+                    🎯 <span>Industry-Specific Guidance</span>
+                  </div>
                 </div>
               </div>
             </div>
