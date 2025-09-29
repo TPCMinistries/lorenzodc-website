@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { supabaseAdmin } from '../../../../lib/supabase/server';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_demo', {
-  apiVersion: '2024-06-20',
+  apiVersion: '2025-08-27.basil',
 });
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || 'whsec_demo';
@@ -84,8 +84,8 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
       userId,
       tierId,
       status: subscription.status,
-      currentPeriodStart: new Date(subscription.current_period_start * 1000).toISOString(),
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+      currentPeriodStart: new Date((subscription as any).current_period_start * 1000).toISOString(),
+      currentPeriodEnd: new Date((subscription as any).current_period_end * 1000).toISOString(),
       stripeSubscriptionId: subscription.id,
       stripeCustomerId: subscription.customer as string,
     });
@@ -105,8 +105,8 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
     .update({
       tierId,
       status: subscription.status,
-      currentPeriodStart: new Date(subscription.current_period_start * 1000).toISOString(),
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+      currentPeriodStart: new Date((subscription as any).current_period_start * 1000).toISOString(),
+      currentPeriodEnd: new Date((subscription as any).current_period_end * 1000).toISOString(),
     })
     .eq('stripeSubscriptionId', subscription.id);
 

@@ -1055,10 +1055,10 @@ export default function Chat() {
                     <div className="absolute bottom-full left-0 mb-2 w-64 bg-slate-800 border border-slate-600 rounded-xl p-4 z-50">
                       <p className="text-sm font-medium mb-3 text-white">Choose your coaching focus:</p>
                       <div className="space-y-2">
-                        <button onClick={() => handleCoachingSelect('newbie')} className="w-full text-left p-2 hover:bg-slate-700 rounded text-sm text-slate-300 hover:text-white">
+                        <button onClick={() => handleCoachingSelect('strategy')} className="w-full text-left p-2 hover:bg-slate-700 rounded text-sm text-slate-300 hover:text-white">
                           🆕 I'm new to AI
                         </button>
-                        <button onClick={() => handleCoachingSelect('business')} className="w-full text-left p-2 hover:bg-slate-700 rounded text-sm text-slate-300 hover:text-white">
+                        <button onClick={() => handleCoachingSelect('roi')} className="w-full text-left p-2 hover:bg-slate-700 rounded text-sm text-slate-300 hover:text-white">
                           📊 Business strategy
                         </button>
                         <button onClick={() => handleCoachingSelect('automation')} className="w-full text-left p-2 hover:bg-slate-700 rounded text-sm text-slate-300 hover:text-white">
