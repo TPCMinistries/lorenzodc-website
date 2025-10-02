@@ -1,8 +1,9 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function AssessmentCompletePage() {
+function AssessmentContent() {
   const searchParams = useSearchParams();
   const overall = searchParams.get('overall');
   const currentState = searchParams.get('current_state');
@@ -184,5 +185,13 @@ export default function AssessmentCompletePage() {
 
       </div>
     </div>
+  );
+}
+
+export default function AssessmentCompletePage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-900 flex items-center justify-center"><div className="text-white">Loading...</div></div>}>
+      <AssessmentContent />
+    </Suspense>
   );
 }
