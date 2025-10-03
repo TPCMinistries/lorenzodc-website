@@ -7,6 +7,7 @@ export default function GlobalNavigation() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -199,9 +200,16 @@ export default function GlobalNavigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden group p-3 text-gray-300 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden group p-3 text-gray-300 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl"
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
 
@@ -224,6 +232,98 @@ export default function GlobalNavigation() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      {mounted && mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-xl">
+          <div className="pt-20 px-6 pb-6 h-full overflow-y-auto">
+            <nav className="space-y-4">
+              {/* Main Navigation */}
+              <Link
+                href="/lorenzo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                HOME
+              </Link>
+
+              {/* Catalyst AI Submenu */}
+              <div className="space-y-2">
+                <div className="px-6 py-2 text-cyan-400 font-semibold text-sm">CATALYST AI</div>
+                <Link
+                  href="/catalyst"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                >
+                  Overview
+                </Link>
+                <Link
+                  href="/chat"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                >
+                  AI Chat
+                </Link>
+                <Link
+                  href="/enterprise/rag"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                >
+                  Document Intelligence
+                </Link>
+                <Link
+                  href="/enterprise/roi"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                >
+                  ROI Calculator
+                </Link>
+                <Link
+                  href="/enterprise/diagnostic"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                >
+                  Enterprise Diagnostic
+                </Link>
+              </div>
+
+              <Link
+                href="/lorenzo/ministry"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                MINISTRY
+              </Link>
+
+              <Link
+                href="/lorenzo/connect"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                CONNECT
+              </Link>
+
+              {/* Action Buttons */}
+              <div className="pt-6 space-y-4">
+                <Link
+                  href="/chat"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-medium"
+                >
+                  START CHAT
+                </Link>
+                <Link
+                  href="/lorenzo/assessment"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-600 to-cyan-500 text-white rounded-xl font-bold"
+                >
+                  Take Assessment
+                </Link>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
