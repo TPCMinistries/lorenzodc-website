@@ -1,39 +1,9 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 export default function GlobalNavigation() {
-  const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-
-    // Cleanup timeout on unmount
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  const handleDropdownEnter = (dropdown: string) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    setActiveDropdown(dropdown);
-  };
-
-  const handleDropdownLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 500);
-  };
 
 
   return (
@@ -81,57 +51,10 @@ export default function GlobalNavigation() {
               <span className="relative">INSTITUTE</span>
             </Link>
 
-            <Link href="/chat" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
+            <Link href="/catalyst" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 to-pink-600/0 group-hover:from-purple-600/20 group-hover:to-pink-600/20 rounded-xl transition-all duration-300" />
               <span className="relative">CATALYST AI</span>
             </Link>
-
-
-            {/* Enhanced Global Development Dropdown */}
-            <div
-              className="relative group"
-              onMouseEnter={() => handleDropdownEnter('global')}
-              onMouseLeave={handleDropdownLeave}
-            >
-              <button className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 font-medium text-sm tracking-wide whitespace-nowrap">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 to-teal-600/0 group-hover:from-emerald-600/20 group-hover:to-teal-600/20 rounded-xl transition-all duration-300" />
-                <span className="relative">GLOBAL DEVELOPMENT</span>
-                <svg className="relative w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {mounted && activeDropdown === 'global' && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-96 bg-slate-900 backdrop-blur-2xl border border-emerald-400/50 rounded-3xl shadow-2xl z-50 overflow-hidden"
-                  onMouseEnter={() => handleDropdownEnter('global')}
-                  onMouseLeave={handleDropdownLeave}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/80 via-emerald-900/60 to-slate-800/80" />
-                  <div className="relative p-4 space-y-2">
-                    <Link href="/lorenzo/institute" className="group block w-full text-left px-6 py-4 text-gray-300 hover:text-white transition-all duration-300 rounded-2xl hover:bg-gradient-to-r hover:from-emerald-600/30 hover:to-teal-600/30 border border-transparent hover:border-emerald-500/30">
-                      <div className="font-semibold text-base mb-2 group-hover:text-emerald-300">Institute</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Global leadership development programs</div>
-                    </Link>
-
-                    <Link href="/lorenzo/investment-fund" className="group block w-full text-left px-6 py-4 text-gray-300 hover:text-white transition-all duration-300 rounded-2xl hover:bg-gradient-to-r hover:from-amber-600/30 hover:to-orange-600/30 border border-transparent hover:border-amber-500/30">
-                      <div className="font-semibold text-base mb-2 group-hover:text-amber-300">Investment Fund</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Kingdom-aligned strategic investments</div>
-                    </Link>
-
-                    <Link href="/lorenzo/renewal-sanctuary" className="group block w-full text-left px-6 py-4 text-gray-300 hover:text-white transition-all duration-300 rounded-2xl hover:bg-gradient-to-r hover:from-purple-600/30 hover:to-pink-600/30 border border-transparent hover:border-purple-500/30">
-                      <div className="font-semibold text-base mb-2 group-hover:text-purple-300">Renewal Sanctuary</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Executive renewal and restoration</div>
-                    </Link>
-
-                    <Link href="/lorenzo/investment-metrics" className="group block w-full text-left px-6 py-4 text-gray-300 hover:text-white transition-all duration-300 rounded-2xl hover:bg-gradient-to-r hover:from-cyan-600/30 hover:to-blue-600/30 border border-transparent hover:border-cyan-500/30">
-                      <div className="font-semibold text-base mb-2 group-hover:text-cyan-300">Investment Metrics</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Strategic performance tracking</div>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
 
             <Link href="/lorenzo/speaking" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/0 to-purple-600/0 group-hover:from-indigo-600/20 group-hover:to-purple-600/20 rounded-xl transition-all duration-300" />
@@ -179,7 +102,7 @@ export default function GlobalNavigation() {
       </nav>
 
       {/* Mobile Menu */}
-      {mounted && mobileMenuOpen && (
+      {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-xl">
           <div className="pt-20 px-6 pb-6 h-full overflow-y-auto">
             <nav className="space-y-4">
@@ -217,20 +140,13 @@ export default function GlobalNavigation() {
               </Link>
 
               <Link
-                href="/chat"
+                href="/catalyst"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
               >
                 CATALYST AI
               </Link>
 
-              <Link
-                href="/lorenzo/ministry"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
-              >
-                MINISTRY
-              </Link>
 
               <Link
                 href="/lorenzo/connect"
