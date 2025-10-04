@@ -35,12 +35,6 @@ export default function GlobalNavigation() {
     }, 500);
   };
 
-  const handleCatalystNavigation = (url: string) => {
-    // Close dropdown
-    setActiveDropdown(null);
-    // Use window.location for cross-layout navigation to avoid black screen
-    window.location.href = url;
-  };
 
   return (
     <header className="fixed w-full top-0 z-50 bg-gradient-to-r from-slate-900/98 via-indigo-950/95 to-slate-900/98 backdrop-blur-xl border-b border-indigo-500/30 shadow-2xl">
@@ -49,7 +43,7 @@ export default function GlobalNavigation() {
       <nav className="relative max-w-8xl mx-auto px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Premium Logo */}
-          <Link href="/lorenzo" className="group flex items-center space-x-3 hover:scale-105 transition-all duration-300">
+          <Link href="/" className="group flex items-center space-x-3 hover:scale-105 transition-all duration-300">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 via-purple-500 to-cyan-400 rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity" />
               <div className="relative w-14 h-14 bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-500 rounded-2xl flex items-center justify-center shadow-2xl border border-indigo-400/50">
@@ -65,82 +59,33 @@ export default function GlobalNavigation() {
             </div>
           </Link>
 
-          {/* Premium Desktop Navigation */}
+          {/* Comprehensive Enterprise Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            <Link href="/lorenzo" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
+            <Link href="/" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/0 to-purple-600/0 group-hover:from-indigo-600/20 group-hover:to-purple-600/20 rounded-xl transition-all duration-300" />
               <span className="relative">HOME</span>
             </Link>
 
-            <Link href="/lorenzo/divine-strategy" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/0 to-purple-600/0 group-hover:from-indigo-600/20 group-hover:to-purple-600/20 rounded-xl transition-all duration-300" />
-              <span className="relative">DIVINE STRATEGY</span>
-            </Link>
-
-            {/* Enhanced Catalyst AI Dropdown */}
-            <div
-              className="relative group"
-              onMouseEnter={() => handleDropdownEnter('catalyst')}
-              onMouseLeave={handleDropdownLeave}
-            >
-              <button
-                onClick={() => handleCatalystNavigation('/catalyst')}
-                className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 font-medium text-sm tracking-wide whitespace-nowrap"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/0 to-blue-600/0 group-hover:from-cyan-600/20 group-hover:to-blue-600/20 rounded-xl transition-all duration-300" />
-                <span className="relative">CATALYST AI</span>
-                <svg className="relative w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {mounted && activeDropdown === 'catalyst' && (
-                <div
-                  className="absolute top-full left-0 mt-1 w-96 bg-slate-900 backdrop-blur-3xl border border-indigo-400/70 rounded-3xl shadow-2xl z-[100] overflow-hidden"
-                  onMouseEnter={() => handleDropdownEnter('catalyst')}
-                  onMouseLeave={handleDropdownLeave}
-                  style={{ backgroundColor: 'rgba(15, 23, 42, 0.95)' }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/90 via-indigo-900/80 to-slate-800/90" />
-                  <div className="relative p-6 space-y-1">
-                    <button onClick={() => handleCatalystNavigation('/catalyst')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-indigo-600/40 hover:to-purple-600/40 border border-transparent hover:border-indigo-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-indigo-300">Overview</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Complete Catalyst AI platform overview</div>
-                    </button>
-
-                    <button onClick={() => handleCatalystNavigation('/chat')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-cyan-600/40 hover:to-blue-600/40 border border-transparent hover:border-cyan-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-cyan-300">AI Chat</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Interactive AI assistant</div>
-                    </button>
-
-                    <button onClick={() => handleCatalystNavigation('/enterprise/rag')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-emerald-600/40 hover:to-teal-600/40 border border-transparent hover:border-emerald-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-emerald-300">Document Intelligence</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Chat with your PDF documents</div>
-                    </button>
-
-                    <button onClick={() => handleCatalystNavigation('/enterprise/roi')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-amber-600/40 hover:to-orange-600/40 border border-transparent hover:border-amber-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-amber-300">ROI Calculator</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Calculate AI implementation returns</div>
-                    </button>
-
-                    <button onClick={() => handleCatalystNavigation('/enterprise/diagnostic')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-purple-600/40 hover:to-pink-600/40 border border-transparent hover:border-purple-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-purple-300">Enterprise Diagnostic</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Assess your AI readiness</div>
-                    </button>
-
-                    <button onClick={() => handleCatalystNavigation('/enterprise/blueprints')} className="group block w-full text-left px-5 py-5 text-gray-300 hover:text-white transition-all duration-200 rounded-2xl hover:bg-gradient-to-r hover:from-red-600/40 hover:to-rose-600/40 border border-transparent hover:border-red-500/40 hover:shadow-lg">
-                      <div className="font-semibold text-lg mb-1 group-hover:text-red-300">AI Blueprints</div>
-                      <div className="text-sm text-gray-400 group-hover:text-gray-300">Strategic AI implementation plans</div>
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
             <Link href="/lorenzo/ministry" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/0 to-purple-600/0 group-hover:from-indigo-600/20 group-hover:to-purple-600/20 rounded-xl transition-all duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-600/0 to-orange-600/0 group-hover:from-amber-600/20 group-hover:to-orange-600/20 rounded-xl transition-all duration-300" />
               <span className="relative">MINISTRY</span>
             </Link>
+
+            <Link href="/lorenzo/investment-fund" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/0 to-teal-600/0 group-hover:from-emerald-600/20 group-hover:to-teal-600/20 rounded-xl transition-all duration-300" />
+              <span className="relative">INVESTMENT</span>
+            </Link>
+
+            <Link href="/lorenzo/institute" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/20 group-hover:to-cyan-600/20 rounded-xl transition-all duration-300" />
+              <span className="relative">INSTITUTE</span>
+            </Link>
+
+            <Link href="/chat" className="group relative px-4 py-2.5 text-gray-300 hover:text-white transition-all duration-300 font-medium text-sm tracking-wide whitespace-nowrap">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 to-pink-600/0 group-hover:from-purple-600/20 group-hover:to-pink-600/20 rounded-xl transition-all duration-300" />
+              <span className="relative">CATALYST AI</span>
+            </Link>
+
 
             {/* Enhanced Global Development Dropdown */}
             <div
@@ -240,52 +185,44 @@ export default function GlobalNavigation() {
             <nav className="space-y-4">
               {/* Main Navigation */}
               <Link
-                href="/lorenzo"
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
               >
                 HOME
               </Link>
 
-              {/* Catalyst AI Submenu */}
-              <div className="space-y-2">
-                <div className="px-6 py-2 text-cyan-400 font-semibold text-sm">CATALYST AI</div>
-                <Link
-                  href="/catalyst"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
-                >
-                  Overview
-                </Link>
-                <Link
-                  href="/chat"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
-                >
-                  AI Chat
-                </Link>
-                <Link
-                  href="/enterprise/rag"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
-                >
-                  Document Intelligence
-                </Link>
-                <Link
-                  href="/enterprise/roi"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
-                >
-                  ROI Calculator
-                </Link>
-                <Link
-                  href="/enterprise/diagnostic"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-8 py-3 text-gray-300 hover:text-white hover:bg-white/10 rounded-xl transition-all duration-300"
-                >
-                  Enterprise Diagnostic
-                </Link>
-              </div>
+              <Link
+                href="/lorenzo/ministry"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                TPC MINISTRIES
+              </Link>
+
+              <Link
+                href="/lorenzo/investment-fund"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                INVESTMENT FUND
+              </Link>
+
+              <Link
+                href="/lorenzo/institute"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                GLOBAL INSTITUTE
+              </Link>
+
+              <Link
+                href="/chat"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+              >
+                CATALYST AI
+              </Link>
 
               <Link
                 href="/lorenzo/ministry"
