@@ -70,7 +70,8 @@ export default function GlobalNavigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden group p-3 text-gray-300 hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl"
+            className="lg:hidden group p-3 text-white hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl z-[70]"
+            aria-label="Toggle mobile menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -103,7 +104,7 @@ export default function GlobalNavigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 bg-slate-900/95 backdrop-blur-xl">
+        <div className="lg:hidden fixed inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl">
           <div className="pt-20 px-6 pb-6 h-full overflow-y-auto">
             <nav className="space-y-4">
               {/* Main Navigation */}
