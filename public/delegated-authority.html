@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God & Delegated Authority - Lorenzo Daughtry-Chambers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 60px 80px 120px 80px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .slide::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .slide h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .slide h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .intro-text {
+            font-size: 1.6rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 25px 0;
+            font-weight: 400;
+        }
+
+        .scripture-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-left: 6px solid #fff;
+            padding: 30px 35px;
+            margin: 25px 0;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .scripture-box .verse {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            font-style: italic;
+            color: #fff;
+            margin-bottom: 12px;
+            font-weight: 300;
+        }
+
+        .scripture-box .reference {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        ul {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        ul li {
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            padding-left: 35px;
+            position: relative;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .column {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .column h3 {
+            font-size: 2rem;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        .column p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 10px;
+        }
+
+        .column-label {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 16px;
+            margin: 25px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .key-point h3 {
+            margin-bottom: 18px;
+            font-size: 1.9rem;
+        }
+
+        .key-point p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .reflection {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px dashed rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .reflection p {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .quote-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 6px solid rgba(255, 255, 255, 0.5);
+            padding: 30px 35px;
+            margin: 25px 0;
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+        }
+
+        .story-box {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 25px 0;
+        }
+
+        .story-box p {
+            font-size: 1.4rem;
+            line-height: 1.9;
+            margin-bottom: 18px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .visual-container {
+            margin: 35px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flowchart {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 1.5rem;
+        }
+
+        .flow-box {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            padding: 22px 40px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .arrow {
+            font-size: 2.2rem;
+            font-weight: bold;
+            opacity: 0.7;
+        }
+
+        .pyramid {
+            width: 0;
+            height: 0;
+            border-left: 170px solid transparent;
+            border-right: 170px solid transparent;
+            border-top: 280px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            margin: 35px auto;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        .hose-diagram {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            gap: 50px;
+        }
+
+        .hose {
+            text-align: center;
+            flex: 1;
+        }
+
+        .hose-visual {
+            width: 200px;
+            height: 130px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            border-radius: 30px;
+            margin: 0 auto 20px;
+            position: relative;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .leak {
+            position: absolute;
+            width: 22px;
+            height: 45px;
+            background: rgba(100, 180, 255, 0.7);
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 0 0 12px 12px;
+            animation: drip 1.5s ease-in-out infinite;
+        }
+
+        @keyframes drip {
+            0%, 100% { height: 45px; opacity: 0.7; }
+            50% { height: 55px; opacity: 1; }
+        }
+
+        .hose-label {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hose-sublabel {
+            font-size: 1.1rem;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        .declaration {
+            text-align: center;
+            font-size: 2.8rem;
+            margin: 40px 0;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .prayer-text {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 45px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            margin: 30px auto;
+            max-width: 900px;
+        }
+
+        .prayer-text p {
+            font-size: 1.6rem;
+            line-height: 2;
+            text-align: center;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 14px 28px;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .slide-number {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 22px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .bg-gradient-1 {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+        }
+
+        .bg-gradient-2 {
+            background: linear-gradient(135deg, #16213e 0%, #0f0f1e 100%);
+        }
+
+        .bg-gradient-3 {
+            background: linear-gradient(135deg, #2a1a40 0%, #1a1a2e 100%);
+        }
+
+        .bg-gradient-4 {
+            background: linear-gradient(135deg, #1f1f3a 0%, #0a0a15 100%);
+        }
+
+        .bg-gradient-5 {
+            background: linear-gradient(135deg, #0f1419 0%, #1e3a5f 50%, #0f1419 100%);
+        }
+
+        .accent-line {
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 22px 0;
+            border-radius: 10px;
+        }
+
+        .big-number {
+            font-size: 7rem;
+            font-weight: 800;
+            opacity: 0.15;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 18px;
+        }
+
+        .chapter-marker {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .section-divider {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            margin: 40px 0;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin: 35px 0;
+        }
+
+        .small-column {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+        }
+
+        .small-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .small-column p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .small-column .subtitle {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 15px 0;
+            color: #fff;
+        }
+
+        .pause-instruction {
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pause-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .pause-slide h2 {
+            font-size: 4rem;
+            margin-bottom: 40px;
+        }
+
+        .teaching-point {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .teaching-point h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .teaching-point p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .slide {
+                padding: 40px 60px 100px 60px;
+            }
+            .slide h1 {
+                font-size: 3.5rem;
+            }
+            .slide h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 40px 80px 40px;
+            }
+            .slide h1 {
+                font-size: 2.8rem;
+            }
+            .slide h2 {
+                font-size: 2.2rem;
+            }
+            .columns, .three-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .flowchart {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hose-diagram {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .declaration {
+                font-size: 2rem;
+            }
+        }
+
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .offline-indicator.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active bg-gradient-1 pause-slide">
+            <div style="text-align: center;">
+                <h1 style="font-size: 5.5rem; margin-bottom: 15px;">God & Delegated Authority</h1>
+                <div class="accent-line" style="width: 200px; margin: 35px auto;"></div>
+                <div class="subtitle" style="font-size: 2rem; margin: 30px 0;">Maintaining Flow Under Pressure</div>
+                <div style="font-size: 1.5rem; color: rgba(255, 255, 255, 0.7); margin: 25px 0; font-weight: 300;">
+                    Faith, Submission, and Servant Leadership in the Kingdom
+                </div>
+                <div class="section-divider" style="max-width: 600px; margin: 50px auto;"></div>
+                <div style="font-size: 1.3rem; opacity: 0.6; font-style: italic; margin: 25px 0;">
+                    Based on <em>Spiritual Protocol</em> by Archbishop E. Bernard Jordan
+                </div>
+                <div style="font-size: 1.2rem; opacity: 0.5; letter-spacing: 3px; text-transform: uppercase; margin-top: 30px;">
+                    New Life Christian Center<br>Hempstead, Long Island
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Teaching Roadmap -->
+        <div class="slide bg-gradient-2">
+            <h2>Teaching Journey: Chapter 2 of Spiritual Protocol</h2>
+            <div class="accent-line"></div>
+            <div class="intro-text" style="font-size: 1.5rem; margin-bottom: 35px;">
+                We're walking through "God and Delegated Authority" together—pausing to discuss, reflect, and apply as we go.
+            </div>
+
+            <div class="teaching-point">
+                <h4>Part 1: Foundation</h4>
+                <p>Understanding power vs authority, our role as ambassadors, and why this teaching feels threatening</p>
+            </div>
+
+            <div class="teaching-point">
+                <h4>Part 2: The Problem</h4>
+                <p>Where are we leaking spiritual pressure? Personal story and self-assessment</p>
+            </div>
+
+            <div class="teaching-point">
+                <h4>Part 3: Biblical Framework</h4>
+                <p>The centurion's faith, God and authority are inseparable, submission vs obedience</p>
+            </div>
+
+            <div class="teaching-point">
+                <h4>Part 4: Deep Dive</h4>
+                <p>Authority reveals the heart, inverted pyramid, diakonos vs doulos, God's timing</p>
+            </div>
+
+            <div class="teaching-point">
+                <h4>Part 5: Application</h4>
+                <p>Corporate declarations and commissioning prayer</p>
+            </div>
+
+            <div class="intro-text" style="text-align: center; margin-top: 40px; font-size: 1.4rem;">
+                <strong>We'll pause frequently for discussion, questions, and Holy Spirit moments.</strong><br>
+                This is not a lecture—it's a journey into Kingdom order together.
+            </div>
+        </div>
+
+        <!-- Slide 3: Power vs Authority -->
+        <div class="slide bg-gradient-3">
+            <div class="chapter-marker">Chapter 2: God and Delegated Authority</div>
+            <h2>Power vs Authority</h2>
+            <div class="columns">
+                <div class="column">
+                    <h3>Power</h3>
+                    <p><strong>The ability to act</strong></p>
+                    <p style="margin-top: 15px;">• Physical strength or force</p>
+                    <p>• Resources, money, influence</p>
+                    <p>• Charisma, persuasion</p>
+                    <p>• Can be seized, earned, or developed</p>
+                    <p>• Based on personal capacity</p>
+                    <div class="column-label">What you CAN do</div>
+                </div>
+                <div class="column">
+                    <h3>Authority</h3>
+                    <p><strong>The right to act</strong></p>
+                    <p style="margin-top: 15px;">• Delegated position from higher source</p>
+                    <p>• Divine or official assignment</p>
+                    <p>• Operates through proper order</p>
+                    <p>• Must be given, received, or submitted to</p>
+                    <p>• Based on alignment with source</p>
+                    <div class="column-label">What you MAY do</div>
+                </div>
+            </div>
+            <div class="key-point" style="margin-top: 35px;">
+                <p>A small police officer may have less physical power than you, but when they raise their hand to stop traffic, everyone obeys—not because of their personal strength, but because they carry <span class="highlight">delegated authority</span> from the state. Their right to act comes from their position, not their power.</p>
+                <p style="margin-top: 20px;">Kingdom leaders function the same way. Jesus had both power (miracles) and authority (divine alignment). The centurion understood that authority flows through proper submission to the chain of command, not through personal might.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: You Are Ambassadors -->
+        <div class="slide bg-gradient-4">
+            <div class="chapter-marker">Chapter 2: Spiritual Protocol Defined</div>
+            <h2>You Are Kingdom Ambassadors</h2>
+            <div class="scripture-box">
+                <div class="verse">"Now then we are ambassadors for Christ, as though God did beseech you by us: we pray you in Christ's stead, be ye reconciled to God."</div>
+                <div class="reference">2 Corinthians 5:20 (KJV)</div>
+            </div>
+            <div class="key-point">
+                <h3>What is Spiritual Protocol?</h3>
+                <p><span class="highlight">Spiritual protocol is the divine order of authority and submission</span> that governs how Kingdom ambassadors function under Heaven's governmental structure.</p>
+                <p style="margin-top: 18px;">Just as earthly ambassadors represent their nation under strict diplomatic protocol—speaking for their president or prime minister, operating within defined boundaries, answerable to their sending government—we represent Heaven under God's governmental order.</p>
+            </div>
+            <div class="intro-text" style="font-size: 1.5rem; margin-top: 28px;">
+                <strong>As leaders carrying ambassadorial authority, you have:</strong>
+            </div>
+            <ul>
+                <li>The authority of the One who sent you (not your own)</li>
+                <li>Responsibility to operate within proper Kingdom order</li>
+                <li>Accountability to those God has placed over you</li>
+                <li>Access to Heaven's resources when properly aligned</li>
+                <li>The weight of representing God's government, not just His gifts</li>
+            </ul>
+            <div class="quote-box" style="margin-top: 28px;">
+                "As we begin to learn more about spiritual protocol, about functioning under another's authority, we find that our ministries are strengthened. Prophetic words will become stronger, teachings will flow with more anointing, and ministries will mature."
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Amygdala Hijack -->
+        <div class="slide bg-gradient-2">
+            <div class="chapter-marker">Understanding Resistance</div>
+            <h2>Why This Teaching Feels Threatening</h2>
+            <div class="key-point">
+                <h3>The Amygdala Hijack</h3>
+                <p>When you hear "submit to authority," your brain's alarm system (the amygdala) may trigger an automatic threat response. This is normal and predictable. <span class="highlight">Submission feels dangerous to our natural mind</span> because it bypasses our survival instinct for self-protection and control.</p>
+            </div>
+            <div class="intro-text" style="font-size: 1.5rem; margin-top: 28px;">
+                <strong>What happens in your brain when challenged about authority:</strong>
+            </div>
+            <ul>
+                <li><strong>Amygdala detects perceived threat:</strong> Loss of control, vulnerability, potential for harm</li>
+                <li><strong>Fight/flight/freeze response activates:</strong> Body prepares to resist or escape</li>
+                <li><strong>Prefrontal cortex goes offline:</strong> Rational thinking shuts down temporarily</li>
+                <li><strong>Emotional reactions dominate:</strong> Resistance, defensiveness, anger, or withdrawal</li>
+                <li><strong>Justification mechanisms engage:</strong> Mind finds reasons why this doesn't apply to you</li>
+            </ul>
+            <div class="quote-box" style="margin-top: 30px;">
+                "This teaching isn't intuitive to our natural mind. Your brain will fight it because submission challenges the kingdom of self. That resistance you're feeling? It's actually proof you're hearing something that disrupts your flesh's demand for autonomy. The natural man does not receive the things of the Spirit of God."
+            </div>
+            <div class="intro-text" style="text-align: center; margin-top: 28px; font-size: 1.6rem;">
+                <span class="highlight">Expect to feel uncomfortable.</span> That's the signal that you're entering Kingdom territory.
+            </div>
+        </div>
+
+        <!-- Slide 6: Personal Story -->
+        <div class="slide bg-gradient-3">
+            <div class="chapter-marker">Personal Application: The Brake Hose Story</div>
+            <h2>Expansion Requires Maintenance</h2>
+            <div class="story-box">
+                <p><strong>After ten days ministering in South Africa</strong>—teaching at leadership panels, establishing ministry partnerships, flowing in prophetic moments—I came home spiritually full but physically exhausted. The assignment had been powerful. Lives were changed. Connections were made.</p>
+                <p>But the next assignment came immediately: teach this very message on delegated authority.</p>
+                <p style="margin-top: 22px;">This week, while driving to prepare, <strong>a road sign got trapped under my car and pierced my brake hose.</strong> The car could still move forward—the engine ran fine, everything seemed functional. But I couldn't stop safely. The pressure was leaking.</p>
+                <p style="font-size: 1.6rem; font-style: italic; color: #fff; margin-top: 28px;">And the Spirit whispered: <span class="highlight">"This is exactly what happens when expansion outruns maintenance. When ministry growth exceeds relationship care."</span></p>
+            </div>
+            <div class="intro-text" style="font-size: 1.6rem; margin-top: 30px;">
+                We can minister globally yet ignore leaks locally:
+            </div>
+            <ul>
+                <li>Unresolved tension with those in authority over us</li>
+                <li>Broken relationships we've been too busy to repair</li>
+                <li>Offense we've justified rather than releasing</li>
+                <li>Exhaustion we've spiritualized instead of addressing</li>
+                <li>Critical spirits we've disguised as discernment</li>
+            </ul>
+            <div class="quote-box" style="margin-top: 28px;">
+                The hose—that flexible line of relationship and submission—must stay intact for God's pressure to reach its destination. You can't flow what you can't contain. You can't steward authority if your lines of submission are compromised.
+            </div>
+        </div>
+
+        <!-- Slide 7: Where Are You Leaking? -->
+        <div class="slide bg-gradient-3">
+            <h2>Where Are You Leaking Spiritual Pressure?</h2>
+            <div class="hose-diagram">
+                <div class="hose">
+                    <div class="hose-visual"></div>
+                    <div class="hose-label">Intact Flow</div>
+                    <div class="hose-sublabel">Current relationships<br>Honored authority<br>Submitted heart</div>
+                </div>
+                <div class="hose">
+                    <div class="hose-visual">
+                        <div class="leak"></div>
+                        <div class="leak" style="left: 30%;"></div>
+                        <div class="leak" style="left: 70%;"></div>
+                    </div>
+                    <div class="hose-label" style="opacity: 0.7;">Leaking Pressure</div>
+                    <div class="hose-sublabel">Broken submission<br>Unresolved offense<br>Hidden rebellion</div>
+                </div>
+            </div>
+            <div class="pause-instruction">60 Seconds of Silent Self-Assessment</div>
+            <div class="intro-text" style="font-size: 1.5rem; margin-top: 25px; text-align: center;">
+                <strong>Ask yourself honestly:</strong>
+            </div>
+            <ul style="font-size: 1.5rem;">
+                <li>Is there unforgiveness in my heart toward those God has placed over me?</li>
+                <li>Have I developed a critical spirit I've disguised as spiritual discernment?</li>
+                <li>Am I isolated from genuine accountability relationships?</li>
+                <li>Is there someone I've been avoiding because reconciliation feels too costly?</li>
+                <li>Do I honor authority publicly but resent it privately?</li>
+                <li>Have I withdrawn from covering because I was corrected or disappointed?</li>
+            </ul>
+            <div class="scripture-box" style="margin-top: 28px;">
+                <div class="verse">"Above all else, guard your heart, for everything you do flows from it."</div>
+                <div class="reference">Proverbs 4:23 (NIV)</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Centurion -->
+        <div class="slide bg-gradient-2">
+            <div class="chapter-marker">Luke 7:2-10 — The Centurion's Faith</div>
+            <h2>The Centurion's Secret</h2>
+            <div class="scripture-box">
+                <div class="verse">"A certain centurion's servant, who was dear unto him, was sick, and ready to die. And when he heard of Jesus, he sent unto him the elders of the Jews, beseeching him that he would come and heal his servant... The centurion sent friends to him, saying unto him, Lord, trouble not thyself: for I am not worthy that thou shouldest enter under my roof... For I also am a man set under authority, having under me soldiers, and I say unto one, Go, and he goeth; and to another, Come, and he cometh: and to my servant, Do this, and he doeth it. When Jesus heard these things, he marvelled at him, and turned him about, and said unto the people that followed him, I say unto you, I have not found so great faith, no, not in Israel."</div>
+                <div class="reference">Luke 7:2-10 (KJV)</div>
+            </div>
+            <div class="key-point">
+                <h3>What the Centurion Understood:</h3>
+                <p>This was a man of great faith AND a man who had authority AND who was <span class="highlight">under authority.</span> These three realities were not separate—they were one integrated system.</p>
+                <p style="margin-top: 18px;">He recognized that Jesus' authority over sickness didn't come from personal power alone, but from perfect alignment with the Father. He understood the Kingdom operates on principles of submission and delegated authority.</p>
+                <p style="margin-top: 18px;">His faith wasn't just faith in Jesus' ability (power). It was faith in Jesus' <span class="highlight">divine authorization</span> (authority). He knew that words spoken from proper position carry the backing of the one who gave the position.</p>
+            </div>
+            <div class="visual-container" style="margin-top: 30px;">
+                <div class="flowchart">
+                    <div class="flow-box">GOD</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-box">AUTHORITY</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-box">YOU</div>
+                    <div class="arrow">→</div>
+                    <div class="flow-box">MIRACLE</div>
+                </div>
+            </div>
+            <div class="quote-box" style="margin-top: 30px;">
+                "The Lord desires that we be the centurions of this age. Learning how to function under authority is vital if we are to be given authority; it is vital even if we never come into that place of leadership. If we cannot function under authority, we cannot function in the Kingdom of God."
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: God and Authority Are One -->
+        <div class="slide bg-gradient-2">
+            <h2>Touching Authority = Touching God</h2>
+            <div class="scripture-box">
+                <div class="verse">"Let every soul be subject unto the higher powers. For there is no power but of God: the powers that be are ordained of God."</div>
+                <div class="reference">Romans 13:1 (KJV)</div>
+            </div>
+            <div class="intro-text" style="font-size: 1.7rem; text-align: center; margin-top: 25px;">
+                When we have touched delegated authority,<br>
+                <span class="highlight">we have touched God—they are one.</span>
+            </div>
+            <div class="key-point" style="margin-top: 30px;">
+                <h3>The Principle of Inseparability:</h3>
+                <p>Let us examine more deeply this principle that it is not a person who is sacred, but rather it is that office in which he stands. We saw this previously in the example of King Saul of Israel.</p>
+                <p style="margin-top: 18px;">Who put Saul in his place of authority? Did the people make him king? No, the Lord set him in place as the King of Israel. As wicked as he was, the people did not oust him from his office.</p>
+                <p style="margin-top: 18px;">Several times it is recorded that David could have taken his life, but he did not touch "the Lord's anointed." Even though Saul himself had committed evil, because he was the office as king, he could not be touched. <span class="highlight">The people waited for the Lord to remove him.</span> It was not the person (Saul) who commanded respect; it was the office, the position of authority, delegated by God.</p>
+            </div>
+            <div class="scripture-box" style="margin-top: 28px;">
+                <div class="verse">"Whosoever therefore resisteth the power, resisteth the ordinance of God: and they that resist shall receive to themselves damnation."</div>
+                <div class="reference">Romans 13:2 (KJV)</div>
+            </div>
+            <div class="quote-box">
+                When we find ourselves resisting "the power," those placed in authority over us, we are faced with the fact that we are in reality resisting God Himself. How is this so? A human government can be used by God to execute His plans. As we noted previously, Romans 13:1 tells us "...there is no power but of God: the powers that be are ordained of God."
+            </div>
+        </div>
+
+        <!-- Slide 10: Submission vs Obedience -->
+        <div class="slide bg-gradient-3">
+            <h2>The Critical Distinction</h2>
+            <div class="columns">
+                <div class="column">
+                    <h3>Submission</h3>
+                    <p><strong>Heart attitude toward authority</strong></p>
+                    <p style="margin-top: 15px;">• Always required of believers</p>
+                    <p>• Internal posture of honor</p>
+                    <p>• Respects the office regardless of person</p>
+                    <p>• Can disagree yet stay submitted</p>
+                    <p>• Maintains spiritual covering</p>
+                    <div class="column-label">ABSOLUTE</div>
+                </div>
+                <div class="column">
+                    <h3>Obedience</h3>
+                    <p><strong>Outward action toward directives</strong></p>
+                    <p style="margin-top: 15px;">• Context-dependent</p>
+                    <p>• External behavior and compliance</p>
+                    <p>• Limited by conscience and Scripture</p>
+                    <p>• "We must obey God rather than men"</p>
+                    <p>• Sometimes requires godly resistance</p>
+                    <div class="column-label">RELATIVE</div>
+                </div>
+            </div>
+            <div class="scripture-box" style="margin-top: 30px;">
+                <div class="verse">"God still requires submission. Submission is absolute, but obedience is relative. Submission is an attitude of the heart, while obedience is an outward action. If an authority tells me to do something that violates my conscience, I can be submissive yet not obedient. Why? Because my heart attitude toward that person might be submissive, even though I cannot perform the outward action of obedience. I can still respect that person, I can still heed him and learn from him; but in this one circumstance I cannot obey him."</div>
+                <div class="reference">Spiritual Protocol, Chapter 2</div>
+            </div>
+            <div class="key-point" style="margin-top: 28px;">
+                <h3>Examples in Scripture:</h3>
+                <p><strong>Daniel:</strong> Submitted to Babylonian authority, served excellently, honored the king—but when commanded to stop praying, he obeyed God rather than men. His submission was absolute (respectful attitude), but his obedience was relative (limited by conscience).</p>
+                <p style="margin-top: 18px;"><strong>Peter and John:</strong> "Whether it be right in the sight of God to hearken unto you more than unto God, judge ye" (Acts 4:19). They maintained a submissive posture toward the Sanhedrin (didn't insult or rebel) while refusing to obey the command to stop preaching.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Paired Discussion -->
+        <div class="slide bg-gradient-4">
+            <h2>Table Discussion</h2>
+            <div class="big-number">02</div>
+            <div class="reflection">
+                <p style="font-size: 1.9rem;"><strong>Share with one person at your table:</strong></p>
+                <p style="margin-top: 20px; font-size: 1.7rem;">"Describe a time when you disagreed with someone in authority over you but chose to stay honorable. How did you navigate the tension between your convictions and your submission?"</p>
+            </div>
+            <div class="pause-instruction" style="margin-top: 40px;">
+                2 Minutes Each Person • 4 Minutes Total
+            </div>
+            <div class="intro-text" style="text-align: center; margin-top: 35px; font-size: 1.6rem;">
+                <strong>After sharing, briefly discuss:</strong><br>
+                How did maintaining a submissive heart posture protect you spiritually, even when you couldn't fully obey? What would have been different if you had become rebellious in heart?
+            </div>
+            <div class="scripture-box" style="margin-top: 30px;">
+                <div class="verse">"Make every effort to keep the unity of the Spirit through the bond of peace."</div>
+                <div class="reference">Ephesians 4:3 (NIV)</div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Rulers Reveal Heart -->
+        <div class="slide bg-gradient-2">
+            <h2>Authority Exposes What's Already There</h2>
+            <div class="scripture-box">
+                <div class="verse">"For rulers are not a terror to good works, but to the evil. Wilt thou then not be afraid of the power? do that which is good, and thou shalt have praise of the same: For he is the minister of God to thee for good. But if thou do that which is evil, be afraid; for he beareth not the sword in vain: for he is the minister of God, a revenger to execute wrath upon him that doeth evil."</div>
+                <div class="reference">Romans 13:3-4 (KJV)</div>
+            </div>
+            <div class="quote-box">
+                "An illustration might be helpful. If you are driving down a highway and you notice a police car parked at the side of the road, how do you react? Some people simply keep driving. But many others automatically ease up on the gas and begin to brake. Why? Because rebellion was already there in their hearts. The Bible tells us that rulers are a terror to the evil because they expose the heart."
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+            <div class="key-point">
+                <h3>The Heart Test:</h3>
+                <p>If you are at work and the boss walks in and you then become nervous and suddenly work harder, there is evil in your heart. If you're out somewhere and it makes you anxious to see your pastor coming your way, you have evil in your heart.</p>
+                <p style="margin-top: 18px;"><span class="highlight">But if you are the same regardless of who is around</span>, if you work at the same pace whether your supervisor is present or not, that which you were doing is good, for rulers are not a terror to good works, but to evil.</p>
+            </div>
+            <div class="intro-text" style="font-size: 1.6rem; margin-top: 28px; text-align: center;">
+                Rulers are tools of the Lord to reveal to us the evil that is in our hearts.<br>
+                Authority doesn't create rebellion—<span class="highlight">it exposes rebellion that was already present.</span>
+            </div>
+        </div>
+
+        <!-- Slide 13: Inverted Pyramid -->
+        <div class="slide bg-gradient-3">
+            <h2>The Kingdom Pyramid Is Upside Down</h2>
+            <div class="quote-box">
+                "God does not make leaders; He makes servants who become leaders. In the world, the leaders are at the top of a pyramid. There are many at the bottom of the pyramid who labor for those at the top; the ones at the top command respect, obedience and honor. Others serve them. But in the Church, things are just not like that. The Lord takes that pyramid, that organizational structure that man has built and He says, 'What an interesting picture of greed and hatred! I think I like it better this way!'—and He turns it upside down! In the Church, the leaders are the foundation—the bottom of the pyramid."
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+            <div class="visual-container">
+                <div class="pyramid"></div>
+            </div>
+            <div class="scripture-box">
+                <div class="verse">"Whoever wants to become great among you must be your servant, and whoever wants to be first must be slave of all. For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many."</div>
+                <div class="reference">Mark 10:43-45 (NIV)</div>
+            </div>
+            <div class="intro-text" style="text-align: center; font-size: 1.7rem; margin-top: 28px;">
+                Rather than being served, they serve. Rather than accruing honor, they honor and bless others.<br>
+                <span class="highlight">The Church is built upon this foundation.</span>
+            </div>
+            <div class="key-point" style="margin-top: 25px;">
+                <p>Leaders don't stand on people to elevate themselves. Leaders position themselves at the foundation and carry the weight so that others can stand. This is why Jesus washed feet. This is why Paul called himself the chief of sinners. This is why true apostolic authority is marked by suffering and sacrifice, not luxury and acclaim.</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Diakonos vs Doulos -->
+        <div class="slide bg-gradient-4">
+            <div class="chapter-marker">Exodus 21:1-6 — The Bondservant</div>
+            <h2>Two Types of Servants</h2>
+            <div class="quote-box">
+                "God does not make leaders; He makes servants who become leaders. In the world, the leaders are at the top of a pyramid... But in the Church, the Lord takes that pyramid and says, 'I think I like it better this way!'—and He turns it upside down!"
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+
+            <div class="three-column" style="margin-top: 40px;">
+                <div class="small-column">
+                    <h4>Diakonos</h4>
+                    <div class="subtitle">Servant by Choice</div>
+                    <p style="margin-top: 15px;">Servant in relation to work—does the job well</p>
+                </div>
+                <div class="small-column">
+                    <h4>Doulos</h4>
+                    <div class="subtitle">Bondservant</div>
+                    <p style="margin-top: 15px;">Servant in relation to master—serves the person, not just the task</p>
+                </div>
+                <div class="small-column">
+                    <h4>The Difference</h4>
+                    <div class="subtitle">Heart vs Skill</div>
+                    <p style="margin-top: 15px;">Diakonos refuses the covenant; Doulos embraces it</p>
+                </div>
+            </div>
+
+            <div class="scripture-box" style="margin-top: 35px;">
+                <div class="verse">"In Old Testament times, it was customary to bore a hole through the ear of a bond servant. This was one who was given an opportunity to leave the master, but who decided to stay and serve him. (See Exodus 21:1-6.) A diakonos will serve, but when it is time to bore a hole in his ear, he will refuse. He does not love his leaders enough to become their bond servants. When his time for serving is ended, he is gone."</div>
+                <div class="reference">Spiritual Protocol</div>
+            </div>
+
+            <div class="key-point" style="margin-top: 30px;">
+                <p>We are called to be the bond servants of God. He will bore a hole through our ears in the House of God concerning His purposes as we declare that we love the Lord and that which He has called us to do. <span class="highlight">We will be His servants forever, marked by our serving and identified with our Master.</span></p>
+            </div>
+
+            <div class="intro-text" style="text-align: center; font-size: 1.7rem; margin-top: 30px;">
+                Are you a <em>diakonos</em> who serves until it costs too much?<br>
+                Or a <em>doulos</em> who has said, <span class="highlight">"Pierce my ear—I'm staying"</span>?
+            </div>
+        </div>
+
+        <!-- Slide 15: God's Timing -->
+        <div class="slide bg-gradient-2">
+            <h2>Wait for God's Timing</h2>
+            <div class="scripture-box">
+                <div class="verse">"The Lord forbid that I should do such a thing to my master, the Lord's anointed, or lay my hand on him; for he is the anointed of the Lord."</div>
+                <div class="reference">1 Samuel 24:6 (NIV)</div>
+            </div>
+            <div class="key-point">
+                <h3>David's Example:</h3>
+                <p>David was anointed as king while Saul still sat on the throne. God had clearly chosen David as the next king. Saul was persecuting David unjustly, trying to kill him out of jealousy and paranoia.</p>
+                <p style="margin-top: 18px;">Twice David had the perfect opportunity to take Saul's life—once in a cave, once while Saul slept. His men urged him: "This is the day the Lord spoke of!" But David refused.</p>
+                <p style="margin-top: 18px;"><span class="highlight">Why? Because it was not David's place to remove what God had put in place.</span> David honored Saul's office, not Saul's behavior. He waited for God's timing, even though waiting was costly and dangerous.</p>
+            </div>
+            <div class="quote-box" style="margin-top: 28px;">
+                "Sometimes we limit God. We do not acknowledge that He is in control; that He is on the throne. Could it be that what we think needs to come down could still be God's choice in a situation? Perhaps He desires that person to remain. David sinned while he was king of Israel. Was he removed immediately? No; the Lord dealt with him while he was still in office. He was not excluded from reigning; God simply judged him while he was king, thus giving the people a pattern and example of repentance and restoration."
+                <div style="text-align: right; margin-top: 12px; font-style: normal; font-size: 1.1rem;">— Spiritual Protocol</div>
+            </div>
+            <div class="intro-text" style="font-size: 1.6rem; margin-top: 28px;">
+                <strong>If someone is selected and elected by God to fill a certain position, and if He has placed him there, can we not assume that God is big enough to remove him if He so desires?</strong>
+            </div>
+            <div class="key-point" style="margin-top: 25px;">
+                <p>When we look into the Spirit, we see that there will be times when God must reject certain ones from before Him, much as was the case with Saul. Yet, even as Saul was respected because of his office, so will these be. <span class="highlight">And if we move in the flesh to take men out of their offices, we will see the hand of God's judgment.</span> The message will be, "Although I reject them, it does not mean I call you to reject them."</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: Summary Before Declarations -->
+        <div class="slide bg-gradient-4">
+            <h2 style="text-align: center;">What We've Covered</h2>
+            <div class="section-divider"></div>
+            <div class="intro-text" style="font-size: 1.6rem; margin-bottom: 35px; text-align: center;">
+                Before we move to declarations, let's consolidate the journey:
+            </div>
+
+            <div class="three-column">
+                <div class="small-column">
+                    <div class="big-number" style="font-size: 5rem; margin-bottom: 10px;">1</div>
+                    <h4>Power vs Authority</h4>
+                    <p>Authority is the right to act based on divine alignment. We are Kingdom ambassadors under spiritual protocol.</p>
+                </div>
+                <div class="small-column">
+                    <div class="big-number" style="font-size: 5rem; margin-bottom: 10px;">2</div>
+                    <h4>We Are Leaking</h4>
+                    <p>Broken submission and unresolved offense cause us to lose spiritual pressure.</p>
+                </div>
+                <div class="small-column">
+                    <div class="big-number" style="font-size: 5rem; margin-bottom: 10px;">3</div>
+                    <h4>Submission ≠ Obedience</h4>
+                    <p>Submission is absolute heart posture. Obedience is relative and limited by conscience.</p>
+                </div>
+            </div>
+
+            <div class="three-column" style="margin-top: 30px;">
+                <div class="small-column">
+                    <div class="big-number" style="font-size: 5rem; margin-bottom: 10px;">4</div>
+                    <h4>Authority Reveals</h4>
+                    <p>Rulers expose what's already in our hearts. The Kingdom pyramid is inverted.</p>
+                </div>
+                <div class="small-column">
+                    <div class="big-number" style="font-size: 5rem; margin-bottom: 10px;">5</div>
+                    <h4>Doulos Forever</h4>
+                    <p>God calls us to be bondservants permanently marked, not workers who quit when it costs.</p>
+                </div>
+                <div class="small-column" style="background: rgba(255, 255, 255, 0.15); border: 3px solid rgba(255, 255, 255, 0.4);">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">✓</div>
+                    <h4 style="font-size: 2rem;">Now We Respond</h4>
+                    <p style="font-size: 1.4rem; font-weight: 600;">Declarations & Action</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Monday Morning Action Steps -->
+        <div class="slide bg-gradient-2">
+            <h2>This Week: Practical Action Steps</h2>
+            <div class="section-divider"></div>
+            <div class="intro-text" style="font-size: 1.5rem; margin-bottom: 30px;">
+                Theology without application is information, not transformation. Here's what to do this week:
+            </div>
+
+            <div class="key-point">
+                <h3>Step 1: Identify Your Leak</h3>
+                <p>Before the week ends, identify one specific area where you're losing spiritual pressure. Name it. Write it down. Is it unforgiveness toward someone in authority? A critical spirit? Isolation from accountability? Unresolved conflict?</p>
+            </div>
+
+            <div class="key-point" style="margin-top: 25px;">
+                <h3>Step 2: Repair One Relationship</h3>
+                <p>Choose one relationship that needs maintenance. This could be with someone over you, beside you, or under you. Initiate reconciliation, apologize where needed, or simply check in. Don't let another week pass with the leak unaddressed.</p>
+            </div>
+
+            <div class="key-point" style="margin-top: 25px;">
+                <h3>Step 3: Honor One Person You Disagree With</h3>
+                <p>Find someone in authority over you with whom you disagree. Deliberately honor them this week—not because you agree with their decisions, but because you honor the office God has given them. Speak well of them. Pray for them. Serve them.</p>
+            </div>
+
+            <div class="scripture-box" style="margin-top: 30px;">
+                <div class="verse">"Do not merely listen to the word, and so deceive yourselves. Do what it says."</div>
+                <div class="reference">James 1:22 (NIV)</div>
+            </div>
+
+            <div class="intro-text" style="text-align: center; font-size: 1.6rem; margin-top: 30px;">
+                These three steps will test whether you're a <em>diakonos</em> or a <em>doulos</em>.
+            </div>
+        </div>
+
+        <!-- Slide 18: Declarations -->
+        <div class="slide bg-gradient-5">
+            <h2 style="text-align: center; margin-bottom: 50px;">Corporate Declarations</h2>
+            <div class="intro-text" style="text-align: center; font-size: 1.4rem; margin-bottom: 35px;">
+                Stand and declare these over your life and ministry:
+            </div>
+            <div class="declaration">"I flow in divine order."</div>
+            <div class="declaration">"I serve with supernatural strength."</div>
+            <div class="declaration">"I lead through joyful submission."</div>
+            <div class="accent-line" style="margin: 50px auto; width: 150px;"></div>
+            <div class="declaration" style="font-size: 2.4rem;">
+                "I am under authority,<br>therefore I carry authority."
+            </div>
+            <div class="declaration" style="font-size: 2.4rem; margin-top: 45px;">
+                "I honor the office even when<br>I disagree with the person."
+            </div>
+        </div>
+
+        <!-- Slide 19: Closing Prayer -->
+        <div class="slide bg-gradient-1">
+            <h2 style="text-align: center;">Prayer of Alignment & Commissioning</h2>
+            <div class="accent-line" style="margin: 25px auto;"></div>
+            <div class="prayer-text">
+                <p>
+                    <strong>Father God,</strong> restore integrity to our lines of authority.
+                    Heal the leaks in our relationships, repair the breaches in our submission,
+                    refill our spiritual reservoirs, and keep us aligned under Your perfect government.
+                </p>
+                <p style="margin-top: 28px;">
+                    Give us grace to honor even when we disagree, strength to serve when we're exhausted,
+                    and wisdom to wait when every instinct screams to take matters into our own hands.
+                </p>
+                <p style="margin-top: 28px;">
+                    Lord, bore a hole through our ears in the House of God. Mark us as Your <em>doulos</em>—
+                    not just workers for Your kingdom, but bondservants who love the Master.
+                    Make us leaders who descend to the foundation to serve, not climb to the top to be served.
+                </p>
+                <p style="margin-top: 28px;">
+                    We declare: We are ambassadors of Your Kingdom, carrying delegated authority through submitted hearts.
+                    Where we have resisted You by resisting authority, forgive us. Where we have leaked pressure through offense, seal us.
+                </p>
+                <p style="margin-top: 28px;">
+                    Send us out from this place flowing in divine order, maintaining pressure under testing,
+                    and releasing miracles through proper alignment.
+                </p>
+                <p style="margin-top: 28px;">
+                    <strong>In the mighty name of Jesus, Amen.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-number">
+        <span id="current-slide">1</span> / 19
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Prev</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <div class="offline-indicator" id="offline-indicator">
+        📡 Offline Mode - Presentation Cached
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Offline detection
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offline-indicator');
+            if (!navigator.onLine) {
+                indicator.classList.add('show');
+            } else {
+                indicator.classList.remove('show');
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Cache the presentation for offline use
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('Presentation cached for offline use');
+                })
+                .catch(function(error) {
+                    console.log('Service worker registration failed');
+                });
+        }
+    </script>
+</body>
+</html>
