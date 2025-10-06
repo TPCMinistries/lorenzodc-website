@@ -14,9 +14,6 @@
 
 html,body{ height:100%; }
 body{
-  background: radial-gradient(1200px 800px at 80% -10%, rgba(110,231,255,0.12), transparent 60%),
-              radial-gradient(800px 600px at -10% -10%, rgba(155,140,255,0.10), transparent 55%),
-              var(--bg);
   color: var(--fg);
 }
 
@@ -189,5 +186,14 @@ body{
 
 .bg-pos-100 {
   background-position: 100% center;
+}
+
+/* Animation delay utilities */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
 }
 

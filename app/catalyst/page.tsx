@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import GlobalNavigation from "../components/GlobalNavigation";
 
 export default function CatalystAIPage() {
   const [mounted, setMounted] = useState(false);
@@ -43,8 +44,10 @@ export default function CatalystAIPage() {
         ))}
       </div>
 
+      <GlobalNavigation />
+
       <div className="relative z-10">
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16 pt-24">
           {/* Enhanced Header */}
           <div className="text-center mb-20 relative">
             {/* Floating accent elements */}

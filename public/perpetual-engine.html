@@ -1,0 +1,2694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Perpetual Engine | Global Development Institute</title>
+    <meta name="description" content="Where capital funds mission. Forever. A first-of-its-kind dual-arm ecosystem: 501(c)(3) nonprofit + for-profit holding company with 10% perpetual profit flow.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lorenzodc.com/perpetual-engine">
+    <meta property="og:title" content="The Perpetual Engine | Global Development Institute">
+    <meta property="og:description" content="Where capital funds mission. Forever. A first-of-its-kind dual-arm ecosystem: 501(c)(3) nonprofit + for-profit holding company with 10% perpetual profit flow.">
+    <meta property="og:image" content="https://lorenzodc.com/og-gdi-perpetual-engine.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lorenzodc.com/perpetual-engine">
+    <meta property="twitter:title" content="The Perpetual Engine | Global Development Institute">
+    <meta property="twitter:description" content="Where capital funds mission. Forever. A first-of-its-kind dual-arm ecosystem: 501(c)(3) nonprofit + for-profit holding company with 10% perpetual profit flow.">
+    <meta property="twitter:image" content="https://lorenzodc.com/og-gdi-perpetual-engine.jpg">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="global development institute, perpetual engine, nonprofit, impact investing, social enterprise, venture capital, kenya mission, ai incubator">
+    <meta name="author" content="Global Development Institute">
+    <link rel="canonical" href="https://lorenzodc.com/perpetual-engine">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0e1a;
+            color: #e6f1ff;
+            overflow-x: hidden;
+            font-size: 18px;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.15);
+            padding: 0 60px;
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 0;
+        }
+
+        .nav-logo {
+            font-size: 32px;
+            font-weight: 900;
+            color: #64ffda;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo::before {
+            content: '◆';
+            font-size: 24px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-right: 200px;
+        }
+
+        .nav-link {
+            color: rgba(230, 241, 255, 0.75);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #64ffda;
+        }
+
+        .nav-link.active {
+            color: #64ffda;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #64ffda;
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        .view {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            padding-top: 90px;
+        }
+
+        .view.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 12px 28px;
+            background: rgba(147, 51, 234, 0.15);
+            border: 1px solid rgba(147, 51, 234, 0.4);
+            border-radius: 25px;
+            color: #c084fc;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .section-badge::before,
+        .section-badge::after {
+            content: '★';
+            margin: 0 8px;
+        }
+
+        .hero-section {
+            min-height: calc(100vh - 90px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 40px;
+            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.05) 0%, transparent 70%);
+        }
+
+        .org-name {
+            font-size: 20px;
+            color: rgba(230, 241, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 96px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #64ffda 0%, #a78bfa 50%, #64ffda 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-tagline {
+            font-size: 36px;
+            color: #64ffda;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 24px;
+            color: rgba(230, 241, 255, 0.8);
+            max-width: 900px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        .hero-description strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .hero-btn {
+            padding: 20px 45px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-btn::before {
+            content: '◆';
+        }
+
+        .hero-btn-primary {
+            background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%);
+            color: #0a0e1a;
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.3);
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 60px rgba(100, 255, 218, 0.5);
+        }
+
+        .hero-btn-secondary {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            border: 2px solid rgba(100, 255, 218, 0.4);
+        }
+
+        .hero-btn-secondary:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 60px 80px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #64ffda 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 22px;
+            color: rgba(230, 241, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .engine-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 80px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-node {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 28px;
+            padding: 50px 40px;
+            min-width: 280px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .flow-node:hover {
+            background: rgba(100, 255, 218, 0.08);
+            border-color: #64ffda;
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(100, 255, 218, 0.3);
+        }
+
+        .flow-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.3));
+        }
+
+        .flow-title {
+            font-size: 28px;
+            color: #64ffda;
+            margin-bottom: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .flow-description {
+            font-size: 18px;
+            color: rgba(230, 241, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .flow-arrow {
+            font-size: 40px;
+            color: #a78bfa;
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .program-card {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.8) 0%, rgba(26, 31, 58, 0.6) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 28px;
+            padding: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #64ffda 0%, #a78bfa 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .program-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .program-card:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
+            border-color: #64ffda;
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(100, 255, 218, 0.2);
+        }
+
+        .program-icon {
+            font-size: 56px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .program-title {
+            font-size: 32px;
+            color: #64ffda;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .program-description {
+            font-size: 20px;
+            color: rgba(230, 241, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .program-details-btn {
+            padding: 14px 32px;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 20px;
+            color: #64ffda;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .program-details-btn::before {
+            content: '◆';
+        }
+
+        .program-details-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: scale(1.05);
+        }
+
+        .program-details {
+            display: none;
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .program-details.active {
+            display: block;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .program-details h4 {
+            color: #64ffda;
+            font-size: 22px;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .program-details p {
+            color: rgba(230, 241, 255, 0.85);
+            line-height: 1.9;
+            margin-bottom: 15px;
+            font-size: 19px;
+        }
+
+        .program-details ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .program-details li {
+            padding: 12px 0;
+            color: rgba(230, 241, 255, 0.85);
+            font-size: 18px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            line-height: 1.7;
+        }
+
+        .program-details li::before {
+            content: '→';
+            color: #64ffda;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        .holding-structure {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 28px;
+            padding: 50px;
+            margin: 60px 0;
+        }
+
+        .holding-title {
+            font-size: 42px;
+            color: #64ffda;
+            margin-bottom: 25px;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .holding-description {
+            font-size: 20px;
+            color: rgba(230, 241, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .arms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .arm-card {
+            background: rgba(100, 255, 218, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+
+        .arm-card:hover {
+            background: rgba(100, 255, 218, 0.08);
+            transform: translateY(-5px);
+            border-color: #64ffda;
+        }
+
+        .arm-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .arm-title {
+            font-size: 24px;
+            color: #64ffda;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .arm-description {
+            font-size: 18px;
+            color: rgba(230, 241, 255, 0.8);
+            line-height: 1.8;
+        }
+
+        .mission-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .component-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .component-card:hover {
+            background: rgba(100, 255, 218, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .component-icon {
+            font-size: 32px;
+            margin-right: 12px;
+        }
+
+        .component-title {
+            font-size: 24px;
+            color: #64ffda;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .component-description {
+            color: rgba(230, 241, 255, 0.85);
+            line-height: 1.8;
+            font-size: 19px;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+            margin: 60px 0;
+        }
+
+        .stat-card {
+            background: rgba(100, 255, 218, 0.05);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 24px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(100, 255, 218, 0.2);
+        }
+
+        .stat-number {
+            font-size: 62px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: rgba(230, 241, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .timeline-card {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.9) 0%, rgba(26, 31, 58, 0.7) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.25);
+            border-radius: 28px;
+            padding: 50px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #64ffda 0%, #a78bfa 100%);
+        }
+
+        .timeline-card:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
+            border-color: #64ffda;
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(100, 255, 218, 0.25);
+        }
+
+        .timeline-year {
+            font-size: 56px;
+            font-weight: 900;
+            color: #64ffda;
+            margin-bottom: 18px;
+        }
+
+        .timeline-phase {
+            font-size: 28px;
+            color: #64ffda;
+            margin-bottom: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-phase::before {
+            content: '◆';
+        }
+
+        .timeline-content {
+            color: rgba(230, 241, 255, 0.85);
+            line-height: 1.9;
+            font-size: 19px;
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .network-card {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.8) 0%, rgba(26, 31, 58, 0.6) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.25);
+            border-radius: 28px;
+            padding: 50px;
+            transition: all 0.4s;
+        }
+
+        .network-card:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
+            border-color: #64ffda;
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(100, 255, 218, 0.2);
+        }
+
+        .network-flag {
+            font-size: 64px;
+            margin-bottom: 22px;
+            display: block;
+        }
+
+        .network-country {
+            font-size: 36px;
+            color: #64ffda;
+            margin-bottom: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .network-partner {
+            color: rgba(230, 241, 255, 0.85);
+            margin-bottom: 12px;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .network-partner strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .connect-card {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.8) 0%, rgba(26, 31, 58, 0.6) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 28px;
+            padding: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .connect-card:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(167, 139, 250, 0.08) 100%);
+            border-color: #64ffda;
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(100, 255, 218, 0.2);
+        }
+
+        .connect-icon {
+            font-size: 64px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .connect-title {
+            font-size: 30px;
+            color: #64ffda;
+            margin-bottom: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .connect-description {
+            font-size: 18px;
+            color: rgba(230, 241, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.98) 0%, rgba(26, 31, 58, 0.98) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 24px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: rgba(230, 241, 255, 0.6);
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #64ffda;
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-size: 36px;
+            color: #64ffda;
+            margin-bottom: 18px;
+        }
+
+        .modal-subtitle {
+            font-size: 18px;
+            color: rgba(230, 241, 255, 0.7);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #64ffda;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 10px;
+            color: #e6f1ff;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.05);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%);
+            border: none;
+            border-radius: 12px;
+            color: #0a0e1a;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 35px rgba(100, 255, 218, 0.5);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 72px;
+            margin-bottom: 25px;
+        }
+
+        .success-message h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            font-size: 18px;
+        }
+
+        .flywheel-node {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(10, 14, 26, 0.95) 0%, rgba(26, 31, 58, 0.95) 100%);
+            border: 2px solid rgba(100, 255, 218, 0.4);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            width: 160px;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .flywheel-node:hover {
+            transform: scale(1.1) !important;
+            border-color: #64ffda;
+            box-shadow: 0 10px 40px rgba(100, 255, 218, 0.3);
+            z-index: 20;
+        }
+
+        .impact-result-card {
+            background: rgba(100, 255, 218, 0.05);
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .impact-result-card:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .home-nav-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1050;
+            padding: 12px 20px;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 25px;
+            color: #64ffda;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-nav-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .home-nav-btn::before {
+            content: '←';
+            font-size: 16px;
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%);
+            border: none;
+            border-radius: 50%;
+            color: #0a0e1a;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 32px rgba(100, 255, 218, 0.3);
+        }
+
+        .mobile-nav-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 48px rgba(100, 255, 218, 0.5);
+        }
+
+        .mobile-nav-menu {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            min-width: 200px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-nav-menu.active {
+            display: block;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 16px;
+            color: rgba(230, 241, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+        }
+
+        @media (max-width: 968px) {
+            .hero-title { font-size: 56px; }
+            .section-title { font-size: 48px; }
+            .nav-menu { gap: 20px; margin-right: 150px; }
+            .hero-description { font-size: 20px; }
+            .program-description { font-size: 18px; }
+            .top-nav { padding: 0 30px; }
+            .section-container { padding: 100px 30px 60px 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; margin-right: 0; }
+            .mobile-nav-toggle { display: block; }
+            .hero-title { font-size: 42px; }
+            .section-container { padding: 90px 20px 60px 20px; }
+            body { font-size: 16px; }
+            .hero-section { padding: 100px 20px 60px 20px; }
+            .program-grid { grid-template-columns: 1fr; }
+            .mission-components { grid-template-columns: 1fr; }
+            .connect-grid { grid-template-columns: 1fr; }
+            .timeline-grid { grid-template-columns: 1fr; }
+            .network-grid { grid-template-columns: 1fr; }
+            .arms-grid { grid-template-columns: 1fr; }
+            .impact-stats { grid-template-columns: repeat(2, 1fr); }
+
+            /* Mobile navigation improvements */
+            .top-nav { padding: 0 20px; }
+            .nav-logo { font-size: 28px; }
+            .home-nav-btn {
+                top: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            /* Mobile modal improvements */
+            .modal-content {
+                padding: 30px 20px;
+                margin: 10px;
+                max-height: 95vh;
+            }
+
+            /* Mobile calculator improvements */
+            #investmentAmount {
+                font-size: 24px !important;
+                padding: 15px 20px !important;
+            }
+
+            /* Mobile flywheel */
+            .flywheel-node {
+                width: 120px;
+                padding: 15px;
+                font-size: 14px;
+            }
+
+            /* Mobile button improvements */
+            .hero-btn {
+                padding: 16px 32px;
+                font-size: 14px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 32px; }
+            .section-title { font-size: 36px; }
+            .hero-description { font-size: 18px; }
+            .section-container { padding: 80px 15px 40px 15px; }
+            .hero-section { padding: 80px 15px 40px 15px; }
+
+            /* Extra small screen improvements */
+            .nav-logo { font-size: 24px; }
+            .hero-title { font-size: 28px; }
+            .section-title { font-size: 28px; }
+            .hero-tagline { font-size: 24px; }
+            .hero-description { font-size: 16px; }
+
+            /* Mobile stat cards */
+            .stat-card { padding: 30px 20px; }
+            .stat-number { font-size: 48px; }
+
+            /* Mobile program cards */
+            .program-card { padding: 30px 20px; }
+            .program-title { font-size: 24px; }
+
+            /* Mobile impact calculator */
+            .impact-result-card { padding: 20px 15px; }
+
+            /* Mobile donation buttons */
+            .program-details-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            /* Mobile form improvements */
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 14px 16px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+
+            /* Mobile modal close button */
+            .modal-close {
+                top: 15px;
+                right: 15px;
+                font-size: 28px;
+            }
+
+            /* Hide complex flywheel on very small screens */
+            .flywheel-node {
+                display: none;
+            }
+
+            /* Mobile-friendly grid for donation options */
+            .connect-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .connect-card {
+                padding: 30px 20px;
+            }
+
+            .connect-icon {
+                font-size: 48px;
+            }
+
+            .connect-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Home Navigation Button -->
+    <a href="/" class="home-nav-btn">Return Home</a>
+
+    <!-- Mobile Navigation -->
+    <button class="mobile-nav-toggle" onclick="toggleMobileNav()" id="mobileNavToggle">☰</button>
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+        <a class="mobile-nav-link active" onclick="showView('home'); closeMobileNav()">HOME</a>
+        <a class="mobile-nav-link" onclick="showView('engine'); closeMobileNav()">ENGINE</a>
+        <a class="mobile-nav-link" onclick="showView('holdings'); closeMobileNav()">HOLDINGS</a>
+        <a class="mobile-nav-link" onclick="showView('programs'); closeMobileNav()">PROGRAMS</a>
+        <a class="mobile-nav-link" onclick="showView('kenya'); closeMobileNav()">KENYA 2026</a>
+        <a class="mobile-nav-link" onclick="showView('vision'); closeMobileNav()">VISION</a>
+        <a class="mobile-nav-link" onclick="showView('network'); closeMobileNav()">NETWORK</a>
+        <a class="mobile-nav-link" onclick="showView('connect'); closeMobileNav()">CONNECT</a>
+    </div>
+
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="showView('home')">GDI</div>
+            <div class="nav-menu">
+                <a class="nav-link active" onclick="showView('home')">HOME</a>
+                <a class="nav-link" onclick="showView('engine')">ENGINE</a>
+                <a class="nav-link" onclick="showView('holdings')">HOLDINGS</a>
+                <a class="nav-link" onclick="showView('programs')">PROGRAMS</a>
+                <a class="nav-link" onclick="showView('kenya')">KENYA 2026</a>
+                <a class="nav-link" onclick="showView('vision')">VISION</a>
+                <a class="nav-link" onclick="showView('network')">NETWORK</a>
+                <a class="nav-link" onclick="showView('connect')">CONNECT</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="view active">
+        <section class="hero-section">
+            <span class="section-badge">FIRST-OF-ITS-KIND MODEL</span>
+            <div class="org-name">The Global Development Institute</div>
+            <h1 class="hero-title">THE PERPETUAL<br>ENGINE</h1>
+            <p class="hero-tagline">Where Capital Funds Mission. Forever.</p>
+            <p class="hero-description">
+                An unprecedented dual-arm ecosystem: 501(c)(3) nonprofit + for-profit holding company in perfect harmony. <strong>10% of all profits flow back perpetually.</strong> The work never stops. The impact never ends. The future starts here.
+            </p>
+            <div class="hero-cta-group">
+                <button class="hero-btn hero-btn-primary" onclick="showView('engine')">EXPLORE ENGINE</button>
+                <button class="hero-btn hero-btn-secondary" onclick="showView('holdings')">VIEW HOLDINGS</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="engine" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">THE INNOVATION</span>
+                <h2 class="section-title">THE PERPETUAL ENGINE</h2>
+                <p class="section-subtitle">Click each component to explore how the cycle creates endless transformation</p>
+            </div>
+
+            <div class="engine-flow">
+                <div class="flow-node" onclick="toggleEngineComponent('forprofit')">
+                    <div class="flow-icon">💼</div>
+                    <div class="flow-title">FOR-PROFIT</div>
+                    <div class="flow-description">Generate Returns</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node" onclick="toggleEngineComponent('flow')">
+                    <div class="flow-icon">🔄</div>
+                    <div class="flow-title">10% FLOW</div>
+                    <div class="flow-description">Built-In Forever</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-node" onclick="toggleEngineComponent('nonprofit')">
+                    <div class="flow-icon">🌍</div>
+                    <div class="flow-title">NONPROFIT</div>
+                    <div class="flow-description">Create Impact</div>
+                </div>
+            </div>
+
+            <div id="forprofit-details" class="program-details">
+                <h4>For-Profit Holding Company</h4>
+                <p>The for-profit arm is a holding company with multiple revenue-generating entities: the AI Incubator taking equity in trained entrepreneurs, the $50M Impact Fund deploying capital, education ventures, AI companies, medical operations, and other strategic business units. All generate market-rate returns while maintaining mission focus.</p>
+                <ul>
+                    <li>Holding company structure with diversified portfolio</li>
+                    <li>AI and education companies driving innovation</li>
+                    <li>Impact Fund deploying $50M in capital</li>
+                    <li>AI Incubator taking equity stakes</li>
+                    <li>Medical and healthcare operations</li>
+                    <li>Target 20%+ IRR across portfolio</li>
+                    <li>All exits create perpetual funding for nonprofit</li>
+                </ul>
+            </div>
+
+            <div id="flow-details" class="program-details">
+                <h4>The 10% Perpetual Flow</h4>
+                <p>This is the innovation: After investor returns are paid, 10% of profits from ALL holding company entities automatically flow back to the nonprofit. It's legally structured, mandatory, and perpetual. As the holding company grows through multiple revenue streams, so does the nonprofit's capacity—forever.</p>
+                <ul>
+                    <li>Built into all holding company entities at inception</li>
+                    <li>Flows after market-rate LP returns are paid</li>
+                    <li>Not dependent on board decisions or donor fatigue</li>
+                    <li>Creates sustainable, exponentially growing impact</li>
+                    <li>Multiple revenue streams strengthen the flow</li>
+                    <li>Aligns investor returns with mission outcomes</li>
+                </ul>
+            </div>
+
+            <div id="nonprofit-details" class="program-details">
+                <h4>GDI Nonprofit Foundation</h4>
+                <p>The 501(c)(3) creates the relationships, credibility, and on-the-ground presence that makes the entire model work. It's the trust-builder and opportunity-generator that opens doors for the for-profit side while delivering real impact.</p>
+                <ul>
+                    <li>15+ years building government and community relationships</li>
+                    <li>Programs in youth development, medical missions, workforce training</li>
+                    <li>Creates deal flow and opportunities for holding company</li>
+                    <li>Funded by traditional donors PLUS 10% profit share</li>
+                    <li>Growing capacity as holding company scales</li>
+                </ul>
+            </div>
+
+            <div class="section-header" style="margin-top: 150px;">
+                <h2 class="section-title" style="font-size: 56px;">THE ECOSYSTEM FLYWHEEL</h2>
+                <p class="section-subtitle">Watch how value compounds through the entire system</p>
+            </div>
+
+            <div style="position: relative; width: 100%; max-width: 800px; height: 800px; margin: 80px auto;">
+                <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+                            <polygon points="0 0, 12 6, 0 12" fill="#64ffda" opacity="0.6"/>
+                        </marker>
+                    </defs>
+                    <circle cx="50%" cy="50%" r="45%" fill="none" stroke="#64ffda" stroke-width="3" stroke-dasharray="15,10" opacity="0.3" marker-end="url(#arrowhead)"/>
+                </svg>
+
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 60px rgba(100, 255, 218, 0.4); z-index: 10;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">🔄</div>
+                        <div style="font-size: 22px; font-weight: 900; color: #0a0e1a; text-transform: uppercase;">GDI<br/>ECOSYSTEM</div>
+                    </div>
+                </div>
+
+                <div class="flywheel-node" style="top: 5%; left: 50%; transform: translate(-50%, -50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">💰</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">FUND INVESTS</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Capital deployed</div>
+                </div>
+
+                <div class="flywheel-node" style="top: 20%; right: 10%; transform: translate(0, -50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🚀</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">INCUBATOR</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Trains entrepreneurs</div>
+                </div>
+
+                <div class="flywheel-node" style="top: 50%; right: 2%; transform: translate(0, -50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🏢</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">BUSINESSES</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Graduates build</div>
+                </div>
+
+                <div class="flywheel-node" style="bottom: 20%; right: 10%; transform: translate(0, 50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🎓</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">EDUCATION</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Platform supports</div>
+                </div>
+
+                <div class="flywheel-node" style="bottom: 5%; left: 50%; transform: translate(-50%, 50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🏥</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">MEDICAL</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Health services</div>
+                </div>
+
+                <div class="flywheel-node" style="bottom: 20%; left: 10%; transform: translate(0, 50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🏡</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">REAL ESTATE</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Properties host</div>
+                </div>
+
+                <div class="flywheel-node" style="top: 50%; left: 2%; transform: translate(0, -50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🌍</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">NONPROFIT</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Receives 10%</div>
+                </div>
+
+                <div class="flywheel-node" style="top: 20%; left: 10%; transform: translate(0, -50%);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">👥</div>
+                    <div style="font-weight: 700; color: #64ffda; font-size: 16px;">COMMUNITIES</div>
+                    <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Produce new talent</div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 100px;">
+                <h2 class="section-title" style="font-size: 56px;">IMPACT CALCULATOR</h2>
+                <p class="section-subtitle">See how your investment or donation multiplies through the ecosystem</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 60px auto; background: linear-gradient(135deg, rgba(10, 14, 26, 0.9) 0%, rgba(26, 31, 58, 0.8) 100%); border: 2px solid rgba(100, 255, 218, 0.3); border-radius: 28px; padding: 60px;">
+                <div style="margin-bottom: 40px;">
+                    <label style="display: block; color: #64ffda; font-size: 20px; margin-bottom: 15px; font-weight: 700;">Enter Your Donation or Investment Amount:</label>
+                    <p style="font-size: 14px; color: rgba(230, 241, 255, 0.7); margin-bottom: 20px; font-style: italic;">*Investment opportunities in our fund are available to accredited investors only. Donations to our nonprofit are open to everyone.</p>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <span style="font-size: 32px; color: #64ffda;">$</span>
+                        <input type="number" id="investmentAmount" value="10000" min="100" step="100"
+                               style="flex: 1; padding: 18px 25px; font-size: 32px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(100, 255, 218, 0.3); border-radius: 15px; color: #64ffda; font-weight: 700;"
+                               oninput="calculateImpact()">
+                        <button onclick="calculateImpact()"
+                                style="padding: 18px 35px; background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%); border: none; border-radius: 15px; color: #0a0e1a; font-size: 18px; font-weight: 700; cursor: pointer; text-transform: uppercase;">
+                            Calculate
+                        </button>
+                    </div>
+                </div>
+
+                <div id="impactResults" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 50px;">
+                </div>
+
+                <div style="margin-top: 50px; padding: 30px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 20px;">
+                    <h3 style="color: #64ffda; font-size: 24px; margin-bottom: 20px; font-weight: 700;">How The Multiplier Works:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 12px 0; color: rgba(230, 241, 255, 0.85); font-size: 18px; border-bottom: 1px solid rgba(100, 255, 218, 0.1);">
+                            <span style="color: #64ffda; font-weight: bold;">→</span> Your investment trains entrepreneurs in the incubator (3-10% equity captured)
+                        </li>
+                        <li style="padding: 12px 0; color: rgba(230, 241, 255, 0.85); font-size: 18px; border-bottom: 1px solid rgba(100, 255, 218, 0.1);">
+                            <span style="color: #64ffda; font-weight: bold;">→</span> Top graduates receive fund investment to scale their businesses
+                        </li>
+                        <li style="padding: 12px 0; color: rgba(230, 241, 255, 0.85); font-size: 18px; border-bottom: 1px solid rgba(100, 255, 218, 0.1);">
+                            <span style="color: #64ffda; font-weight: bold;">→</span> Businesses use education platform, medical services, and properties
+                        </li>
+                        <li style="padding: 12px 0; color: rgba(230, 241, 255, 0.85); font-size: 18px; border-bottom: 1px solid rgba(100, 255, 218, 0.1);">
+                            <span style="color: #64ffda; font-weight: bold;">→</span> 10% of all profits flow perpetually to nonprofit programs
+                        </li>
+                        <li style="padding: 12px 0; color: rgba(230, 241, 255, 0.85); font-size: 18px;">
+                            <span style="color: #64ffda; font-weight: bold;">→</span> Communities served produce next generation of entrepreneurs (cycle repeats)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 120px;">
+                <h2 class="section-title" style="font-size: 56px;">The Three Engines</h2>
+            </div>
+
+            <div class="program-grid">
+                <div class="program-card" id="card-nonprofit">
+                    <div class="program-icon">🏛️</div>
+                    <div class="program-title">GDI Nonprofit</div>
+                    <div class="program-description">501(c)(3) building relationships, credibility, and track record. Creates the foundation for everything else.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('nonprofit')">DETAILS</button>
+                    <div class="program-details" id="details-nonprofit">
+                        <h4>How It Works</h4>
+                        <p>The nonprofit is the trust-builder. Through youth programs, medical missions, and workforce development, we establish deep relationships with governments and communities. This creates the deal flow and access that makes the investment side possible.</p>
+                        <ul>
+                            <li>15+ years operational track record</li>
+                            <li>Cabinet-level government relationships</li>
+                            <li>1000+ community leaders in network</li>
+                            <li>Programs across 4 continents</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card" id="card-incubator">
+                    <div class="program-icon">🚀</div>
+                    <div class="program-title">AI Incubator</div>
+                    <div class="program-description">Identifies, vets, trains entrepreneurs. De-risks investments by building capacity first. Only top 5-10% advance.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('incubator')">DETAILS</button>
+                    <div class="program-details" id="details-incubator">
+                        <h4>The Process</h4>
+                        <p>We don't just throw money at problems. We build capacity first. Entrepreneurs go through intensive or accelerated training programs, mentorship, and pilot programs. We take 3-10% equity stakes in all participants—whether they receive fund investment or not. Only the best graduate to receive capital deployment.</p>
+                        <ul>
+                            <li>Dual track: intensive (6-12 months) or accelerated programs</li>
+                            <li>Vetting: market analysis, founder assessment, financial modeling</li>
+                            <li>Training: business fundamentals, operations, investor relations</li>
+                            <li>3-10% equity in all participants</li>
+                            <li>Only 5-10% advance to fund consideration</li>
+                            <li>Post-investment support continues</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card" id="card-fund">
+                    <div class="program-icon">💰</div>
+                    <div class="program-title">Impact Fund</div>
+                    <div class="program-description">$50M deploying into incubator-vetted opportunities. Target 20%+ IRR with mandatory 10% profit flow back.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('fund')">DETAILS</button>
+                    <div class="program-details" id="details-fund">
+                        <h4>Investment Thesis</h4>
+                        <p>Underserved markets present massive opportunities. We deploy across traditional and non-traditional instruments: incubator-vetted businesses, real estate, bonds, crypto, and alternative investments. By building capacity first, we dramatically de-risk while targeting market-rate returns. 10% of profits (after LP returns) automatically flow to the nonprofit.</p>
+                        <ul>
+                            <li>$50M target fund size, first close $10-15M</li>
+                            <li>Target 20%+ IRR</li>
+                            <li>Diversified: businesses, real estate, bonds, crypto, alternatives</li>
+                            <li>Hybrid debt + equity structures</li>
+                            <li>Patient capital, 10-year fund lifecycle</li>
+                            <li>Focus: agriculture, healthcare, education, clean energy, fintech, medical operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="holdings" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">FOR-PROFIT STRUCTURE</span>
+                <h2 class="section-title">GDI INDUSTRIES</h2>
+                <p class="section-subtitle">Multiple revenue-generating entities working together to create returns and perpetual impact</p>
+            </div>
+
+            <div class="holding-structure">
+                <h3 class="holding-title">GDI INDUSTRIES</h3>
+                <p class="holding-description">
+                    Global Development Industries LLC, headquartered in New York City, is our for-profit holding company with multiple revenue-generating business units across education, technology, finance, healthcare, and real estate. Each entity generates market-rate returns while advancing our mission. 10% of all profits flow perpetually to the nonprofit foundation.
+                </p>
+
+                <div class="arms-grid">
+                    <div class="arm-card">
+                        <div class="arm-icon">🚀</div>
+                        <div class="arm-title">AI INCUBATOR</div>
+                        <div class="arm-description">Trains entrepreneurs, takes 3-10% equity stakes in all participants. Only top performers advance to fund consideration. Creates deal flow while building capacity in frontier markets.</div>
+                    </div>
+
+                    <div class="arm-card">
+                        <div class="arm-icon">💰</div>
+                        <div class="arm-title">$50M IMPACT FUND</div>
+                        <div class="arm-description">Evergreen fund structure with quarterly liquidity options. Deploys capital into incubator-vetted opportunities across traditional and alternative assets. Debt + equity hybrid approach providing cash flow from day one plus appreciation upside. Target 20%+ IRR.</div>
+                    </div>
+
+                    <div class="arm-card">
+                        <div class="arm-icon">🎓</div>
+                        <div class="arm-title">EDUCATION VENTURES</div>
+                        <div class="arm-description">AI-powered education platforms, digital learning solutions, and workforce development programs serving frontier markets globally. Led by technology innovation team.</div>
+                    </div>
+
+                    <div class="arm-card">
+                        <div class="arm-icon">🤖</div>
+                        <div class="arm-title">AI COMPANIES</div>
+                        <div class="arm-description">Technology companies leveraging AI for social and commercial applications. Innovation in education, healthcare, fintech, and agriculture across emerging markets.</div>
+                    </div>
+
+                    <div class="arm-card">
+                        <div class="arm-icon">🏥</div>
+                        <div class="arm-title">MEDICAL OPERATIONS</div>
+                        <div class="arm-description">Cutting-edge medical companies, healthcare technology ventures, telemedicine platforms, and medical device innovations. Co-led by Dr. Steve Silber and medical team.</div>
+                    </div>
+
+                    <div class="arm-card">
+                        <div class="arm-icon">🏢</div>
+                        <div class="arm-title">REAL ESTATE</div>
+                        <div class="arm-description">Multi-scale real estate platform through Renewal Sanctuary Holdings. Repurposing post-COVID commercial towers, acquiring wellness properties, developing affordable housing solutions, and building toward iconic skyscraper ownership. Three-tier strategy: cash-flowing foundation properties, growth developments, and transformational landmark buildings.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-grid">
+                <div class="program-card">
+                    <div class="program-icon">🎯</div>
+                    <div class="program-title">THE INCUBATOR</div>
+                    <div class="program-description">Identifies, vets, and trains entrepreneurs. Takes equity in all participants. De-risks investments by building capacity first.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('holdco-incubator')">DETAILS</button>
+                    <div class="program-details" id="details-holdco-incubator">
+                        <h4>The Process</h4>
+                        <p>We don't just throw money at problems. We build capacity first through intensive training, mentorship, and pilot programs. We take 3-10% equity stakes in ALL participants—whether they receive fund investment or not. Only the best graduate to capital deployment.</p>
+                        <ul>
+                            <li>Dual track: intensive (6-12 months) or accelerated programs</li>
+                            <li>Rigorous vetting: market analysis, founder assessment, financial modeling</li>
+                            <li>Comprehensive training: business fundamentals, operations, investor relations</li>
+                            <li>3-10% equity in all participants creates portfolio value</li>
+                            <li>Only 5-10% advance to fund consideration</li>
+                            <li>Ongoing post-investment support and advisory</li>
+                            <li>Creates quality deal flow for the fund</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">💎</div>
+                    <div class="program-title">THE FUND</div>
+                    <div class="program-description">$50M deploying into incubator-vetted opportunities plus strategic investments. Target 20%+ IRR with mandatory 10% profit flow.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('holdco-fund')">DETAILS</button>
+                    <div class="program-details" id="details-holdco-fund">
+                        <h4>Investment Thesis</h4>
+                        <p>Underserved markets present massive opportunities. We deploy across traditional and non-traditional instruments with a diversified approach. By building capacity first through our incubator, we dramatically de-risk while targeting market-rate returns.</p>
+                        <ul>
+                            <li>$50M target fund size, first close $10-15M</li>
+                            <li>Target 20%+ IRR across portfolio</li>
+                            <li>Diversified investments: businesses, real estate, bonds, crypto, alternatives</li>
+                            <li>Hybrid debt + equity structures</li>
+                            <li>Patient capital approach, 10-year fund lifecycle</li>
+                            <li>Focus sectors: agriculture, healthcare, education, clean energy, fintech</li>
+                            <li>10% of profits flow to nonprofit (mandatory, legally structured)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="programs" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">NONPROFIT PROGRAMS</span>
+                <h2 class="section-title">TRANSFORMING COMMUNITIES</h2>
+                <p class="section-subtitle">Building relationships and delivering impact across multiple verticals</p>
+            </div>
+
+            <div class="program-grid">
+                <div class="program-card">
+                    <div class="program-icon">🏥</div>
+                    <div class="program-title">MEDICAL & WELLNESS</div>
+                    <div class="program-description">Co-led by Dr. Steve Silber. Medical missions, mobile clinics, Renewal Sanctuary vision, and healthcare access initiatives.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-medical')">DETAILS</button>
+                    <div class="program-details" id="details-prog-medical">
+                        <h4>Healthcare Programs</h4>
+                        <p>Bringing quality healthcare to underserved communities through medical missions, mobile clinics, and our vision for Renewal Sanctuary—a holistic wellness center. Building healthcare infrastructure and access where it's needed most.</p>
+                        <ul>
+                            <li>Medical missions serving 500-1,000 people per trip</li>
+                            <li>Mobile clinic initiatives in remote areas</li>
+                            <li>Renewal Sanctuary vision—integrated holistic care center</li>
+                            <li>Healthcare infrastructure development</li>
+                            <li>Medical training and capacity building</li>
+                            <li>Partnerships with local healthcare providers</li>
+                            <li>Co-led by Dr. Steve Silber and medical team</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">👥</div>
+                    <div class="program-title">YOUTH LEADERSHIP</div>
+                    <div class="program-description">Character formation, mentorship, international exchanges—developing the next generation of global leaders.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-youth')">DETAILS</button>
+                    <div class="program-details" id="details-prog-youth">
+                        <h4>Youth Development</h4>
+                        <p>Investing in the next generation through character-based leadership development, international exchange programs, and mentorship. Creating global leaders who lead with integrity, vision, and purpose.</p>
+                        <ul>
+                            <li>Character-based leadership training programs</li>
+                            <li>International exchange and cultural immersion</li>
+                            <li>One-on-one mentorship matching</li>
+                            <li>Educational scholarships and support</li>
+                            <li>Community service and civic engagement</li>
+                            <li>Global leadership development curriculum</li>
+                            <li>Building networks of young change-makers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">💻</div>
+                    <div class="program-title">TECH & EDUCATION</div>
+                    <div class="program-description">Digital literacy, AI education platforms, technology access, and workforce development for the future economy.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-tech')">DETAILS</button>
+                    <div class="program-details" id="details-prog-tech">
+                        <h4>Technology Programs</h4>
+                        <p>Leveraging technology and AI to create educational opportunities and digital literacy in frontier markets. Preparing communities for the future economy through access and training.</p>
+                        <ul>
+                            <li>AI education platform development and deployment</li>
+                            <li>Digital literacy and computer skills training</li>
+                            <li>Technology access programs and infrastructure</li>
+                            <li>STEM education and coding bootcamps</li>
+                            <li>Workforce development for tech careers</li>
+                            <li>Technology advisory and capacity building</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">⛪</div>
+                    <div class="program-title">MINISTRY & COMMUNITY</div>
+                    <div class="program-description">Spiritual development, community building, faith-based programs, and holistic transformation.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-ministry')">DETAILS</button>
+                    <div class="program-details" id="details-prog-ministry">
+                        <h4>Ministry Programs</h4>
+                        <p>Spiritual transformation and community development through faith-based initiatives. Building strong communities rooted in purpose, values, and mutual support.</p>
+                        <ul>
+                            <li>Community spiritual development programs</li>
+                            <li>Faith-based leadership training</li>
+                            <li>Church partnerships and support</li>
+                            <li>Values-based community building</li>
+                            <li>Holistic life transformation initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🌾</div>
+                    <div class="program-title">WORKFORCE & ENTERPRISE</div>
+                    <div class="program-description">Job training, entrepreneurship support, vocational programs, and economic empowerment initiatives.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-workforce')">DETAILS</button>
+                    <div class="program-details" id="details-prog-workforce">
+                        <h4>Economic Development</h4>
+                        <p>Creating economic opportunities through workforce training, vocational programs, and entrepreneurship support. Building pathways to prosperity and self-sufficiency.</p>
+                        <ul>
+                            <li>Vocational training and skills development</li>
+                            <li>Entrepreneurship training and mentorship</li>
+                            <li>Job placement and career services</li>
+                            <li>Small business support and microfinance</li>
+                            <li>Agricultural training and support</li>
+                            <li>Economic empowerment programs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-icon">🍽️</div>
+                    <div class="program-title">FEEDING & NUTRITION</div>
+                    <div class="program-description">Nutrition programs, food security initiatives, feeding programs, and community health.</div>
+                    <button class="program-details-btn" onclick="toggleDetails('prog-feeding')">DETAILS</button>
+                    <div class="program-details" id="details-prog-feeding">
+                        <h4>Nutrition Programs</h4>
+                        <p>Addressing food insecurity and nutrition needs through feeding programs and food systems development. Building long-term food security and health.</p>
+                        <ul>
+                            <li>Community feeding programs serving hundreds</li>
+                            <li>Nutrition education and awareness</li>
+                            <li>Food security and agricultural support</li>
+                            <li>School feeding programs</li>
+                            <li>Partnerships with local food systems</li>
+                            <li>Sustainable agriculture training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kenya" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">THE CATALYST</span>
+                <h2 class="section-title">KENYA 2026</h2>
+                <p class="section-subtitle">Our inaugural mission to Kenya. April 2026.</p>
+            </div>
+
+            <div class="mission-components">
+                <div class="component-card">
+                    <div class="component-icon">⛪</div>
+                    <span class="component-title">MINISTRY</span>
+                    <p class="component-description">Prophet Caleb Amukowa leading spiritual transformation, community engagement, and faith-based initiatives across Kenya.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon">🏥</div>
+                    <span class="component-title">MEDICAL</span>
+                    <p class="component-description">Team of doctors providing medical care and serving 500-1,000 people. Co-led by Dr. Steve Silber with comprehensive healthcare services.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon">🍽️</div>
+                    <span class="component-title">FEEDING</span>
+                    <p class="component-description">Nutrition programs serving 500-1,000 individuals. Building relationships and addressing immediate food security needs in communities.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon">🎓</div>
+                    <span class="component-title">AI TRAINING</span>
+                    <p class="component-description">Train 50-100 entrepreneurs through intensive programs. Launch GDI Kenya incubator and identify fund candidates.</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon">👨‍🎓</div>
+                    <span class="component-title">STUDENT PROGRAM</span>
+                    <p class="component-description">Educational initiatives, youth mentorship, leadership development, and creating pathways to opportunity for students.</p>
+                </div>
+            </div>
+
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">5K+</div>
+                    <div class="stat-label">PEOPLE IMPACTED</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50-100</div>
+                    <div class="stat-label">ENTREPRENEURS TRAINED</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20-50</div>
+                    <div class="stat-label">FUND CANDIDATES</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">LONG-TERM IMPACT</div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 80px;">
+                <h2 class="section-title" style="font-size: 48px;">JOIN THE MISSION</h2>
+                <p class="section-subtitle">Multiple ways to be part of Kenya 2026</p>
+            </div>
+
+            <div class="connect-grid" style="margin-top: 40px;">
+                <div class="connect-card" onclick="openModal('donor-kenya')">
+                    <div class="connect-icon">💝</div>
+                    <div class="connect-title">DONATE</div>
+                    <div class="connect-description">Support Kenya 2026 with financial contributions. Every dollar directly funds medical care, feeding programs, and entrepreneur training.</div>
+                    <button class="program-details-btn">DONATE NOW</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('resources-kenya')">
+                    <div class="connect-icon">📦</div>
+                    <div class="connect-title">PROVIDE RESOURCES</div>
+                    <div class="connect-description">Contribute medical supplies, educational materials, technology, or other resources needed for the mission.</div>
+                    <button class="program-details-btn">OFFER RESOURCES</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('join-kenya')">
+                    <div class="connect-icon">✈️</div>
+                    <div class="connect-title">JOIN US IN KENYA</div>
+                    <div class="connect-description">Be part of the team on the ground. Medical professionals, educators, technologists, and volunteers needed.</div>
+                    <button class="program-details-btn">JOIN MISSION</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('sponsor-kenya')">
+                    <div class="connect-icon">🏢</div>
+                    <div class="connect-title">CORPORATE SPONSOR</div>
+                    <div class="connect-description">Partner with us as a corporate sponsor. Gain visibility while supporting transformational impact.</div>
+                    <button class="program-details-btn">BECOME SPONSOR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="vision" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">THE FUTURE</span>
+                <h2 class="section-title">5-YEAR TRAJECTORY</h2>
+                <p class="section-subtitle">From proving ground to global movement</p>
+            </div>
+
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-phase">PROVE IT</div>
+                    <div class="timeline-content">
+                        Kenya mission launches • USA incubator operational • South Africa expansion • Anguilla partnership • Grenada collaboration • First fund close $10-15M • Holding company entities operational
+                    </div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-phase">SCALE IT</div>
+                    <div class="timeline-content">
+                        Ghana operations • Trinidad expansion • First Asia market entry • 50+ businesses through incubator • Fund deployment accelerates • Education and AI ventures launch
+                    </div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2028</div>
+                    <div class="timeline-phase">MULTIPLY IT</div>
+                    <div class="timeline-content">
+                        Second fund launch • 5 countries operational • 100+ portfolio companies • Regional hubs established • Multiple holding company exits • Perpetual flow growing exponentially
+                    </div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2029</div>
+                    <div class="timeline-phase">SYSTEMATIZE IT</div>
+                    <div class="timeline-content">
+                        Model proven and documented • Systems franchisable • 10+ countries operational • First major exits generating significant perpetual flow • Holding company at scale
+                    </div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2030</div>
+                    <div class="timeline-phase">TRANSFORM IT</div>
+                    <div class="timeline-content">
+                        Global movement established • Hundreds of millions in impact • Perpetual engine fully operational • Multiple entities generating returns • Model replicated worldwide
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="network" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">GLOBAL NETWORK</span>
+                <h2 class="section-title">PARTNERSHIPS THAT MATTER</h2>
+                <p class="section-subtitle">Government-level relationships. Regional expertise. Boots on ground.</p>
+            </div>
+
+            <div class="network-grid">
+                <div class="network-card">
+                    <div class="network-flag">🇰🇪</div>
+                    <div class="network-country">KENYA</div>
+                    <div class="network-partner"><strong>Dr. Shem Ochuodho</strong> - Social Enterprise & Operations</div>
+                    <div class="network-partner"><strong>Prophet Caleb Amukowa</strong> - Ministry & Community</div>
+                    <div class="network-partner">April 2026 flagship mission headquarters</div>
+                </div>
+                <div class="network-card">
+                    <div class="network-flag">🇿🇦</div>
+                    <div class="network-country">SOUTH AFRICA</div>
+                    <div class="network-partner"><strong>Melvin & Melissa</strong> - Regional Leadership</div>
+                    <div class="network-partner"><strong>Pastor Njabulo</strong> - Infrastructure & Development</div>
+                    <div class="network-partner">Resurgence Conference & Regional Hub</div>
+                </div>
+                <div class="network-card">
+                    <div class="network-flag">🇦🇮</div>
+                    <div class="network-country">ANGUILLA</div>
+                    <div class="network-partner"><strong>Premier Cora Richardson-Hodge</strong> - Government Partnership</div>
+                    <div class="network-partner"><strong>Dr. Aidan Harrigan</strong> - Economics & Policy</div>
+                    <div class="network-partner"><strong>Paulanne Patterson</strong> - GDI Caribbean Director</div>
+                </div>
+                <div class="network-card">
+                    <div class="network-flag">🇬🇩</div>
+                    <div class="network-country">GRENADA</div>
+                    <div class="network-partner"><strong>Paulanne Patterson</strong> - GDI Caribbean Director</div>
+                    <div class="network-partner">Caribbean regional expansion hub</div>
+                    <div class="network-partner">Government and community partnerships</div>
+                </div>
+                <div class="network-card">
+                    <div class="network-flag">🇺🇸</div>
+                    <div class="network-country">USA</div>
+                    <div class="network-partner"><strong>Downtown Brooklyn Alliance</strong> - Strategic Partnership</div>
+                    <div class="network-partner"><strong>Michael Hopkins</strong> - Tech & Education Lead</div>
+                    <div class="network-partner"><strong>Dr. Steve Silber</strong> - Medical Programs Director</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="connect" class="view">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">JOIN THE MOVEMENT</span>
+                <h2 class="section-title">CONNECT WITH GDI</h2>
+                <p class="section-subtitle">Choose how you'd like to partner with us</p>
+            </div>
+
+            <div class="connect-grid">
+                <div class="connect-card" onclick="openModal('investor')">
+                    <div class="connect-icon">💰</div>
+                    <div class="connect-title">INVESTORS</div>
+                    <div class="connect-description">Impact investors, family offices, and institutions seeking market-rate returns with measurable, perpetual impact</div>
+                    <button class="program-details-btn">GET STARTED</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('partner')">
+                    <div class="connect-icon">🤝</div>
+                    <div class="connect-title">PARTNERS</div>
+                    <div class="connect-description">Nonprofits, government agencies, and organizations aligned with our mission and vision for transformation</div>
+                    <button class="program-details-btn">GET STARTED</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('entrepreneur')">
+                    <div class="connect-icon">🚀</div>
+                    <div class="connect-title">ENTREPRENEURS</div>
+                    <div class="connect-description">Business owners seeking investment capital or incubator support in frontier and emerging markets</div>
+                    <button class="program-details-btn">GET STARTED</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('resourcer')">
+                    <div class="connect-icon">🎯</div>
+                    <div class="connect-title">RESOURCERS</div>
+                    <div class="connect-description">Consultants, advisors, and specialists offering expertise to accelerate our mission and expand our impact</div>
+                    <button class="program-details-btn">GET STARTED</button>
+                </div>
+
+                <div class="connect-card" onclick="openModal('donor')">
+                    <div class="connect-icon">💝</div>
+                    <div class="connect-title">DONORS</div>
+                    <div class="connect-description">Individuals and organizations supporting our nonprofit programs, missions, and community transformation work</div>
+                    <button class="program-details-btn">GET STARTED</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="investor-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('investor')">×</button>
+            <div id="investor-form">
+                <h2>Investor Inquiry</h2>
+                <p class="modal-subtitle">Request our investment deck and fund details</p>
+                <form onsubmit="handleSubmit(event, 'investor')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Organization</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Investor Type *</label>
+                        <select required>
+                            <option value="">Select</option>
+                            <option>Family Office</option>
+                            <option>Institutional Investor</option>
+                            <option>High Net Worth Individual</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id="investor-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>We'll send investment materials within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="partner-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('partner')">×</button>
+            <div id="partner-form">
+                <h2>Partnership Inquiry</h2>
+                <p class="modal-subtitle">Explore collaboration opportunities</p>
+                <form onsubmit="handleSubmit(event, 'partner')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Organization *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Geographic Focus</label>
+                        <input type="text" placeholder="e.g., East Africa, Caribbean">
+                    </div>
+                    <div class="form-group">
+                        <label>Partnership Interest *</label>
+                        <textarea required placeholder="Describe how we might collaborate..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id="partner-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>Our partnerships team will be in touch soon.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="entrepreneur-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('entrepreneur')">×</button>
+            <div id="entrepreneur-form">
+                <h2>Entrepreneur Application</h2>
+                <p class="modal-subtitle">Apply for incubator or investment support</p>
+                <form onsubmit="handleSubmit(event, 'entrepreneur')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location *</label>
+                        <input type="text" required placeholder="City, Country">
+                    </div>
+                    <div class="form-group">
+                        <label>Stage *</label>
+                        <select required>
+                            <option value="">Select</option>
+                            <option>Idea Stage</option>
+                            <option>Early Stage</option>
+                            <option>Revenue Generating</option>
+                            <option>Growth Stage</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Seeking *</label>
+                        <select required>
+                            <option value="">Select</option>
+                            <option>Incubator Support</option>
+                            <option>Investment Capital</option>
+                            <option>Both</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Business Description *</label>
+                        <textarea required placeholder="Describe your business and market..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id="entrepreneur-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Application Received!</h3>
+                <p>We'll review and contact qualifying applications within 2 weeks.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="resourcer-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('resourcer')">×</button>
+            <div id="resourcer-form">
+                <h2>Resourcer Application</h2>
+                <p class="modal-subtitle">Offer your expertise to our network</p>
+                <form onsubmit="handleSubmit(event, 'resourcer')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Area of Expertise *</label>
+                        <input type="text" required placeholder="e.g., Legal, Finance, Marketing">
+                    </div>
+                    <div class="form-group">
+                        <label>Experience Summary *</label>
+                        <textarea required placeholder="Describe your background and how you can help..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Availability</label>
+                        <select>
+                            <option>Part-time Consultant</option>
+                            <option>Project-Based</option>
+                            <option>Volunteer/Pro Bono</option>
+                            <option>Board/Advisory</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id="resourcer-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>We'll reach out when opportunities match your expertise.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="donor-kenya-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('donor-kenya')">×</button>
+            <div id="donor-kenya-form">
+                <h2>Support Kenya 2026</h2>
+                <p class="modal-subtitle">Choose your contribution level for this transformational mission</p>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #64ffda; font-size: 20px; margin-bottom: 20px;">Suggested Contribution Levels:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                        <div style="padding: 20px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 10px; text-align: center; cursor: pointer;" onclick="setDonationAmount(50)">
+                            <div style="font-size: 24px; color: #64ffda; font-weight: bold;">$50</div>
+                            <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Feeds 25 people</div>
+                        </div>
+                        <div style="padding: 20px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 10px; text-align: center; cursor: pointer;" onclick="setDonationAmount(150)">
+                            <div style="font-size: 24px; color: #64ffda; font-weight: bold;">$150</div>
+                            <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Medical care for 10</div>
+                        </div>
+                        <div style="padding: 20px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 10px; text-align: center; cursor: pointer;" onclick="setDonationAmount(500)">
+                            <div style="font-size: 24px; color: #64ffda; font-weight: bold;">$500</div>
+                            <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Train 1 entrepreneur</div>
+                        </div>
+                        <div style="padding: 20px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 10px; text-align: center; cursor: pointer;" onclick="setDonationAmount(2500)">
+                            <div style="font-size: 24px; color: #64ffda; font-weight: bold;">$2,500</div>
+                            <div style="font-size: 14px; color: rgba(230, 241, 255, 0.7);">Sponsor entire program</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form onsubmit="handleDonation(event)">
+                    <div class="form-group">
+                        <label>Donation Amount *</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: #64ffda; font-size: 18px;">$</span>
+                            <input type="number" id="donationAmount" min="10" step="10" required style="flex: 1;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Any specific areas you'd like to support?"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">DONATE NOW</button>
+                </form>
+            </div>
+            <div id="donor-kenya-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>We'll send payment instructions and tax-deductible receipt information within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="resources-kenya-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('resources-kenya')">×</button>
+            <div id="resources-kenya-form">
+                <h2>Provide Resources for Kenya 2026</h2>
+                <p class="modal-subtitle">Help us with supplies, equipment, and materials</p>
+                <form onsubmit="handleSubmit(event, 'resources-kenya')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Organization</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Resource Type *</label>
+                        <select required>
+                            <option value="">Select Resource Type</option>
+                            <option>Medical Supplies</option>
+                            <option>Educational Materials</option>
+                            <option>Technology/Equipment</option>
+                            <option>Food/Nutrition Supplies</option>
+                            <option>Transportation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Resource Details *</label>
+                        <textarea required placeholder="Describe what you can provide, quantities, condition, etc."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">OFFER RESOURCES</button>
+                </form>
+            </div>
+            <div id="resources-kenya-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>Our logistics team will contact you within 48 hours to coordinate.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="join-kenya-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('join-kenya')">×</button>
+            <div id="join-kenya-form">
+                <h2>Join Us in Kenya 2026</h2>
+                <p class="modal-subtitle">Be part of the mission team on the ground</p>
+                <form onsubmit="handleSubmit(event, 'join-kenya')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Background *</label>
+                        <select required>
+                            <option value="">Select Your Field</option>
+                            <option>Medical Professional</option>
+                            <option>Educator/Teacher</option>
+                            <option>Technology/AI</option>
+                            <option>Business/Entrepreneurship</option>
+                            <option>Ministry/Faith</option>
+                            <option>Logistics/Operations</option>
+                            <option>Other/Volunteer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Availability *</label>
+                        <select required>
+                            <option value="">Select Availability</option>
+                            <option>Full Mission (2-3 weeks)</option>
+                            <option>Partial Mission (1 week)</option>
+                            <option>Extended Stay (1+ months)</option>
+                            <option>Remote Support Only</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills & Experience *</label>
+                        <textarea required placeholder="Describe your relevant skills, experience, and how you'd like to contribute"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">JOIN MISSION</button>
+                </form>
+            </div>
+            <div id="join-kenya-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Application Received!</h3>
+                <p>Our team lead will contact you within one week with next steps.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="sponsor-kenya-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('sponsor-kenya')">×</button>
+            <div id="sponsor-kenya-form">
+                <h2>Corporate Partnership - Kenya 2026</h2>
+                <p class="modal-subtitle">Partner with us for maximum impact and visibility</p>
+
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #64ffda; font-size: 18px; margin-bottom: 15px;">Partnership Levels:</h3>
+                    <div style="display: grid; gap: 15px; margin-bottom: 25px;">
+                        <div style="padding: 15px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px;">
+                            <strong style="color: #64ffda;">Presenting Sponsor ($25K+):</strong> Logo on all materials, social media features, impact reports
+                        </div>
+                        <div style="padding: 15px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px;">
+                            <strong style="color: #64ffda;">Program Sponsor ($10K+):</strong> Sponsor specific programs (medical, feeding, training)
+                        </div>
+                        <div style="padding: 15px; background: rgba(100, 255, 218, 0.05); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px;">
+                            <strong style="color: #64ffda;">Supporting Partner ($5K+):</strong> Recognition in mission materials and reports
+                        </div>
+                    </div>
+                </div>
+
+                <form onsubmit="handleSubmit(event, 'sponsor-kenya')">
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Partnership Interest *</label>
+                        <select required>
+                            <option value="">Select Partnership Level</option>
+                            <option>Presenting Sponsor ($25K+)</option>
+                            <option>Program Sponsor ($10K+)</option>
+                            <option>Supporting Partner ($5K+)</option>
+                            <option>Custom Partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Goals & Interests</label>
+                        <textarea placeholder="What are your corporate social responsibility goals? Which programs interest you most?"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">BECOME SPONSOR</button>
+                </form>
+            </div>
+            <div id="sponsor-kenya-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>Our partnerships team will send a detailed sponsorship packet within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="donor-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('donor')">×</button>
+            <div id="donor-form">
+                <h2>Donor Inquiry</h2>
+                <p class="modal-subtitle">Support our nonprofit programs and missions</p>
+                <form onsubmit="handleSubmit(event, 'donor')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel">
+                    </div>
+                    <div class="form-group">
+                        <label>Interest Area</label>
+                        <select>
+                            <option>Kenya 2026 Mission</option>
+                            <option>Medical Programs</option>
+                            <option>Youth Leadership</option>
+                            <option>General Fund</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Tell us about your giving interests..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id="donor-success" class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Thank You!</h3>
+                <p>We'll send giving options and impact reports within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(viewId) {
+            var views = document.querySelectorAll('.view');
+            for (var i = 0; i < views.length; i++) {
+                views[i].classList.remove('active');
+            }
+
+            var links = document.querySelectorAll('.nav-link');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+            }
+
+            var mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            for (var i = 0; i < mobileLinks.length; i++) {
+                mobileLinks[i].classList.remove('active');
+            }
+
+            var target = document.getElementById(viewId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                var navLinks = document.querySelectorAll('.nav-link');
+                var mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+                if (viewId === 'home') {
+                    if (navLinks[0]) navLinks[0].classList.add('active');
+                    if (mobileNavLinks[0]) mobileNavLinks[0].classList.add('active');
+                }
+                else if (viewId === 'engine') {
+                    if (navLinks[1]) navLinks[1].classList.add('active');
+                    if (mobileNavLinks[1]) mobileNavLinks[1].classList.add('active');
+                }
+                else if (viewId === 'holdings') {
+                    if (navLinks[2]) navLinks[2].classList.add('active');
+                    if (mobileNavLinks[2]) mobileNavLinks[2].classList.add('active');
+                }
+                else if (viewId === 'programs') {
+                    if (navLinks[3]) navLinks[3].classList.add('active');
+                    if (mobileNavLinks[3]) mobileNavLinks[3].classList.add('active');
+                }
+                else if (viewId === 'kenya') {
+                    if (navLinks[4]) navLinks[4].classList.add('active');
+                    if (mobileNavLinks[4]) mobileNavLinks[4].classList.add('active');
+                }
+                else if (viewId === 'vision') {
+                    if (navLinks[5]) navLinks[5].classList.add('active');
+                    if (mobileNavLinks[5]) mobileNavLinks[5].classList.add('active');
+                }
+                else if (viewId === 'network') {
+                    if (navLinks[6]) navLinks[6].classList.add('active');
+                    if (mobileNavLinks[6]) mobileNavLinks[6].classList.add('active');
+                }
+                else if (viewId === 'connect') {
+                    if (navLinks[7]) navLinks[7].classList.add('active');
+                    if (mobileNavLinks[7]) mobileNavLinks[7].classList.add('active');
+                }
+            }
+        }
+
+        function toggleMobileNav() {
+            var menu = document.getElementById('mobileNavMenu');
+            var toggle = document.getElementById('mobileNavToggle');
+
+            if (menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                toggle.innerHTML = '☰';
+            } else {
+                menu.classList.add('active');
+                toggle.innerHTML = '✕';
+            }
+        }
+
+        function closeMobileNav() {
+            var menu = document.getElementById('mobileNavMenu');
+            var toggle = document.getElementById('mobileNavToggle');
+
+            menu.classList.remove('active');
+            toggle.innerHTML = '☰';
+        }
+
+        function toggleEngineComponent(component) {
+            var detail = document.getElementById(component + '-details');
+            var allDetails = document.querySelectorAll('#engine .program-details');
+
+            for (var i = 0; i < allDetails.length; i++) {
+                if (allDetails[i] !== detail) {
+                    allDetails[i].classList.remove('active');
+                }
+            }
+
+            if (detail) {
+                if (detail.classList.contains('active')) {
+                    detail.classList.remove('active');
+                } else {
+                    detail.classList.add('active');
+                    // Smooth scroll to the detail section after a short delay
+                    setTimeout(function() {
+                        detail.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'nearest'
+                        });
+                    }, 100);
+                }
+            }
+        }
+
+        function toggleDetails(id) {
+            var detail = document.getElementById('details-' + id);
+            if (detail) {
+                if (detail.classList.contains('active')) {
+                    detail.classList.remove('active');
+                } else {
+                    detail.classList.add('active');
+                    // Smooth scroll to the detail section after a short delay
+                    setTimeout(function() {
+                        detail.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'nearest'
+                        });
+                    }, 100);
+                }
+            }
+        }
+
+        function openModal(type) {
+            var modal = document.getElementById(type + '-modal');
+            if (modal) modal.classList.add('active');
+        }
+
+        function closeModal(type) {
+            var modal = document.getElementById(type + '-modal');
+            var form = document.getElementById(type + '-form');
+            var success = document.getElementById(type + '-success');
+
+            if (modal) modal.classList.remove('active');
+            if (form) form.style.display = 'block';
+            if (success) success.classList.remove('active');
+        }
+
+        function handleSubmit(event, type) {
+            event.preventDefault();
+            var form = document.getElementById(type + '-form');
+            var success = document.getElementById(type + '-success');
+
+            if (form) form.style.display = 'none';
+            if (success) success.classList.add('active');
+        }
+
+        function calculateImpact() {
+            var amountInput = document.getElementById('investmentAmount');
+            if (!amountInput) return;
+
+            var amount = parseFloat(amountInput.value) || 0;
+            // More realistic calculations based on actual incubator economics
+            var entrepreneurs = Math.floor(amount / 1000); // $1K per entrepreneur trained
+            var businesses = Math.floor(entrepreneurs * 0.15); // 15% advance to funding
+            var jobs = businesses * 5; // 5 jobs per business average
+            var people = entrepreneurs * 8; // 8 people impacted per entrepreneur (family + employees)
+            var nonprofit = Math.floor(amount * 0.15 * 0.1); // 15% returns, 10% to nonprofit
+            var communityImpact = people * 2.5; // More conservative ripple effect
+            var year5Value = Math.floor(amount * 1.8); // 80% growth over 5 years
+
+            var results = [
+                { icon: '👨‍🎓', label: 'Entrepreneurs Trained', value: entrepreneurs.toLocaleString() },
+                { icon: '🏢', label: 'Businesses Funded', value: businesses.toLocaleString() },
+                { icon: '💼', label: 'Jobs Created', value: jobs.toLocaleString() },
+                { icon: '👥', label: 'People Directly Impacted', value: people.toLocaleString() },
+                { icon: '🌍', label: 'Community Ripple Impact', value: communityImpact.toLocaleString() },
+                { icon: '💰', label: 'To Nonprofit Programs', value: '$' + nonprofit.toLocaleString() },
+                { icon: '📈', label: 'Projected 5-Year Value', value: '$' + year5Value.toLocaleString() },
+                { icon: '♾️', label: 'Perpetual Impact', value: 'ONGOING' }
+            ];
+
+            var html = '';
+            for (var i = 0; i < results.length; i++) {
+                var item = results[i];
+                html += '<div class="impact-result-card">';
+                html += '<div style="font-size: 48px; margin-bottom: 15px;">' + item.icon + '</div>';
+                html += '<div style="font-size: 36px; font-weight: 900; background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">' + item.value + '</div>';
+                html += '<div style="font-size: 14px; color: rgba(230, 241, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">' + item.label + '</div>';
+                html += '</div>';
+            }
+
+            var resultsDiv = document.getElementById('impactResults');
+            if (resultsDiv) resultsDiv.innerHTML = html;
+        }
+
+        function setDonationAmount(amount) {
+            var input = document.getElementById('donationAmount');
+            if (input) {
+                input.value = amount;
+            }
+        }
+
+        function handleDonation(event) {
+            event.preventDefault();
+            var form = document.getElementById('donor-kenya-form');
+            var success = document.getElementById('donor-kenya-success');
+
+            if (form) form.style.display = 'none';
+            if (success) success.classList.add('active');
+        }
+
+        window.addEventListener('load', function() {
+            calculateImpact();
+
+            // Handle hash navigation
+            var hash = window.location.hash.substring(1);
+            if (hash) {
+                showView(hash);
+            }
+        });
+
+        // Handle hash changes
+        window.addEventListener('hashchange', function() {
+            var hash = window.location.hash.substring(1);
+            if (hash) {
+                showView(hash);
+            }
+        });
+
+        var modals = document.querySelectorAll('.modal-overlay');
+        for (var i = 0; i < modals.length; i++) {
+            modals[i].addEventListener('click', function(e) {
+                if (e.target === this) {
+                    var type = this.id.replace('-modal', '');
+                    closeModal(type);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
