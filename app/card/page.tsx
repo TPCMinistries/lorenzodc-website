@@ -10,7 +10,7 @@ export default function CardPage() {
     script.onload = () => {
       // @ts-ignore
       new QRCode(document.getElementById("qrcode"), {
-        text: "https://lorenzodc.com",
+        text: "https://lorenzodc.com/card",
         width: 180,
         height: 180,
         colorDark: "#1e293b",
