@@ -241,27 +241,74 @@ export default function GlobalNavigation() {
         </div>
       </nav>
 
-      {/* Mobile Menu - Completely Simplified */}
+      {/* Mobile Menu - Bulletproof Visibility */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[999]" style={{backgroundColor: '#0f172a'}}>
-          <div className="pt-20 p-6 h-full overflow-y-auto">
+        <div
+          className="lg:hidden fixed inset-0"
+          style={{
+            backgroundColor: '#0f172a',
+            zIndex: 9999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
+        >
+          <div
+            style={{
+              paddingTop: '100px',
+              padding: '20px',
+              height: '100vh',
+              overflowY: 'auto',
+              color: 'white'
+            }}
+          >
             {/* Simple close button at top */}
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-white text-xl font-bold">Navigation Menu</h2>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '30px',
+              backgroundColor: '#374151',
+              padding: '15px',
+              borderRadius: '8px'
+            }}>
+              <h2 style={{color: 'white', fontSize: '20px', fontWeight: 'bold', margin: 0}}>
+                Navigation Menu
+              </h2>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white bg-slate-700 p-3 rounded-lg hover:bg-slate-600"
+                style={{
+                  color: 'white',
+                  backgroundColor: '#4b5563',
+                  padding: '10px',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '18px',
+                  cursor: 'pointer'
+                }}
               >
                 ✕
               </button>
             </div>
 
-            {/* Simple navigation links */}
-            <div className="space-y-4">
+            {/* Navigation links with bulletproof inline styles */}
+            <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
               >
                 🏠 HOME
               </Link>
@@ -269,7 +316,17 @@ export default function GlobalNavigation() {
               <Link
                 href="/perpetual-engine"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
               >
                 🔄 THE ENGINE
               </Link>
@@ -277,7 +334,17 @@ export default function GlobalNavigation() {
               <Link
                 href="/ministry"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
               >
                 👑 MINISTRY
               </Link>
@@ -285,7 +352,17 @@ export default function GlobalNavigation() {
               <Link
                 href="/catalyst"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
               >
                 🤖 CATALYST AI
               </Link>
@@ -293,7 +370,17 @@ export default function GlobalNavigation() {
               <Link
                 href="/lorenzo/connect"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
               >
                 🌐 CONNECT
               </Link>
