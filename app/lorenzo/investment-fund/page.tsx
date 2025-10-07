@@ -55,7 +55,7 @@ export default function InvestmentFundPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950">
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-4 overflow-hidden">
+      <section className="relative pt-24 pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 animate-pulse" />
         
         <div className="max-w-6xl mx-auto relative z-10">

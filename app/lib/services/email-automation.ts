@@ -2,7 +2,7 @@ import { supabase } from "../../../lib/supabase/client";
 
 export interface EmailEvent {
   user_id: string;
-  event_type: 'assessment_completed' | 'upgrade_completed' | 'trial_started' | 'goal_set' | 'document_uploaded' | 'conversation_milestone';
+  event_type: 'assessment_completed' | 'upgrade_completed' | 'trial_started' | 'goal_set' | 'document_uploaded' | 'conversation_milestone' | 'nurturing_sequence' | 'lead_magnet_downloaded' | 'booking_confirmed';
   event_data: Record<string, any>;
   campaign_name?: string;
   immediate_send?: boolean;
@@ -126,6 +126,144 @@ export class EmailAutomationService {
       console.error('Error triggering goal setting email:', error);
       return false;
     }
+  }
+
+  // Trigger nurturing sequence based on prospect profile
+  static async triggerNurturingSequence(
+    userId: string,
+    prospectProfile: any
+  ): Promise<boolean> {
+    try {
+      const sequenceName = this.getNurturingSequence(prospectProfile);
+
+      const eventData = {
+        prospect_category: prospectProfile.category,
+        prospect_tier: prospectProfile.tier,
+        lead_score: prospectProfile.leadScore,
+        interests: prospectProfile.interests,
+        trigger_date: new Date().toISOString()
+      };
+
+      const success = await this.triggerEmailEvent({
+        user_id: userId,
+        event_type: 'nurturing_sequence',
+        event_data: eventData,
+        campaign_name: sequenceName,
+        immediate_send: true
+      });
+
+      return success;
+    } catch (error) {
+      console.error('Error triggering nurturing sequence:', error);
+      return false;
+    }
+  }
+
+  // Trigger lead magnet follow-up sequence
+  static async triggerLeadMagnetSequence(
+    userId: string,
+    magnetType: string,
+    prospectData: any
+  ): Promise<boolean> {
+    try {
+      const eventData = {
+        magnet_type: magnetType,
+        download_date: new Date().toISOString(),
+        prospect_category: prospectData.category,
+        lead_score: prospectData.leadScore
+      };
+
+      const sequenceName = `lead_magnet_${magnetType}_followup`;
+
+      const success = await this.triggerEmailEvent({
+        user_id: userId,
+        event_type: 'lead_magnet_downloaded',
+        event_data: eventData,
+        campaign_name: sequenceName,
+        immediate_send: true
+      });
+
+      if (success) {
+        await this.updateLeadScore(userId, 15, 'lead_magnet_download');
+      }
+
+      return success;
+    } catch (error) {
+      console.error('Error triggering lead magnet sequence:', error);
+      return false;
+    }
+  }
+
+  // Trigger booking confirmation and preparation sequence
+  static async triggerBookingSequence(
+    userId: string,
+    callType: string,
+    prospectProfile: any
+  ): Promise<boolean> {
+    try {
+      const eventData = {
+        call_type: callType,
+        booking_date: new Date().toISOString(),
+        prospect_tier: prospectProfile.tier,
+        estimated_value: this.getEstimatedValue(callType, prospectProfile.tier)
+      };
+
+      const success = await this.triggerEmailEvent({
+        user_id: userId,
+        event_type: 'booking_confirmed',
+        event_data: eventData,
+        campaign_name: `booking_preparation_${callType}`,
+        immediate_send: true
+      });
+
+      if (success) {
+        await this.updateLeadScore(userId, 25, 'call_booked');
+      }
+
+      return success;
+    } catch (error) {
+      console.error('Error triggering booking sequence:', error);
+      return false;
+    }
+  }
+
+  // Get appropriate nurturing sequence based on prospect profile
+  private static getNurturingSequence(profile: any): string {
+    const { category, tier, leadScore } = profile;
+
+    // High-value prospects get executive sequence
+    if (tier === 'tier_1' || leadScore >= 40) {
+      return 'executive_nurturing_sequence';
+    }
+
+    // Category-specific sequences
+    switch (category) {
+      case 'enterprise_ai':
+        return 'enterprise_ai_nurturing_sequence';
+      case 'ministry_coaching':
+        return 'divine_strategy_nurturing_sequence';
+      case 'investment_fund':
+        return 'investment_opportunity_sequence';
+      case 'strategic_consulting':
+        return 'strategic_consulting_sequence';
+      case 'speaking_engagement':
+        return 'speaking_engagement_sequence';
+      default:
+        return 'general_nurturing_sequence';
+    }
+  }
+
+  // Get estimated value for conversion tracking
+  private static getEstimatedValue(callType: string, tier: string): number {
+    const valueMatrix = {
+      'executive_strategy': { 'tier_1': 100000, 'tier_2': 50000, 'tier_3': 25000, 'tier_4': 10000 },
+      'divine_strategy': { 'tier_1': 50000, 'tier_2': 25000, 'tier_3': 10000, 'tier_4': 5000 },
+      'ai_implementation': { 'tier_1': 75000, 'tier_2': 35000, 'tier_3': 15000, 'tier_4': 7500 },
+      'general_discovery': { 'tier_1': 25000, 'tier_2': 10000, 'tier_3': 5000, 'tier_4': 2500 }
+    };
+
+    const matrix = valueMatrix[callType as keyof typeof valueMatrix];
+    return matrix ? (matrix as any)[tier] || 0 : 0;
   }
 
   // Core function to trigger any email event

@@ -8,7 +8,7 @@ export default function InvestmentMetricsPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-violet-950">
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-4 overflow-hidden">
+      <section className="relative pt-24 pb-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-violet-600/20 animate-pulse" />
 
         <div className="max-w-6xl mx-auto relative z-10">

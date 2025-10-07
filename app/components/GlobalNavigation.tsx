@@ -202,6 +202,11 @@ export default function GlobalNavigation() {
               </div>
             </div>
 
+            <Link href="/resources" className="relative group text-slate-100 hover:text-white transition-all duration-300 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-cyan-500/15 hover:to-teal-500/15 hover:shadow-lg hover:shadow-cyan-500/20">
+              RESOURCES
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 group-hover:w-full transition-all duration-500"></div>
+            </Link>
+
             <Link href="/lorenzo/connect" className="relative group text-slate-100 hover:text-white transition-all duration-300 font-semibold text-sm px-4 py-2 rounded-lg hover:bg-gradient-to-r hover:from-rose-500/15 hover:to-pink-500/15 hover:shadow-lg hover:shadow-rose-500/20">
               CONNECT
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400 group-hover:w-full transition-all duration-500"></div>
@@ -713,6 +718,24 @@ export default function GlobalNavigation() {
                   </div>
                 )}
               </div>
+
+              <Link
+                href="/resources"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  display: 'block',
+                  color: 'white',
+                  fontSize: '18px',
+                  fontWeight: 'bold',
+                  padding: '20px',
+                  backgroundColor: '#374151',
+                  borderRadius: '8px',
+                  textDecoration: 'none',
+                  border: '2px solid #4b5563'
+                }}
+              >
+                📚 RESOURCES
+              </Link>
 
               <Link
                 href="/lorenzo/connect"

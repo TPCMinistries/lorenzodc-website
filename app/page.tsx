@@ -53,7 +53,7 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-purple-500/10 to-emerald-500/10"></div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-20 pt-40">
+        <div className="relative max-w-7xl mx-auto px-6 py-20 pt-24">
           <div className="text-center">
             {/* Main Identity */}
             <div className="mb-12">

@@ -23,7 +23,7 @@ export default function LorenzoHomepage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950">
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-4 overflow-hidden">
+      <section className="relative pt-24 pb-20 px-4 overflow-hidden">
         {/* Enhanced Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-indigo-600/30 to-purple-600/20 rounded-full blur-3xl animate-pulse" />

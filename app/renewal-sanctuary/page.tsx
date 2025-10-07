@@ -71,7 +71,7 @@ export default function RenewalSanctuary() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <GlobalNavigation />
 
-      <div className="relative overflow-hidden py-16 pt-40">
+      <div className="relative overflow-hidden py-16 pt-24">
         {/* Enhanced Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 via-cyan-500/10 to-teal-500/5"></div>
