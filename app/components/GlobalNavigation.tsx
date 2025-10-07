@@ -4,6 +4,8 @@ import { useState } from "react";
 
 export default function GlobalNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [catalystAIExpanded, setCatalystAIExpanded] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(false);
 
 
   return (
@@ -349,236 +351,268 @@ export default function GlobalNavigation() {
                 👑 MINISTRY
               </Link>
 
-              {/* Catalyst AI Section */}
-              <div style={{
-                backgroundColor: '#1e293b',
-                borderRadius: '8px',
-                padding: '15px',
-                border: '2px solid #334155'
-              }}>
-                <h3 style={{
-                  color: '#06b6d4',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  marginBottom: '10px',
-                  margin: 0
-                }}>
-                  🤖 CATALYST AI
-                </h3>
-                <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                  <Link
-                    href="/catalyst"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🤖 AI Platform - Main dashboard & overview
-                  </Link>
-                  <Link
-                    href="/chat"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    💬 AI Chat - Interactive conversations
-                  </Link>
-                  <Link
-                    href="/enterprise/diagnostic"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🔍 AI Assessment - Readiness evaluation
-                  </Link>
-                  <Link
-                    href="/enterprise/rag"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    📄 Document AI - Upload & analyze docs
-                  </Link>
-                  <Link
-                    href="/enterprise/roi"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    📊 ROI Calculator - Impact analysis
-                  </Link>
-                  <Link
-                    href="/enterprise/blueprints"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🎯 Strategic Blueprints - 90-day roadmaps
-                  </Link>
-                  <Link
-                    href="/enterprise"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🏢 Enterprise Suite - Complete toolkit
-                  </Link>
-                </div>
+              {/* Catalyst AI Collapsible Section */}
+              <div>
+                <button
+                  onClick={() => setCatalystAIExpanded(!catalystAIExpanded)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    color: 'white',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    padding: '20px',
+                    backgroundColor: '#374151',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    border: '2px solid #4b5563',
+                    textAlign: 'left',
+                    cursor: 'pointer'
+                  }}
+                >
+                  🤖 CATALYST AI {catalystAIExpanded ? '▼' : '▶'}
+                </button>
+
+                {catalystAIExpanded && (
+                  <div style={{
+                    marginTop: '10px',
+                    backgroundColor: '#1e293b',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    border: '2px solid #334155'
+                  }}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                      <Link
+                        href="/catalyst"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🤖 AI Platform - Main dashboard & overview
+                      </Link>
+                      <Link
+                        href="/chat"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        💬 AI Chat - Interactive conversations
+                      </Link>
+                      <Link
+                        href="/enterprise/diagnostic"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🔍 AI Assessment - Readiness evaluation
+                      </Link>
+                      <Link
+                        href="/enterprise/rag"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        📄 Document AI - Upload & analyze docs
+                      </Link>
+                      <Link
+                        href="/enterprise/roi"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        📊 ROI Calculator - Impact analysis
+                      </Link>
+                      <Link
+                        href="/enterprise/blueprints"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🎯 Strategic Blueprints - 90-day roadmaps
+                      </Link>
+                      <Link
+                        href="/enterprise"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🏢 Enterprise Suite - Complete toolkit
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Services Section */}
-              <div style={{
-                backgroundColor: '#1e293b',
-                borderRadius: '8px',
-                padding: '15px',
-                border: '2px solid #334155'
-              }}>
-                <h3 style={{
-                  color: '#f59e0b',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  marginBottom: '10px',
-                  margin: 0
-                }}>
-                  ⚡ SERVICES
-                </h3>
-                <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                  <Link
-                    href="/services"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    ⚡ All Services - Complete overview
-                  </Link>
-                  <Link
-                    href="/lorenzo/divine-strategy"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    ⚡ Divine Strategy - Executive coaching
-                  </Link>
-                  <Link
-                    href="/lorenzo/connect"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🎯 Strategic Consulting - Enterprise transformation
-                  </Link>
-                  <Link
-                    href="/lorenzo/speaking"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    🎤 Speaking - Global engagements
-                  </Link>
-                  <Link
-                    href="/lorenzo/assessment"
-                    onClick={() => setMobileMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      color: 'white',
-                      fontSize: '14px',
-                      fontWeight: 'normal',
-                      padding: '12px',
-                      backgroundColor: '#374151',
-                      borderRadius: '6px',
-                      textDecoration: 'none'
-                    }}
-                  >
-                    📋 Assessment - Strategic evaluation
-                  </Link>
-                </div>
+              {/* Services Collapsible Section */}
+              <div>
+                <button
+                  onClick={() => setServicesExpanded(!servicesExpanded)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    color: 'white',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    padding: '20px',
+                    backgroundColor: '#374151',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    border: '2px solid #4b5563',
+                    textAlign: 'left',
+                    cursor: 'pointer'
+                  }}
+                >
+                  ⚡ SERVICES {servicesExpanded ? '▼' : '▶'}
+                </button>
+
+                {servicesExpanded && (
+                  <div style={{
+                    marginTop: '10px',
+                    backgroundColor: '#1e293b',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    border: '2px solid #334155'
+                  }}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                      <Link
+                        href="/services"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        ⚡ All Services - Complete overview
+                      </Link>
+                      <Link
+                        href="/lorenzo/divine-strategy"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        ⚡ Divine Strategy - Executive coaching
+                      </Link>
+                      <Link
+                        href="/lorenzo/connect"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🎯 Strategic Consulting - Enterprise transformation
+                      </Link>
+                      <Link
+                        href="/lorenzo/speaking"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🎤 Speaking - Global engagements
+                      </Link>
+                      <Link
+                        href="/lorenzo/assessment"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        📋 Assessment - Strategic evaluation
+                      </Link>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <Link
