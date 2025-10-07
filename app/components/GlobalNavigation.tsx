@@ -7,7 +7,7 @@ export default function GlobalNavigation() {
 
 
   return (
-    <header className="fixed w-full top-0 z-50 backdrop-blur-2xl border-b border-purple-500/30 shadow-2xl">
+    <header className="fixed w-full top-0 z-[85] backdrop-blur-2xl border-b border-purple-500/30 shadow-2xl">
       <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-purple-950/95 via-indigo-950/95 to-slate-950/90"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/15 via-indigo-500/20 via-violet-500/15 to-purple-500/15"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950/30"></div>
@@ -211,7 +211,7 @@ export default function GlobalNavigation() {
               console.log('Mobile menu toggled:', !mobileMenuOpen);
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="lg:hidden group p-3 text-white hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl z-[70] relative"
+            className="lg:hidden group p-3 text-white hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl z-[90] relative"
             aria-label="Toggle mobile menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default function GlobalNavigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[60] bg-slate-900/95 backdrop-blur-xl">
+        <div className="lg:hidden fixed inset-0 z-[80] bg-slate-900/95 backdrop-blur-xl">
           <div className="pt-24 px-6 pb-6 h-full overflow-y-auto">
             <nav className="space-y-4">
               {/* Streamlined Mobile Navigation */}
