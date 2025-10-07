@@ -1137,27 +1137,45 @@
                 max-height: 95vh;
             }
 
-            /* Mobile calculator improvements */
+            /* Mobile calculator - clean and responsive */
             #investmentAmount {
-                font-size: 24px !important;
-                padding: 15px 20px !important;
+                font-size: 20px !important;
+                padding: 12px 16px !important;
+                width: 100% !important;
+                margin-bottom: 15px !important;
             }
 
-            /* Mobile flywheel - improved visibility */
+            .calculator-input-row {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+
+            .calculator-button {
+                width: 100% !important;
+                padding: 14px !important;
+                font-size: 16px !important;
+            }
+
+            /* Mobile flywheel - clean and readable */
             .flywheel-node {
-                width: 140px !important;
-                height: 140px !important;
-                padding: 12px !important;
-                font-size: 13px !important;
-                margin: 8px !important;
-                line-height: 1.2 !important;
+                width: 110px !important;
+                height: 110px !important;
+                padding: 8px !important;
+                font-size: 11px !important;
+                margin: 4px !important;
+                line-height: 1.3 !important;
+                border-radius: 12px !important;
+                box-shadow: 0 3px 10px rgba(0,0,0,0.4) !important;
+                font-weight: 600 !important;
             }
 
             .flywheel-container {
-                transform: scale(0.9) !important;
+                transform: scale(0.8) !important;
                 margin: 30px auto !important;
                 display: flex !important;
                 justify-content: center !important;
+                align-items: center !important;
+                padding: 15px !important;
             }
 
             /* Mobile button improvements */
@@ -1225,16 +1243,32 @@
 
             /* Mobile-optimized flywheel display */
             .flywheel-node {
-                width: 100px !important;
-                height: 100px !important;
-                padding: 8px !important;
-                font-size: 11px !important;
-                margin: 5px !important;
+                width: 85px !important;
+                height: 85px !important;
+                padding: 6px !important;
+                font-size: 9px !important;
+                margin: 3px !important;
+                line-height: 1.2 !important;
+                border-radius: 10px !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+                font-weight: 700 !important;
             }
 
             .flywheel-container {
-                transform: scale(0.8) !important;
+                transform: scale(0.7) !important;
                 margin: 20px auto !important;
+                padding: 10px !important;
+            }
+
+            /* Extra small screen calculator improvements */
+            #investmentAmount {
+                font-size: 18px !important;
+                padding: 10px 14px !important;
+            }
+
+            .calculator-button {
+                padding: 12px !important;
+                font-size: 14px !important;
             }
 
             /* Mobile-friendly grid for donation options */
@@ -1455,13 +1489,15 @@
                 <div style="margin-bottom: 40px;">
                     <label style="display: block; color: #64ffda; font-size: 20px; margin-bottom: 15px; font-weight: 700;">Enter Your Donation or Investment Amount:</label>
                     <p style="font-size: 14px; color: rgba(230, 241, 255, 0.7); margin-bottom: 20px; font-style: italic;">*Investment opportunities in our fund are available to accredited investors only. Donations to our nonprofit are open to everyone.</p>
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <span style="font-size: 32px; color: #64ffda;">$</span>
-                        <input type="number" id="investmentAmount" value="10000" min="100" step="100"
-                               style="flex: 1; padding: 18px 25px; font-size: 32px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(100, 255, 218, 0.3); border-radius: 15px; color: #64ffda; font-weight: 700;"
-                               oninput="calculateImpact()">
-                        <button onclick="calculateImpact()"
-                                style="padding: 18px 35px; background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%); border: none; border-radius: 15px; color: #0a0e1a; font-size: 18px; font-weight: 700; cursor: pointer; text-transform: uppercase;">
+                    <div class="calculator-input-row" style="display: flex; align-items: center; gap: 20px;">
+                        <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                            <span style="font-size: 28px; color: #64ffda;">$</span>
+                            <input type="number" id="investmentAmount" value="10000" min="100" step="100"
+                                   style="flex: 1; padding: 18px 20px; font-size: 28px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(100, 255, 218, 0.3); border-radius: 12px; color: #64ffda; font-weight: 700;"
+                                   oninput="calculateImpact()">
+                        </div>
+                        <button onclick="calculateImpact()" class="calculator-button"
+                                style="padding: 18px 30px; background: linear-gradient(135deg, #64ffda 0%, #a78bfa 100%); border: none; border-radius: 12px; color: #0a0e1a; font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase; white-space: nowrap;">
                             Calculate
                         </button>
                     </div>
