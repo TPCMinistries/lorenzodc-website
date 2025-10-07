@@ -241,166 +241,62 @@ export default function GlobalNavigation() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Completely Simplified */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[999] bg-slate-900 backdrop-blur-xl">
-          <div className="flex flex-col h-full">
-            {/* Mobile menu header with close button */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-700/50 bg-slate-900">
-              <div className="text-white font-semibold text-lg">Menu</div>
+        <div className="lg:hidden fixed inset-0 z-[999]" style={{backgroundColor: '#0f172a'}}>
+          <div className="pt-20 p-6 h-full overflow-y-auto">
+            {/* Simple close button at top */}
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-white text-xl font-bold">Navigation Menu</h2>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-white hover:bg-white/10 rounded-xl transition-all duration-300"
+                className="text-white bg-slate-700 p-3 rounded-lg hover:bg-slate-600"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                ✕
               </button>
             </div>
 
-            <div className="flex-1 px-6 py-6 overflow-y-auto bg-slate-900">
-              <nav className="space-y-4">
-              {/* Streamlined Mobile Navigation */}
+            {/* Simple navigation links */}
+            <div className="space-y-4">
               <Link
                 href="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
               >
-                HOME
+                🏠 HOME
               </Link>
 
               <Link
                 href="/perpetual-engine"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
               >
-                THE ENGINE
+                🔄 THE ENGINE
               </Link>
 
               <Link
                 href="/ministry"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
               >
-                MINISTRY
+                👑 MINISTRY
               </Link>
 
-              {/* Catalyst AI Mobile Section */}
-              <div className="space-y-2">
-                <div className="px-6 py-2 text-purple-400 font-semibold text-sm tracking-wide">CATALYST AI</div>
-                <Link href="/catalyst" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">🤖</span>
-                  <div>
-                    <div className="font-medium">AI Platform</div>
-                    <div className="text-slate-400 text-xs">Main dashboard</div>
-                  </div>
-                </Link>
-                <Link href="/chat" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">💬</span>
-                  <div>
-                    <div className="font-medium">AI Chat</div>
-                    <div className="text-slate-400 text-xs">Interactive conversations</div>
-                  </div>
-                </Link>
-                <Link href="/enterprise/diagnostic" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">🔍</span>
-                  <div>
-                    <div className="font-medium">AI Assessment</div>
-                    <div className="text-slate-400 text-xs">Readiness evaluation</div>
-                  </div>
-                </Link>
-                <Link href="/enterprise/rag" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">📄</span>
-                  <div>
-                    <div className="font-medium">Document AI</div>
-                    <div className="text-slate-400 text-xs">Upload & analyze</div>
-                  </div>
-                </Link>
-                <Link href="/enterprise/roi" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">📊</span>
-                  <div>
-                    <div className="font-medium">ROI Calculator</div>
-                    <div className="text-slate-400 text-xs">Impact analysis</div>
-                  </div>
-                </Link>
-              </div>
-
-              {/* Renewal Sanctuary Mobile Section */}
-              <div className="space-y-2 pt-4">
-                <Link
-                  href="/renewal-sanctuary"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
-                >
-                  <div className="flex items-center">
-                    <span className="text-2xl mr-4">🏔️</span>
-                    <div>
-                      <div className="text-emerald-400 font-semibold">RENEWAL SANCTUARY</div>
-                      <div className="text-slate-400 text-sm">Premium Wellness Enterprise</div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              {/* Services Mobile Section */}
-              <div className="space-y-2 pt-4">
-                <div className="px-6 py-2 text-amber-400 font-semibold text-sm tracking-wide">SERVICES</div>
-                <Link href="/services" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">⚡</span>
-                  <div>
-                    <div className="font-medium">All Services</div>
-                    <div className="text-slate-400 text-xs">Complete overview</div>
-                  </div>
-                </Link>
-                <Link href="/lorenzo/divine-strategy" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">⚡</span>
-                  <div>
-                    <div className="font-medium">Divine Strategy</div>
-                    <div className="text-slate-400 text-xs">Executive coaching</div>
-                  </div>
-                </Link>
-                <Link href="/lorenzo/connect" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">🎯</span>
-                  <div>
-                    <div className="font-medium">Strategic Consulting</div>
-                    <div className="text-slate-400 text-xs">Enterprise transformation</div>
-                  </div>
-                </Link>
-                <Link href="/lorenzo/speaking" onClick={() => setMobileMenuOpen(false)} className="flex items-center px-6 py-3 text-white hover:bg-white/10 rounded-xl transition-all duration-300 ml-2">
-                  <span className="text-lg mr-3">🎤</span>
-                  <div>
-                    <div className="font-medium">Speaking</div>
-                    <div className="text-slate-400 text-xs">Global engagements</div>
-                  </div>
-                </Link>
-              </div>
+              <Link
+                href="/catalyst"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
+              >
+                🤖 CATALYST AI
+              </Link>
 
               <Link
                 href="/lorenzo/connect"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-6 py-4 text-white hover:bg-white/10 rounded-xl transition-all duration-300 font-medium"
+                className="block text-white text-lg font-semibold py-4 px-4 bg-slate-700 rounded-lg hover:bg-slate-600"
               >
-                CONNECT
+                🌐 CONNECT
               </Link>
-
-              {/* Action Buttons */}
-              <div className="pt-6 space-y-4">
-                <Link
-                  href="/catalyst"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-medium"
-                >
-                  CATALYST AI
-                </Link>
-                <Link
-                  href="/lorenzo/assessment"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-600 to-cyan-500 text-white rounded-xl font-bold"
-                >
-                  Take Assessment
-                </Link>
-              </div>
-              </nav>
             </div>
           </div>
         </div>
