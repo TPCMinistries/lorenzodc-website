@@ -211,7 +211,7 @@ export default function GlobalNavigation() {
               console.log('Mobile menu toggled:', !mobileMenuOpen);
               setMobileMenuOpen(!mobileMenuOpen);
             }}
-            className="lg:hidden group p-3 text-white hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl z-[110] relative"
+            className="lg:hidden group p-3 text-white hover:text-white transition-all duration-300 hover:bg-white/10 rounded-xl z-[1000] relative"
             aria-label="Toggle mobile menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -243,10 +243,10 @@ export default function GlobalNavigation() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[100] bg-slate-900/98 backdrop-blur-xl">
+        <div className="lg:hidden fixed inset-0 z-[999] bg-slate-900 backdrop-blur-xl">
           <div className="flex flex-col h-full">
             {/* Mobile menu header with close button */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
+            <div className="flex items-center justify-between p-6 border-b border-slate-700/50 bg-slate-900">
               <div className="text-white font-semibold text-lg">Menu</div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
@@ -258,7 +258,7 @@ export default function GlobalNavigation() {
               </button>
             </div>
 
-            <div className="flex-1 px-6 py-6 overflow-y-auto">
+            <div className="flex-1 px-6 py-6 overflow-y-auto bg-slate-900">
               <nav className="space-y-4">
               {/* Streamlined Mobile Navigation */}
               <Link
