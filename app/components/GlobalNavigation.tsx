@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function GlobalNavigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [perpetualEngineExpanded, setPerpetualEngineExpanded] = useState(false);
   const [catalystAIExpanded, setCatalystAIExpanded] = useState(false);
   const [servicesExpanded, setServicesExpanded] = useState(false);
 
@@ -315,23 +316,121 @@ export default function GlobalNavigation() {
                 🏠 HOME
               </Link>
 
-              <Link
-                href="/perpetual-engine"
-                onClick={() => setMobileMenuOpen(false)}
-                style={{
-                  display: 'block',
-                  color: 'white',
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  padding: '20px',
-                  backgroundColor: '#374151',
-                  borderRadius: '8px',
-                  textDecoration: 'none',
-                  border: '2px solid #4b5563'
-                }}
-              >
-                🔄 THE ENGINE
-              </Link>
+              {/* Perpetual Engine Collapsible Section */}
+              <div>
+                <button
+                  onClick={() => setPerpetualEngineExpanded(!perpetualEngineExpanded)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    color: 'white',
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    padding: '20px',
+                    backgroundColor: '#374151',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    border: '2px solid #4b5563',
+                    textAlign: 'left',
+                    cursor: 'pointer'
+                  }}
+                >
+                  🔄 THE PERPETUAL ENGINE {perpetualEngineExpanded ? '▼' : '▶'}
+                </button>
+
+                {perpetualEngineExpanded && (
+                  <div style={{
+                    marginTop: '10px',
+                    backgroundColor: '#1e293b',
+                    borderRadius: '8px',
+                    padding: '15px',
+                    border: '2px solid #334155'
+                  }}>
+                    <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+                      <Link
+                        href="/perpetual-engine"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🔄 Full Overview - Complete ecosystem
+                      </Link>
+                      <Link
+                        href="/perpetual-engine.html#programs"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🏛️ Nonprofit Foundation - 501(c)(3) impact programs
+                      </Link>
+                      <Link
+                        href="/perpetual-engine.html#holdings"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        💼 For-Profit Holdings - Revenue ecosystem
+                      </Link>
+                      <Link
+                        href="/perpetual-engine.html#kenya"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🚀 Kenya 2026 Mission - Proof of concept launch
+                      </Link>
+                      <Link
+                        href="/catalyst"
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                          display: 'block',
+                          color: 'white',
+                          fontSize: '14px',
+                          fontWeight: 'normal',
+                          padding: '12px',
+                          backgroundColor: '#374151',
+                          borderRadius: '6px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        🤖 Catalyst AI Integration - Divine strategy technology
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <Link
                 href="/ministry"
