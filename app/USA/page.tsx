@@ -381,23 +381,18 @@ export default function AfricaMovementSite() {
               <div className="w-32 h-32 bg-gradient-to-br from-yellow-600 to-yellow-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-black">
                 AA
               </div>
-              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Achumboro Asaante</h3>
+              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Achumboro Ataande, Esq.</h3>
               <p className="text-center text-yellow-600 font-bold mb-4">Co-Founder & Vision Architect</p>
 
               <div className="space-y-4 text-gray-700">
                 <p className="font-semibold text-gray-900">Background:</p>
                 <ul className="space-y-2 text-sm">
-                  <li>• Pan-African thought leader</li>
-                  <li>• Community organizer and mobilizer</li>
-                  <li>• Cultural preservation advocate</li>
-                  <li>• Movement builder and strategist</li>
+                  <li>• [Background details to be added]</li>
                 </ul>
 
                 <p className="font-semibold text-gray-900 mt-6">Role in the Movement:</p>
                 <p className="text-sm">
-                  Movement messaging, cultural strategy, community engagement,
-                  and grassroots mobilization. Ensuring the vision remains rooted
-                  in authentic Pan-African values and principles.
+                  [Role details to be added]
                 </p>
               </div>
             </div>
@@ -406,7 +401,7 @@ export default function AfricaMovementSite() {
               <div className="w-32 h-32 bg-gradient-to-br from-red-600 to-red-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-5xl font-black">
                 TPC
               </div>
-              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Your Name</h3>
+              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Rev. Lorenzo Daughtry-Chambers</h3>
               <p className="text-center text-red-600 font-bold mb-4">Co-Founder & Strategic Leader</p>
 
               <div className="space-y-4 text-gray-700">
