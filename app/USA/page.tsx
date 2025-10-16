@@ -359,21 +359,8 @@ export default function AfricaMovementSite() {
               <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Rev. Dr. Michael Nkrumah</h3>
               <p className="text-center text-green-600 font-bold mb-4">Chairman</p>
 
-              <div className="space-y-4 text-gray-700">
-                <p className="font-semibold text-gray-900">Background:</p>
-                <ul className="space-y-2 text-sm">
-                  <li>• Grandson of Dr. Kwame Nkrumah</li>
-                  <li>• Ghana-based operations leader</li>
-                  <li>• Pan-African network builder</li>
-                  <li>• Planning 54-country tour across Africa</li>
-                </ul>
-
-                <p className="font-semibold text-gray-900 mt-6">Role in the Movement:</p>
-                <p className="text-sm">
-                  On-the-ground leadership across Africa, government relations,
-                  partnership building with African leaders, and carrying forward
-                  his grandfather's legacy with modern execution.
-                </p>
+              <div className="space-y-4 text-gray-700 text-center">
+                <p className="text-gray-500 italic">Details to be added</p>
               </div>
             </div>
 
@@ -382,18 +369,10 @@ export default function AfricaMovementSite() {
                 AA
               </div>
               <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Achumboro Ataande, Esq.</h3>
-              <p className="text-center text-yellow-600 font-bold mb-4"></p>
+              <p className="text-center text-yellow-600 font-bold mb-4">TBD</p>
 
-              <div className="space-y-4 text-gray-700">
-                <p className="font-semibold text-gray-900">Background:</p>
-                <ul className="space-y-2 text-sm">
-                  <li>• [Background details to be added]</li>
-                </ul>
-
-                <p className="font-semibold text-gray-900 mt-6">Role in the Movement:</p>
-                <p className="text-sm">
-                  [Role details to be added]
-                </p>
+              <div className="space-y-4 text-gray-700 text-center">
+                <p className="text-gray-500 italic">Details to be added</p>
               </div>
             </div>
 
@@ -402,23 +381,10 @@ export default function AfricaMovementSite() {
                 TPC
               </div>
               <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Rev. Lorenzo Daughtry-Chambers</h3>
-              <p className="text-center text-red-600 font-bold mb-4"></p>
+              <p className="text-center text-red-600 font-bold mb-4">TBD</p>
 
-              <div className="space-y-4 text-gray-700">
-                <p className="font-semibold text-gray-900">Background:</p>
-                <ul className="space-y-2 text-sm">
-                  <li>• Founder, Global Development Institute (GDI)</li>
-                  <li>• International development strategist</li>
-                  <li>• 8+ years building sustainable impact programs</li>
-                  <li>• AI-enabled entrepreneurship innovator</li>
-                </ul>
-
-                <p className="font-semibold text-gray-900 mt-6">Role in the Movement:</p>
-                <p className="text-sm">
-                  Strategic planning, organizational infrastructure, US operations,
-                  fundraising, and partnership development. Bringing proven systems
-                  for sustainable community development.
-                </p>
+              <div className="space-y-4 text-gray-700 text-center">
+                <p className="text-gray-500 italic">Details to be added</p>
               </div>
             </div>
           </div>
