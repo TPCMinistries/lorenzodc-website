@@ -356,8 +356,8 @@ export default function AfricaMovementSite() {
               <div className="w-32 h-32 bg-gradient-to-br from-green-600 to-green-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-black">
                 MN
               </div>
-              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Dr. Michael Nkrumah</h3>
-              <p className="text-center text-green-600 font-bold mb-4">Co-Founder & Continental Leader</p>
+              <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Rev. Dr. Michael Nkrumah</h3>
+              <p className="text-center text-green-600 font-bold mb-4">Chairman</p>
 
               <div className="space-y-4 text-gray-700">
                 <p className="font-semibold text-gray-900">Background:</p>
@@ -382,7 +382,7 @@ export default function AfricaMovementSite() {
                 AA
               </div>
               <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Achumboro Ataande, Esq.</h3>
-              <p className="text-center text-yellow-600 font-bold mb-4">Co-Founder & Vision Architect</p>
+              <p className="text-center text-yellow-600 font-bold mb-4"></p>
 
               <div className="space-y-4 text-gray-700">
                 <p className="font-semibold text-gray-900">Background:</p>
@@ -402,7 +402,7 @@ export default function AfricaMovementSite() {
                 TPC
               </div>
               <h3 className="text-2xl font-black text-gray-900 text-center mb-2">Rev. Lorenzo Daughtry-Chambers</h3>
-              <p className="text-center text-red-600 font-bold mb-4">Co-Founder & Strategic Leader</p>
+              <p className="text-center text-red-600 font-bold mb-4"></p>
 
               <div className="space-y-4 text-gray-700">
                 <p className="font-semibold text-gray-900">Background:</p>
