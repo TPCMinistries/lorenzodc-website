@@ -3,9 +3,8 @@ import "./globals.css";
 import React from "react";
 import PWAInstallButton, { PWAInstallBanner } from "./components/PWAInstallButton";
 import { ConnectionIndicator } from "./components/PWAStatus";
-import GlobalNavigation from "./components/GlobalNavigation";
 import ExitIntentPopup from "./components/ExitIntentPopup";
-import NewsletterSignup from "./components/NewsletterSignup";
+import ConditionalLayout from "./components/ConditionalLayout";
 // import TrackingProvider from "./components/providers/TrackingProvider";
 
 export const metadata = {
@@ -172,33 +171,12 @@ export default function RootLayout({
       <body>
         {/* <TrackingProvider> */}
         <ConnectionIndicator />
-        <GlobalNavigation />
 
-        <main className="pt-24 pb-24">{children}</main>
+        <ConditionalLayout>
+          {children}
+        </ConditionalLayout>
 
         <PWAInstallBanner />
-
-        <footer className="border-t border-slate-800 bg-slate-900">
-          <div className="container mx-auto px-4 py-16">
-            {/* Newsletter Section */}
-            <div className="max-w-2xl mx-auto mb-12">
-              <NewsletterSignup variant="footer" />
-            </div>
-
-            {/* Footer Links */}
-            <div className="border-t border-slate-800 pt-8">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-sm text-slate-400">
-                <p>© {new Date().getFullYear()} The Catalyst Path. Built with integrity &amp; foresight.</p>
-                <div className="flex gap-6">
-                  <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
-                  <a href="/terms" className="hover:text-white transition-colors">Terms</a>
-                  <a href="/contact" className="hover:text-white transition-colors">Contact</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-
         <ExitIntentPopup />
         {/* </TrackingProvider> */}
       </body>
