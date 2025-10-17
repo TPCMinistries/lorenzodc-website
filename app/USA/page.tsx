@@ -1021,8 +1021,6 @@ export default function AfricaMovementSite() {
           </div>
         </div>
       </section>
-        </div>
-      </section>
 
       {/* Chinese Model */}
       <section className="py-20 bg-gray-900 text-white">
