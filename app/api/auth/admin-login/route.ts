@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import crypto from 'crypto';
+import { supabaseAdmin } from '../../../../lib/supabase/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -38,21 +39,38 @@ export async function POST(request: NextRequest) {
 
     const supabase = createRouteHandlerClient({ cookies });
 
-    // Generate magic link using Supabase (but we'll send it via Resend)
+    // First, check if user exists and confirm their email
+    try {
+      const { data: users } = await supabaseAdmin.auth.admin.listUsers();
+      const existingUser = users?.users?.find(u => u.email === email.toLowerCase());
+
+      if (existingUser && !existingUser.email_confirmed_at) {
+        // Confirm the user's email if not confirmed
+        await supabaseAdmin.auth.admin.updateUserById(existingUser.id, {
+          email_confirm: true
+        });
+        console.log('Auto-confirmed email for existing user:', email);
+      }
+    } catch (err) {
+      console.error('Error checking/confirming user:', err);
+      // Continue anyway
+    }
+
+    // Generate magic link using Supabase
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.lorenzodc.com'}/admin`,
+        shouldCreateUser: false, // Don't create new users via OTP
       }
     });
 
     if (error) {
       console.error('Supabase OTP error:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      return NextResponse.json({
+        error: `Login failed: ${error.message}. Please contact support.`
+      }, { status: 500 });
     }
-
-    // Note: Supabase will send the email automatically through their system
-    // To fully customize, you'd need to disable Supabase emails and implement custom token system
 
     return NextResponse.json({
       success: true,
