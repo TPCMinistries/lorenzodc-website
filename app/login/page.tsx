@@ -130,6 +130,7 @@ function LoginForm() {
                 <ul className="text-xs text-blue-400 mt-2 space-y-1">
                   <li>• lorenzo@lorenzodc.com</li>
                   <li>• lorenzo@theglobalenterprise.org</li>
+                  <li>• lorenzo.d.chambers@gmail.com</li>
                 </ul>
               </div>
             </form>

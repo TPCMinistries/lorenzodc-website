@@ -20,7 +20,8 @@ export async function GET(request: NextRequest) {
     // List of admin emails
     const adminEmails = [
       'lorenzo@lorenzodc.com',
-      'lorenzo@theglobalenterprise.org'
+      'lorenzo@theglobalenterprise.org',
+      'lorenzo.d.chambers@gmail.com'
     ];
 
     // Check if user's email is in admin list
