@@ -293,7 +293,7 @@ export default function AIAssessmentPage() {
               AI Readiness Assessment
             </h1>
             <p className="text-xl text-slate-300 mb-2">Discover exactly where you stand & your personalized roadmap</p>
-            <p className="text-slate-400">⏱️ Takes 5 minutes • Join 500+ leaders who've completed it</p>
+            <p className="text-slate-400">⏱️ Takes just 5 minutes</p>
           </div>
 
           {/* What You'll Get */}
@@ -320,25 +320,12 @@ export default function AIAssessmentPage() {
             </div>
           </div>
 
-          {/* Social Proof */}
+          {/* Why This Matters */}
           <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-xl p-6 border border-cyan-500/20 mb-12">
-            <div className="text-center mb-4">
-              <p className="text-slate-300 font-medium mb-2">"This assessment revealed $2M in automation opportunities we hadn't even considered."</p>
-              <p className="text-sm text-slate-400">— Sarah Chen, CEO of TechFlow Solutions (scored 67%)</p>
-            </div>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-cyan-400">500+</div>
-                <div className="text-sm text-slate-400">Assessments Completed</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-purple-400">45%</div>
-                <div className="text-sm text-slate-400">Average Score</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-emerald-400">80%+</div>
-                <div className="text-sm text-slate-400">Top 10% Threshold</div>
-              </div>
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-white mb-3">Why Take This Assessment?</h3>
+              <p className="text-slate-300 mb-4">Most organizations think they know where they stand with AI. Reality is often very different.</p>
+              <p className="text-slate-400 text-sm">This assessment gives you clarity on where you really are and a specific roadmap to move forward.</p>
             </div>
           </div>
 

@@ -31,7 +31,7 @@ const EMAIL_TEMPLATES = {
           <h3 style="margin-top: 0; color: #667eea;">In Just 5 Minutes, You'll Discover:</h3>
           <ul style="margin: 10px 0; padding-left: 20px;">
             <li>✅ Your AI Readiness Score (0-100%)</li>
-            <li>✅ Where you rank vs 500+ other leaders</li>
+            <li>✅ Detailed breakdown across 4 key dimensions</li>
             <li>✅ Your personalized 30-90 day roadmap</li>
             <li>✅ Specific next steps for YOUR business</li>
             <li>✅ Instant access to our AI Strategy Chat</li>
@@ -45,7 +45,7 @@ const EMAIL_TEMPLATES = {
         </div>
 
         <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border: 1px solid #ffeaa7; margin: 25px 0;">
-          <p style="margin: 0;"><strong>💡 Quick tip:</strong> This is the same assessment that helped a CEO discover $2M in automation opportunities last month.</p>
+          <p style="margin: 0;"><strong>💡 Quick tip:</strong> Most leaders are surprised by their results - both in areas where they're ahead and where they have gaps.</p>
         </div>
 
         <p>Looking forward to seeing your results!</p>
@@ -67,7 +67,7 @@ const EMAIL_TEMPLATES = {
   },
 
   social_proof: {
-    subject: '500+ leaders just discovered their AI blind spots...',
+    subject: 'Quick question about your AI readiness...',
     getHtml: (recipient: string) => `
       <!DOCTYPE html>
       <html>
@@ -82,23 +82,17 @@ const EMAIL_TEMPLATES = {
 
         <p style="font-size: 16px;">Quick question - have you taken your AI Readiness Assessment yet?</p>
 
+        <p>I've been analyzing the patterns I'm seeing, and here's what's interesting:</p>
+
         <div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 25px 0;">
-          <h3 style="margin-top: 0; color: #667eea;">Since launch, we've had:</h3>
-          <ul style="margin: 10px 0; padding-left: 20px; font-size: 16px;">
-            <li>🎯 <strong>500+ assessments completed</strong></li>
-            <li>📉 <strong>Average score: 45%</strong> (most companies have huge AI gaps)</li>
-            <li>🏆 <strong>Top 10% are scoring 80%+</strong></li>
-          </ul>
+          <h3 style="margin-top: 0; color: #667eea;">The Reality Gap:</h3>
+          <p style="margin: 10px 0; font-size: 16px;">Most organizations have a significant gap between where they <em>think</em> they are with AI and where they actually are.</p>
+          <p style="margin: 10px 0; font-size: 16px;">The assessment reveals this gap clearly - and more importantly, shows you exactly how to close it.</p>
         </div>
 
-        <p><strong>The question is: where do YOU rank?</strong></p>
+        <p><strong>The question is: where do YOU actually stand?</strong></p>
 
-        <p>Most leaders are surprised by their results - both good and bad.</p>
-
-        <div style="background: #e7f3ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 25px 0;">
-          <p style="margin: 0;">One CEO thought they were "AI-ready" → <strong>scored 38%</strong></p>
-          <p style="margin: 10px 0 0 0;">Another thought they were "behind" → <strong>scored 72%</strong></p>
-        </div>
+        <p>Most leaders are surprised by their results - sometimes ahead in unexpected areas, sometimes behind where they thought.</p>
 
         <div style="text-align: center; margin: 30px 0;">
           <a href="https://www.lorenzodc.com/ai-assessment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; font-size: 16px;">

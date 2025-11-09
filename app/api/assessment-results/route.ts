@@ -269,12 +269,13 @@ function generateReport(scores: Record<string, number>, name: string, company?: 
 
       <!-- Benchmark -->
       <div style="background: #e7f3ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 25px 0;">
-        <h4 style="margin-top: 0; color: #1e40af;">📈 How You Compare</h4>
-        <p style="margin: 0;">Based on 500+ assessments:</p>
+        <h4 style="margin-top: 0; color: #1e40af;">📈 Understanding Your Score</h4>
+        <p style="margin: 0;">AI Readiness benchmarks:</p>
         <ul style="margin: 10px 0; padding-left: 20px;">
-          <li>Average score: 45%</li>
-          <li>Top 25% score: 65%+</li>
-          <li>AI Leaders score: 80%+</li>
+          <li>Beginner: Below 40%</li>
+          <li>Explorer: 40-59%</li>
+          <li>Implementer: 60-79%</li>
+          <li>AI Leader: 80%+</li>
           <li><strong>Your score: ${overallScore}%</strong></li>
         </ul>
       </div>
