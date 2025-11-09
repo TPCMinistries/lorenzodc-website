@@ -185,7 +185,7 @@ export default function Chat() {
         setConversations([]);
         return;
       }
-      const convs = await getConversations(userId);
+      const convs = await getConversations(userId || undefined);
       setConversations(convs);
     } catch (error) {
       console.error('Failed to load conversations:', error);
@@ -211,7 +211,7 @@ export default function Chat() {
     }
 
     try {
-      await deleteConversation(conversationId, userId);
+      await deleteConversation(conversationId, userId || undefined);
 
       if (currentConversation?.id === conversationId) {
         startNewConversation();
