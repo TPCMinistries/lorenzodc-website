@@ -8,12 +8,13 @@ import FeatureFlags from './FeatureFlags';
 import SystemHealth from './SystemHealth';
 import ActivityLogs from './ActivityLogs';
 import EmailManagement from './EmailManagement';
+import LeadPipeline from './LeadPipeline';
 
 interface AdminDashboardProps {
   className?: string;
 }
 
-type TabType = 'overview' | 'users' | 'emails' | 'features' | 'system' | 'logs';
+type TabType = 'overview' | 'users' | 'pipeline' | 'emails' | 'features' | 'system' | 'logs';
 
 export default function AdminDashboard({ className = '' }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
@@ -112,6 +113,7 @@ export default function AdminDashboard({ className = '' }: AdminDashboardProps) 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'users', label: 'Users', icon: '👥' },
+    { id: 'pipeline', label: 'Lead Pipeline', icon: '🎯' },
     { id: 'emails', label: 'Email Marketing', icon: '📧' },
     { id: 'features', label: 'Features', icon: '🎛️' },
     { id: 'system', label: 'System', icon: '🔧' },
@@ -172,6 +174,10 @@ export default function AdminDashboard({ className = '' }: AdminDashboardProps) 
 
         {activeTab === 'users' && (
           <UserManagement />
+        )}
+
+        {activeTab === 'pipeline' && (
+          <LeadPipeline />
         )}
 
         {activeTab === 'emails' && (

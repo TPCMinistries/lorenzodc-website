@@ -2,8 +2,69 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { supabaseAdmin } from '../../../lib/supabase/server';
 import crypto from 'crypto';
+import { calculateLeadScore, type LeadScoringData } from '../../../lib/lead-scoring';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Analyze responses to personalize recommendations
+function analyzeResponses(responses: any, scores: Record<string, number>) {
+  const insights: string[] = [];
+  let calendarPriority: 'high' | 'medium' | 'low' = 'medium';
+  let recommendedService: string = '';
+
+  // Check AI usage level
+  if (responses.ai_usage === 'No AI tools in use') {
+    insights.push("You're starting from scratch - perfect time to build a solid foundation");
+    recommendedService = 'AI Strategy Intensive ($5K-7K)';
+    calendarPriority = 'high';
+  } else if (responses.ai_usage === 'AI is central to our operations') {
+    insights.push("You're already advanced - let's optimize and scale what's working");
+    recommendedService = 'Monthly Retainer ($5K-10K/mo)';
+    calendarPriority = 'high';
+  }
+
+  // Check if scores are uneven (indicates specific gaps)
+  const scoreValues = [scores.current_state, scores.strategy_vision, scores.team_capabilities, scores.implementation];
+  const maxScore = Math.max(...scoreValues);
+  const minScore = Math.min(...scoreValues);
+
+  if (maxScore - minScore > 30) {
+    insights.push("Your scores show significant gaps between areas - we should address this");
+    calendarPriority = 'high';
+  }
+
+  // Low strategy score = needs roadmap
+  if (scores.strategy_vision < 50) {
+    insights.push("Strategy & vision is your biggest opportunity for improvement");
+    if (!recommendedService) recommendedService = 'AI Strategy Intensive ($5K-7K)';
+  }
+
+  // High overall but low implementation = ready to act
+  if (scores.overall >= 60 && scores.implementation < 60) {
+    insights.push("You're ready strategically but need help with execution");
+    if (!recommendedService) recommendedService = '90-Day Implementation Partner ($15K-25K)';
+    calendarPriority = 'high';
+  }
+
+  // Low overall = needs foundations
+  if (scores.overall < 40) {
+    if (!recommendedService) recommendedService = 'AI Strategy Intensive ($5K-7K)';
+  }
+
+  // High overall = needs scaling
+  if (scores.overall >= 70) {
+    insights.push("You're ahead of most companies - time to accelerate");
+    if (!recommendedService) recommendedService = 'Full Implementation + Coaching ($35K-75K)';
+    calendarPriority = 'high';
+  }
+
+  return {
+    insights,
+    calendarPriority,
+    recommendedService: recommendedService || '90-Day Implementation Partner ($15K-25K)',
+    bookingUrl: 'https://calendly.com/lorenzo-dc/ai-strategy-call' // Replace with your actual Calendly link
+  };
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,6 +76,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Analyze specific responses for personalization
+    const responseAnalysis = analyzeResponses(responses, scores);
 
     // Save assessment to database
     const { data: assessmentData, error: dbError } = await supabaseAdmin
@@ -34,6 +98,73 @@ export async function POST(request: NextRequest) {
     if (dbError) {
       console.error('Database error:', dbError);
       // Continue with email even if database fails
+    }
+
+    // Calculate and save lead score
+    try {
+      const leadScoringData: LeadScoringData = {
+        assessmentCompleted: true,
+        overallScore: scores.overall,
+        scoreBreakdown: {
+          current_state: scores.current_state,
+          strategy_vision: scores.strategy_vision,
+          team_capabilities: scores.team_capabilities,
+          implementation: scores.implementation
+        },
+        daysSinceSignup: 0, // Just completed
+        daysSinceAssessment: 0
+      };
+
+      const leadScore = calculateLeadScore(leadScoringData);
+
+      // Save to prospect_profiles table
+      await supabaseAdmin
+        .from('prospect_profiles')
+        .upsert({
+          email,
+          name,
+          company,
+          lead_score: leadScore.points,
+          tier: getTierFromPriority(leadScore.priority),
+          status: getStatusFromScore(leadScore.score),
+          category: 'enterprise_ai',
+          source: 'ai_assessment',
+          assessment_data: { responses, scores },
+          last_engagement_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }, {
+          onConflict: 'email',
+          ignoreDuplicates: false
+        });
+
+      // Record scoring history
+      const { data: prospectData } = await supabaseAdmin
+        .from('prospect_profiles')
+        .select('id')
+        .eq('email', email)
+        .single();
+
+      if (prospectData) {
+        await supabaseAdmin
+          .from('lead_scoring_history')
+          .insert({
+            prospect_id: prospectData.id,
+            score_change: leadScore.points,
+            new_total_score: leadScore.points,
+            reason: `Assessment completed: ${leadScore.score.toUpperCase()} lead (${leadScore.points} points)`,
+            source_event: 'assessment_completed',
+            event_data: {
+              tags: leadScore.tags,
+              priority: leadScore.priority,
+              recommendedAction: leadScore.recommendedAction
+            }
+          });
+      }
+
+      console.log('Lead score calculated:', leadScore);
+    } catch (error) {
+      console.error('Error calculating lead score:', error);
+      // Continue even if lead scoring fails
     }
 
     // Create user account automatically for assessment completers
@@ -69,7 +200,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate personalized report
-    const report = generateReport(scores, name, company, userCreated, tempPassword, email);
+    const report = generateReport(scores, name, company, userCreated, tempPassword, email, responseAnalysis);
 
     // Send results email
     const { data: emailData, error: emailError } = await resend.emails.send({
@@ -105,7 +236,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateReport(scores: Record<string, number>, name: string, company?: string, userCreated?: boolean, tempPassword?: string, email?: string) {
+function generateReport(scores: Record<string, number>, name: string, company?: string, userCreated?: boolean, tempPassword?: string, email?: string, analysis?: { insights: string[], calendarPriority: string, recommendedService: string, bookingUrl: string }) {
   const overallScore = scores.overall;
   const companyText = company ? ` at ${company}` : '';
 
@@ -240,6 +371,42 @@ function generateReport(scores: Record<string, number>, name: string, company?: 
         </ol>
       </div>
 
+      ${analysis && analysis.insights.length > 0 ? `
+      <!-- Personalized Insights -->
+      <div style="background: #f0f9ff; padding: 25px; border-radius: 8px; border-left: 4px solid #0ea5e9; margin: 25px 0;">
+        <h3 style="margin-top: 0; color: #0369a1;">💡 What I Noticed About Your Results</h3>
+        <p style="margin: 10px 0;">Based on your specific answers, here's what stands out:</p>
+        <ul style="margin: 10px 0; padding-left: 20px;">
+          ${analysis.insights.map(insight => `<li style="margin-bottom: 8px; color: #0c4a6e;">${insight}</li>`).join('')}
+        </ul>
+        ${analysis.calendarPriority === 'high' ? `
+        <p style="margin: 15px 0 10px 0; font-weight: bold; color: #0369a1;">
+          Based on where you are, I'd recommend we talk soon to create your specific roadmap.
+        </p>
+        ` : ''}
+      </div>
+      ` : ''}
+
+      ${analysis ? `
+      <!-- Calendar Booking (Automated!) -->
+      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 30px; border-radius: 12px; text-align: center; margin: 30px 0;">
+        <h3 style="color: white; margin: 0 0 10px 0; font-size: 24px;">📅 Let's Discuss Your Strategy</h3>
+        <p style="color: #d1fae5; margin: 0 0 20px 0; font-size: 16px;">
+          15-minute complimentary call to review your results
+        </p>
+        <p style="color: white; margin: 0 0 25px 0; font-size: 14px;">
+          Recommended: <strong>${analysis.recommendedService}</strong>
+        </p>
+        <a href="${analysis.bookingUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email || '')}&score=${overallScore}"
+           style="background: white; color: #059669; padding: 15px 35px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+          📅 Book Your Strategy Call Now →
+        </a>
+        <p style="color: #d1fae5; margin: 20px 0 0 0; font-size: 13px;">
+          ${analysis.calendarPriority === 'high' ? '⚡ High-priority based on your assessment results' : 'No obligation • Just actionable insights'}
+        </p>
+      </div>
+      ` : ''}
+
       ${userCreated && tempPassword ? `
       <!-- Login Credentials -->
       <div style="background: #e7f3ff; padding: 25px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 25px 0;">
@@ -305,4 +472,21 @@ function generateReport(scores: Record<string, number>, name: string, company?: 
   `;
 
   return { html };
+}
+
+// Helper functions for lead scoring integration
+function getTierFromPriority(priority: number): string {
+  if (priority >= 5) return 'tier_1';
+  if (priority >= 4) return 'tier_2';
+  if (priority >= 3) return 'tier_3';
+  return 'tier_4';
+}
+
+function getStatusFromScore(score: 'hot' | 'warm' | 'cold'): string {
+  switch (score) {
+    case 'hot': return 'opportunity';
+    case 'warm': return 'qualified';
+    case 'cold': return 'nurturing';
+    default: return 'new';
+  }
 }
