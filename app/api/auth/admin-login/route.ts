@@ -20,10 +20,10 @@ const ADMIN_EMAILS = [
  */
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, password } = await request.json();
 
-    if (!email) {
-      return NextResponse.json({ error: 'Email is required' }, { status: 400 });
+    if (!email || !password) {
+      return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
     }
 
     // Check if email is authorized admin
@@ -32,49 +32,30 @@ export async function POST(request: NextRequest) {
     if (!isAdmin) {
       console.log(`Unauthorized admin login attempt: ${email}`);
       return NextResponse.json(
-        { error: 'This email is not authorized for admin access' },
-        { status: 403 }
+        { error: 'Invalid credentials' },
+        { status: 401 }
       );
     }
 
     const supabase = createRouteHandlerClient({ cookies });
 
-    // First, check if user exists and confirm their email
-    try {
-      const { data: users } = await supabaseAdmin.auth.admin.listUsers();
-      const existingUser = users?.users?.find(u => u.email === email.toLowerCase());
-
-      if (existingUser && !existingUser.email_confirmed_at) {
-        // Confirm the user's email if not confirmed
-        await supabaseAdmin.auth.admin.updateUserById(existingUser.id, {
-          email_confirm: true
-        });
-        console.log('Auto-confirmed email for existing user:', email);
-      }
-    } catch (err) {
-      console.error('Error checking/confirming user:', err);
-      // Continue anyway
-    }
-
-    // Generate magic link using Supabase
-    const { data, error } = await supabase.auth.signInWithOtp({
+    // Sign in with password
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
-      options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.lorenzodc.com'}/admin`,
-        shouldCreateUser: false, // Don't create new users via OTP
-      }
+      password,
     });
 
     if (error) {
-      console.error('Supabase OTP error:', error);
+      console.error('Supabase login error:', error);
       return NextResponse.json({
-        error: `Login failed: ${error.message}. Please contact support.`
-      }, { status: 500 });
+        error: 'Invalid credentials'
+      }, { status: 401 });
     }
 
     return NextResponse.json({
       success: true,
-      message: 'Check your email for the login link'
+      message: 'Login successful',
+      user: data.user
     });
 
   } catch (error) {
