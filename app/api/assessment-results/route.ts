@@ -167,40 +167,10 @@ export async function POST(request: NextRequest) {
       // Continue even if lead scoring fails
     }
 
-    // Create user account automatically for assessment completers
-    let userCreated = false;
-    let tempPassword = '';
-    try {
-      // Generate a secure temporary password
-      tempPassword = crypto.randomBytes(12).toString('base64').slice(0, 12);
-
-      // Create the user account
-      const { data: userData, error: userError } = await supabaseAdmin.auth.admin.createUser({
-        email,
-        password: tempPassword,
-        email_confirm: true, // Auto-confirm email for assessment users
-        user_metadata: {
-          name,
-          company,
-          source: 'ai_assessment',
-          assessment_completed: true,
-          assessment_score: scores.overall
-        }
-      });
-
-      if (!userError && userData.user) {
-        userCreated = true;
-        console.log('User account created for assessment completer:', email);
-      } else {
-        console.log('User might already exist, continuing:', userError?.message);
-      }
-    } catch (error) {
-      console.error('Error creating user account:', error);
-      // Continue with email even if user creation fails
-    }
-
     // Generate personalized report
-    const report = generateReport(scores, name, company, userCreated, tempPassword, email, responseAnalysis);
+    // NOTE: We do NOT create Supabase user accounts for assessment takers
+    // Only admins need Supabase accounts. Assessment takers are just leads in prospect_profiles table.
+    const report = generateReport(scores, name, company, email, responseAnalysis);
 
     // Send results email
     const { data: emailData, error: emailError } = await resend.emails.send({
@@ -222,9 +192,7 @@ export async function POST(request: NextRequest) {
       message: 'Assessment completed and results sent',
       assessmentId: assessmentData?.id,
       emailId: emailData?.id,
-      scores,
-      userCreated,
-      loginEmail: userCreated ? email : null
+      scores
     });
 
   } catch (error) {
@@ -236,7 +204,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateReport(scores: Record<string, number>, name: string, company?: string, userCreated?: boolean, tempPassword?: string, email?: string, analysis?: { insights: string[], calendarPriority: string, recommendedService: string, bookingUrl: string }) {
+function generateReport(scores: Record<string, number>, name: string, company: string | undefined, email: string | undefined, analysis?: { insights: string[], calendarPriority: string, recommendedService: string, bookingUrl: string }) {
   const overallScore = scores.overall;
   const companyText = company ? ` at ${company}` : '';
 
@@ -407,26 +375,11 @@ function generateReport(scores: Record<string, number>, name: string, company?: 
       </div>
       ` : ''}
 
-      ${userCreated && tempPassword ? `
-      <!-- Login Credentials -->
-      <div style="background: #e7f3ff; padding: 25px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 25px 0;">
-        <h3 style="margin-top: 0; color: #1e40af;">🎉 Your AI Chat Account is Ready!</h3>
-        <p style="margin: 10px 0; font-weight: bold;">We've created your personal AI chat account so you can get instant strategy guidance:</p>
-        <div style="background: white; padding: 15px; border-radius: 5px; margin: 15px 0; border: 1px solid #3b82f6;">
-          <p style="margin: 5px 0;"><strong>Login Email:</strong> ${email}</p>
-          <p style="margin: 5px 0;"><strong>Temporary Password:</strong> ${tempPassword}</p>
-        </div>
-        <p style="margin: 10px 0; font-size: 14px; color: #666;">
-          <em>Please change your password after your first login for security.</em>
-        </p>
-      </div>
-      ` : ''}
-
       <!-- Call to Action -->
       <div style="text-align: center; margin: 30px 0;">
         <h3 style="color: #333; margin-bottom: 15px;">Ready to accelerate your AI journey?</h3>
         <a href="https://www.lorenzodc.com/chat" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px;">
-          ${userCreated ? 'Access Your AI Chat →' : 'Get AI Strategy Guidance →'}
+          Get AI Strategy Guidance →
         </a>
         <br>
         <a href="https://www.lorenzodc.com/contact" style="background: #f8f9fa; color: #667eea; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; border: 2px solid #667eea;">
