@@ -7,12 +7,13 @@ import UserManagement from './UserManagement';
 import FeatureFlags from './FeatureFlags';
 import SystemHealth from './SystemHealth';
 import ActivityLogs from './ActivityLogs';
+import EmailManagement from './EmailManagement';
 
 interface AdminDashboardProps {
   className?: string;
 }
 
-type TabType = 'overview' | 'users' | 'features' | 'system' | 'logs';
+type TabType = 'overview' | 'users' | 'emails' | 'features' | 'system' | 'logs';
 
 export default function AdminDashboard({ className = '' }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
@@ -111,6 +112,7 @@ export default function AdminDashboard({ className = '' }: AdminDashboardProps) 
   const tabs = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'users', label: 'Users', icon: '👥' },
+    { id: 'emails', label: 'Email Marketing', icon: '📧' },
     { id: 'features', label: 'Features', icon: '🎛️' },
     { id: 'system', label: 'System', icon: '🔧' },
     { id: 'logs', label: 'Logs', icon: '📋' }
@@ -170,6 +172,10 @@ export default function AdminDashboard({ className = '' }: AdminDashboardProps) 
 
         {activeTab === 'users' && (
           <UserManagement />
+        )}
+
+        {activeTab === 'emails' && (
+          <EmailManagement />
         )}
 
         {activeTab === 'features' && (

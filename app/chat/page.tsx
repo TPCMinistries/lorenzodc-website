@@ -1,30 +1,19 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "../../lib/supabase/client";
-// TODO: Implement conversation functions (saveConversation, getConversations, deleteConversation) and types (Conversation, Message)
+import {
+  saveConversation,
+  getConversations,
+  deleteConversation,
+  type Conversation,
+  type Message
+} from "../lib/services/conversation-service";
 import { useSubscription, incrementMessageUsage } from "../lib/subscription";
 import { DatabaseUsageTracker } from "../lib/subscription/database-usage";
 import UpgradeModal from "../components/UpgradeModal";
 import AuthModal from "../components/AuthModal";
 import UsageDisplay from "../components/UsageDisplay";
 import { useAuth } from "../lib/hooks/useAuth";
-
-// Speech recognition types now defined in app/types/speech.d.ts
-
-// Temporary types for deployment
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-}
-
-interface Conversation {
-  id: string;
-  title: string;
-  messages: Message[];
-  createdAt: Date;
-}
 
 const COACHING_PROMPTS = {
   strategy: "Create a 90-day AI implementation roadmap for my business, including specific tools, budget estimates, and ROI projections.",
@@ -96,12 +85,17 @@ export default function Chat() {
     scrollToBottom();
   }, [messages]);
 
+  // Load conversations when auth state changes
+  useEffect(() => {
+    if (isAuthenticated && !authLoading) {
+      loadConversations();
+    }
+  }, [isAuthenticated, authLoading]);
+
   useEffect(() => {
     // Set browser capabilities after client mount to prevent hydration mismatch
     setCanSpeak(typeof window !== "undefined" && "speechSynthesis" in window);
     setCanListen(typeof window !== "undefined" && (!!window.webkitSpeechRecognition || !!window.SpeechRecognition));
-
-    loadConversations();
 
     if (canListen) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -187,12 +181,15 @@ export default function Chat() {
 
   async function loadConversations() {
     try {
-      // Temporarily disabled for deployment
-      // const convs = await getConversations();
-      // setConversations(convs);
-      setConversations([]); // Default to empty for deployment
+      if (!isAuthenticated) {
+        setConversations([]);
+        return;
+      }
+      const convs = await getConversations(userId);
+      setConversations(convs);
     } catch (error) {
       console.error('Failed to load conversations:', error);
+      setConversations([]);
     }
   }
 
@@ -214,8 +211,7 @@ export default function Chat() {
     }
 
     try {
-      // Temporarily disabled for deployment
-      // await deleteConversation(conversationId);
+      await deleteConversation(conversationId, userId);
 
       if (currentConversation?.id === conversationId) {
         startNewConversation();
@@ -240,14 +236,16 @@ export default function Chat() {
       const updatedMessages = [...messages, newMessage, assistantMessage];
 
       if (currentConversation) {
-        const updatedConversation = {
+        const updatedConversation: Conversation = {
           ...currentConversation,
           messages: updatedMessages,
-          updated_at: new Date().toISOString()
+          updatedAt: new Date()
         };
 
-        // Temporarily disabled for deployment
-        // await saveConversation(updatedConversation);
+        // Save to database if user is authenticated
+        if (isAuthenticated && userId) {
+          await saveConversation(updatedConversation, userId);
+        }
         setCurrentConversation(updatedConversation);
       } else {
         const newConversation: Conversation = {
@@ -257,15 +255,22 @@ export default function Chat() {
           createdAt: new Date()
         };
 
-        // Temporarily disabled for deployment
-        // await saveConversation(newConversation);
+        // Save to database if user is authenticated
+        if (isAuthenticated && userId) {
+          await saveConversation(newConversation, userId);
+        }
         setCurrentConversation(newConversation);
       }
 
       setMessages(updatedMessages);
-      await loadConversations();
+
+      // Reload conversations if authenticated
+      if (isAuthenticated) {
+        await loadConversations();
+      }
     } catch (error) {
       console.error('Failed to save conversation:', error);
+      // Still update UI even if save fails
       const assistantMessage: Message = {
         id: crypto.randomUUID(),
         role: 'assistant',

@@ -14,31 +14,14 @@ export async function POST(req: Request) {
   const { message, conversationHistory = [], isVoiceConversation = false, coachMode = false } = await req.json();
   const provider = (process.env.LLM_PROVIDER || "gemini").toLowerCase();
 
-  // Check if user is authenticated and get subscription status
-  const authHeader = req.headers.get('authorization');
+  // Auth is handled on the client-side via useAuth hook
+  // The API processes all requests, but:
+  // - Guest users: Limited to 5 messages (enforced in frontend)
+  // - Authenticated users: Usage tracked in database (checked in frontend)
+  // - Premium features (conversation history, etc.) are gated by frontend
+  // This stateless API design allows for better caching and scaling
   let isPremium = false;
   let userId = null;
-
-  // Temporarily disabled auth for deployment
-  // if (authHeader) {
-  //   try {
-  //     const { data: { user } } = await supabase.auth.getUser(authHeader.replace('Bearer ', ''));
-  //     if (user) {
-  //       userId = user.id;
-  //       // Check subscription status
-  //       const { data: subscription } = await supabase
-  //         .from('user_subscriptions')
-  //         .select('tierId')
-  //         .eq('userId', user.id)
-  //         .eq('status', 'active')
-  //         .single();
-
-  //       isPremium = subscription?.tierId === 'plus' || subscription?.tierId === 'catalyst_plus';
-  //     }
-  //   } catch (error) {
-  //     console.log('Auth check failed, proceeding as free user:', error);
-  //   }
-  // }
 
   // Generate enhanced system prompt based on user status
   const personalityPrompt = await CatalystPersonality.generateEnhancedPrompt(isPremium);

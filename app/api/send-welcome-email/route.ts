@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
           </div>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://www.lorenzodc.com/assessment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://www.lorenzodc.com/ai-assessment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               Take Your Full AI Assessment →
             </a>
           </div>
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
             <p>You're receiving this because you signed up at <a href="https://www.lorenzodc.com" style="color: #667eea;">lorenzodc.com</a></p>
             <p>
               <a href="https://www.lorenzodc.com/chat" style="color: #667eea; text-decoration: none;">AI Chat</a> |
-              <a href="https://www.lorenzodc.com/assessment" style="color: #667eea; text-decoration: none;">Assessment</a> |
+              <a href="https://www.lorenzodc.com/ai-assessment" style="color: #667eea; text-decoration: none;">Assessment</a> |
               <a href="https://www.lorenzodc.com/contact" style="color: #667eea; text-decoration: none;">Contact</a>
             </p>
           </div>
