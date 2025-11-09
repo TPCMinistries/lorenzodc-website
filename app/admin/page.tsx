@@ -15,19 +15,20 @@ export default function AdminPage() {
   }, []);
 
   const checkAuth = async () => {
-    // For now, just check if user is logged in
-    // You can add admin role check here
     try {
-      const response = await fetch('/api/auth/session');
-      if (response.ok) {
+      const response = await fetch('/api/auth/check-admin');
+      const data = await response.json();
+
+      if (response.ok && data.isAdmin) {
         setIsAuthenticated(true);
       } else {
-        router.push('/');
+        console.log('Admin access denied:', data.email || 'No user');
+        // Redirect to login page
+        router.push('/login?redirect=/admin&message=admin_required');
       }
     } catch (error) {
       console.error('Auth check failed:', error);
-      // For development, allow access
-      setIsAuthenticated(true);
+      router.push('/login?redirect=/admin');
     } finally {
       setLoading(false);
     }
@@ -42,7 +43,11 @@ export default function AdminPage() {
   }
 
   if (!isAuthenticated) {
-    return null; // Will redirect
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+        <div className="text-white">Checking admin access...</div>
+      </div>
+    );
   }
 
   return (
