@@ -8,12 +8,12 @@ import { cookies } from 'next/headers';
  */
 export async function GET(request: NextRequest) {
   try {
-    const supabase = createRouteHandlerClient({ cookies });
+    // TEMPORARY: Use cookie-based auth while Supabase auth is broken
+    const cookieStore = cookies();
+    const adminSession = cookieStore.get('admin-session');
+    const adminEmail = cookieStore.get('admin-email');
 
-    // Get the current user
-    const { data: { user }, error } = await supabase.auth.getUser();
-
-    if (error || !user) {
+    if (!adminSession || !adminEmail) {
       return NextResponse.json({ isAdmin: false, error: 'Not authenticated' }, { status: 401 });
     }
 
@@ -25,17 +25,17 @@ export async function GET(request: NextRequest) {
     ];
 
     // Check if user's email is in admin list
-    const isAdmin = user.email ? adminEmails.includes(user.email.toLowerCase()) : false;
+    const isAdmin = adminEmails.includes(adminEmail.value.toLowerCase());
 
     if (!isAdmin) {
-      console.log(`Access denied for non-admin user: ${user.email}`);
-      return NextResponse.json({ isAdmin: false, email: user.email }, { status: 403 });
+      console.log(`Access denied for non-admin user: ${adminEmail.value}`);
+      return NextResponse.json({ isAdmin: false, email: adminEmail.value }, { status: 403 });
     }
 
     return NextResponse.json({
       isAdmin: true,
-      email: user.email,
-      userId: user.id
+      email: adminEmail.value,
+      userId: adminSession.value
     });
 
   } catch (error) {

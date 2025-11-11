@@ -3,7 +3,7 @@ import OpenAI from 'openai';
 import { enforceChatLimit } from '../../../lib/middleware/usage-enforcement';
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "placeholder-openai-key",
 });
 
 export async function POST(request: NextRequest) {

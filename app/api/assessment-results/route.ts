@@ -4,7 +4,7 @@ import { supabaseAdmin } from '../../../lib/supabase/server';
 import crypto from 'crypto';
 import { calculateLeadScore, type LeadScoringData } from '../../../lib/lead-scoring';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "placeholder-resend-key");
 
 // Analyze responses to personalize recommendations
 function analyzeResponses(responses: any, scores: Record<string, number>) {

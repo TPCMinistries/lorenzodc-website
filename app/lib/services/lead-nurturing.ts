@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import twilio from 'twilio';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || "placeholder-resend-key");
 const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 interface LeadData {
