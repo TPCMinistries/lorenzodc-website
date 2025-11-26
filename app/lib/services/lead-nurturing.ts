@@ -43,7 +43,7 @@ export class LeadNurturingService {
     const emailContent = this.getAssessmentEmailContent(leadData, aiGuidance);
 
     await resend.emails.send({
-      from: 'Lorenzo Daughtry-Chambers <lorenzo@lorenzodaughtrychambers.com>',
+      from: 'Lorenzo DC <lorenzo@lorenzodc.com>',
       to: leadData.email,
       subject: `${leadData.fullName}, Your Strategic Clarity Analysis is Ready`,
       html: emailContent

@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Welcome email with AI Readiness Checklist
+    // Welcome email with AI Readiness Checklist - Email client compatible
     const { data, error } = await resend.emails.send({
       from: 'Lorenzo DC <lorenzo@lorenzodc.com>',
       to: [email],
@@ -27,11 +27,16 @@ export async function POST(request: NextRequest) {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Your AI Readiness Checklist</title>
         </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
-            <h1 style="color: white; margin: 0; font-size: 28px;">🚀 Welcome to The Catalyst Path</h1>
-            <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Your AI Strategy Journey Starts Now</p>
-          </div>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
+          <!-- Header - Using solid color for email compatibility -->
+          <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #667eea; border-radius: 10px; margin-bottom: 30px;">
+            <tr>
+              <td style="padding: 30px; text-align: center;">
+                <h1 style="color: white; margin: 0; font-size: 28px;">🚀 Welcome to The Catalyst Path</h1>
+                <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Your AI Strategy Journey Starts Now</p>
+              </td>
+            </tr>
+          </table>
 
           <h2 style="color: #333; margin-bottom: 20px;">Hi there! 👋</h2>
 
@@ -73,7 +78,7 @@ export async function POST(request: NextRequest) {
           </div>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://www.lorenzodc.com/ai-assessment" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://www.lorenzodc.com/ai-assessment" style="background-color: #667eea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               Take Your Full AI Assessment →
             </a>
           </div>

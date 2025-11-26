@@ -269,66 +269,90 @@ function generateReport(scores: Record<string, number>, name: string, company: s
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Your AI Readiness Report</title>
     </head>
-    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
 
-      <!-- Header -->
-      <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
-        <h1 style="color: white; margin: 0; font-size: 28px;">🎯 Your AI Readiness Report</h1>
-        <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Personalized for ${name}${companyText}</p>
-      </div>
+      <!-- Header - Using solid color instead of gradient for email compatibility -->
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #667eea; border-radius: 10px; margin-bottom: 30px;">
+        <tr>
+          <td style="padding: 30px; text-align: center;">
+            <h1 style="color: white; margin: 0; font-size: 28px;">🎯 Your AI Readiness Report</h1>
+            <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Personalized for ${name}${companyText}</p>
+          </td>
+        </tr>
+      </table>
 
       <!-- Overall Score -->
-      <div style="text-align: center; background: #f8f9fa; padding: 25px; border-radius: 12px; margin-bottom: 30px;">
-        <div style="font-size: 48px; font-weight: bold; color: ${readinessColor}; margin-bottom: 10px;">
-          ${overallScore}%
-        </div>
-        <h2 style="margin: 0; color: ${readinessColor}; font-size: 24px;">${readinessLevel}</h2>
-        <p style="margin: 10px 0 0 0; font-size: 16px; color: #666;">${readinessDescription}</p>
-      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" style="background: #f8f9fa; border-radius: 12px; margin-bottom: 30px;">
+        <tr>
+          <td style="padding: 25px; text-align: center;">
+            <div style="font-size: 48px; font-weight: bold; color: ${readinessColor}; margin-bottom: 10px;">
+              ${overallScore}%
+            </div>
+            <h2 style="margin: 0; color: ${readinessColor}; font-size: 24px;">${readinessLevel}</h2>
+            <p style="margin: 10px 0 0 0; font-size: 16px; color: #666;">${readinessDescription}</p>
+          </td>
+        </tr>
+      </table>
 
-      <!-- Detailed Scores -->
+      <!-- Detailed Scores - Using tables for email compatibility -->
       <div style="margin-bottom: 30px;">
         <h3 style="color: #333; margin-bottom: 20px;">📊 Your Detailed Scores</h3>
 
-        <div style="margin-bottom: 15px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <span style="font-weight: 500;">Current AI State</span>
-            <span style="color: #667eea; font-weight: bold;">${scores.current_state}%</span>
-          </div>
-          <div style="background: #e2e8f0; height: 8px; border-radius: 4px;">
-            <div style="background: #667eea; height: 8px; border-radius: 4px; width: ${scores.current_state}%;"></div>
-          </div>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
+          <tr>
+            <td style="font-weight: 500; padding-bottom: 5px;">Current AI State</td>
+            <td style="color: #667eea; font-weight: bold; text-align: right; padding-bottom: 5px;">${scores.current_state}%</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-bottom: 15px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background: #e2e8f0; height: 8px; border-radius: 4px;">
+                <tr><td style="background: #667eea; width: ${scores.current_state}%; height: 8px; border-radius: 4px;"></td><td></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
-        <div style="margin-bottom: 15px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <span style="font-weight: 500;">Strategy & Vision</span>
-            <span style="color: #667eea; font-weight: bold;">${scores.strategy_vision}%</span>
-          </div>
-          <div style="background: #e2e8f0; height: 8px; border-radius: 4px;">
-            <div style="background: #667eea; height: 8px; border-radius: 4px; width: ${scores.strategy_vision}%;"></div>
-          </div>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
+          <tr>
+            <td style="font-weight: 500; padding-bottom: 5px;">Strategy & Vision</td>
+            <td style="color: #667eea; font-weight: bold; text-align: right; padding-bottom: 5px;">${scores.strategy_vision}%</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-bottom: 15px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background: #e2e8f0; height: 8px; border-radius: 4px;">
+                <tr><td style="background: #667eea; width: ${scores.strategy_vision}%; height: 8px; border-radius: 4px;"></td><td></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
-        <div style="margin-bottom: 15px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <span style="font-weight: 500;">Team Capabilities</span>
-            <span style="color: #667eea; font-weight: bold;">${scores.team_capabilities}%</span>
-          </div>
-          <div style="background: #e2e8f0; height: 8px; border-radius: 4px;">
-            <div style="background: #667eea; height: 8px; border-radius: 4px; width: ${scores.team_capabilities}%;"></div>
-          </div>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
+          <tr>
+            <td style="font-weight: 500; padding-bottom: 5px;">Team Capabilities</td>
+            <td style="color: #667eea; font-weight: bold; text-align: right; padding-bottom: 5px;">${scores.team_capabilities}%</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-bottom: 15px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background: #e2e8f0; height: 8px; border-radius: 4px;">
+                <tr><td style="background: #667eea; width: ${scores.team_capabilities}%; height: 8px; border-radius: 4px;"></td><td></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
 
-        <div style="margin-bottom: 15px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-            <span style="font-weight: 500;">Implementation Readiness</span>
-            <span style="color: #667eea; font-weight: bold;">${scores.implementation}%</span>
-          </div>
-          <div style="background: #e2e8f0; height: 8px; border-radius: 4px;">
-            <div style="background: #667eea; height: 8px; border-radius: 4px; width: ${scores.implementation}%;"></div>
-          </div>
-        </div>
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 15px;">
+          <tr>
+            <td style="font-weight: 500; padding-bottom: 5px;">Implementation Readiness</td>
+            <td style="color: #667eea; font-weight: bold; text-align: right; padding-bottom: 5px;">${scores.implementation}%</td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-bottom: 15px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background: #e2e8f0; height: 8px; border-radius: 4px;">
+                <tr><td style="background: #667eea; width: ${scores.implementation}%; height: 8px; border-radius: 4px;"></td><td></td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <!-- Next Steps -->
@@ -356,32 +380,36 @@ function generateReport(scores: Record<string, number>, name: string, company: s
       ` : ''}
 
       ${analysis ? `
-      <!-- Calendar Booking (Automated!) -->
-      <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 30px; border-radius: 12px; text-align: center; margin: 30px 0;">
-        <h3 style="color: white; margin: 0 0 10px 0; font-size: 24px;">📅 Let's Discuss Your Strategy</h3>
-        <p style="color: #d1fae5; margin: 0 0 20px 0; font-size: 16px;">
-          15-minute complimentary call to review your results
-        </p>
-        <p style="color: white; margin: 0 0 25px 0; font-size: 14px;">
-          Recommended: <strong>${analysis.recommendedService}</strong>
-        </p>
-        <a href="${analysis.bookingUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email || '')}&score=${overallScore}"
-           style="background: white; color: #059669; padding: 15px 35px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
-          📅 Book Your Strategy Call Now →
-        </a>
-        <p style="color: #d1fae5; margin: 20px 0 0 0; font-size: 13px;">
-          ${analysis.calendarPriority === 'high' ? '⚡ High-priority based on your assessment results' : 'No obligation • Just actionable insights'}
-        </p>
-      </div>
+      <!-- Calendar Booking - Using solid color for email compatibility -->
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #10b981; border-radius: 12px; margin: 30px 0;">
+        <tr>
+          <td style="padding: 30px; text-align: center;">
+            <h3 style="color: white; margin: 0 0 10px 0; font-size: 24px;">📅 Let's Discuss Your Strategy</h3>
+            <p style="color: #d1fae5; margin: 0 0 20px 0; font-size: 16px;">
+              15-minute complimentary call to review your results
+            </p>
+            <p style="color: white; margin: 0 0 25px 0; font-size: 14px;">
+              Recommended: <strong>${analysis.recommendedService}</strong>
+            </p>
+            <a href="${analysis.bookingUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email || '')}&score=${overallScore}"
+               style="background: white; color: #059669; padding: 15px 35px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">
+              📅 Book Your Strategy Call Now →
+            </a>
+            <p style="color: #d1fae5; margin: 20px 0 0 0; font-size: 13px;">
+              ${analysis.calendarPriority === 'high' ? '⚡ High-priority based on your assessment results' : 'No obligation • Just actionable insights'}
+            </p>
+          </td>
+        </tr>
+      </table>
       ` : ''}
 
-      <!-- Call to Action -->
+      <!-- Call to Action - Using solid colors for email compatibility -->
       <div style="text-align: center; margin: 30px 0;">
         <h3 style="color: #333; margin-bottom: 15px;">Ready to accelerate your AI journey?</h3>
-        <a href="https://www.lorenzodc.com/chat" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px;">
+        <a href="https://www.lorenzodc.com/chat" style="background-color: #667eea; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px;">
           Get AI Strategy Guidance →
         </a>
-        <br>
+        <br><br>
         <a href="https://www.lorenzodc.com/contact" style="background: #f8f9fa; color: #667eea; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 5px; border: 2px solid #667eea;">
           Book Strategy Call →
         </a>
