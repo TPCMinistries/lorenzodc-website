@@ -21,6 +21,58 @@ interface AssessmentSection {
 
 const assessmentSections: AssessmentSection[] = [
   {
+    id: 'about_you',
+    title: 'About Your Organization',
+    description: 'Help us personalize your recommendations',
+    icon: '🏢',
+    questions: [
+      {
+        id: 'industry',
+        text: 'What industry are you in?',
+        type: 'choice',
+        category: 'about_you',
+        options: [
+          'Technology / Software',
+          'Healthcare / Medical',
+          'Financial Services / Banking',
+          'Professional Services / Consulting',
+          'Manufacturing / Industrial',
+          'Retail / E-commerce',
+          'Education / Training',
+          'Ministry / Non-profit',
+          'Other'
+        ]
+      },
+      {
+        id: 'team_size',
+        text: 'What\'s the size of your organization?',
+        type: 'choice',
+        category: 'about_you',
+        options: [
+          'Just me (Solopreneur)',
+          '2-10 employees',
+          '11-50 employees',
+          '51-200 employees',
+          '200+ employees'
+        ]
+      },
+      {
+        id: 'role',
+        text: 'What best describes your role?',
+        type: 'choice',
+        category: 'about_you',
+        options: [
+          'Founder / CEO / Owner',
+          'C-Suite Executive (CTO, COO, etc.)',
+          'VP / Director',
+          'Manager / Team Lead',
+          'Individual Contributor',
+          'Consultant / Advisor'
+        ]
+      }
+    ]
+  },
+  {
     id: 'current_state',
     title: 'Current AI State',
     description: 'Understanding your current AI adoption level',
@@ -138,6 +190,41 @@ const assessmentSections: AssessmentSection[] = [
         category: 'implementation'
       }
     ]
+  },
+  {
+    id: 'priorities',
+    title: 'Your Priorities',
+    description: 'Help us understand what matters most to you',
+    icon: '⚡',
+    questions: [
+      {
+        id: 'biggest_challenge',
+        text: 'What\'s your biggest challenge with AI right now?',
+        type: 'choice',
+        category: 'priorities',
+        options: [
+          'Don\'t know where to start',
+          'Data is messy or scattered',
+          'Team lacks AI skills',
+          'Hard to prove ROI',
+          'Finding the right tools',
+          'Getting buy-in from leadership'
+        ]
+      },
+      {
+        id: 'implementation_timeline',
+        text: 'When do you want to see AI results?',
+        type: 'choice',
+        category: 'priorities',
+        options: [
+          'ASAP - within 30 days',
+          'Next quarter (60-90 days)',
+          'Within 6 months',
+          'Within a year',
+          'Just exploring for now'
+        ]
+      }
+    ]
   }
 ];
 
@@ -175,7 +262,6 @@ export default function AIAssessmentPage() {
   const [responses, setResponses] = useState<Record<string, any>>({});
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [company, setCompany] = useState('');
   const [loading, setLoading] = useState(false);
 
   // Flatten all questions into a single array
@@ -243,7 +329,11 @@ export default function AIAssessmentPage() {
         body: JSON.stringify({
           email,
           name,
-          company,
+          industry: responses.industry,
+          teamSize: responses.team_size,
+          role: responses.role,
+          biggestChallenge: responses.biggest_challenge,
+          timeline: responses.implementation_timeline,
           responses,
           scores,
           timestamp: new Date().toISOString()
@@ -403,37 +493,46 @@ export default function AIAssessmentPage() {
           // Final step - contact info
           <div className="max-w-md mx-auto space-y-6">
             <div className="text-center">
-              <div className="text-6xl mb-4">📧</div>
-              <h2 className="text-3xl font-bold mb-2">Get Your Results</h2>
-              <p className="text-slate-400">We'll send your personalized AI strategy report to your email</p>
+              <div className="text-6xl mb-4">🎯</div>
+              <h2 className="text-3xl font-bold mb-2">Your Report is Ready!</h2>
+              <p className="text-slate-400">Enter your details to receive your personalized AI strategy roadmap</p>
             </div>
 
             <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                required
-              />
+              <div>
+                <label className="block text-sm text-slate-400 mb-1">Your name</label>
+                <input
+                  type="text"
+                  placeholder="First name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  required
+                />
+              </div>
 
-              <input
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
-                required
-              />
+              <div>
+                <label className="block text-sm text-slate-400 mb-1">Email address</label>
+                <input
+                  type="email"
+                  placeholder="you@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                  required
+                />
+              </div>
+            </div>
 
-              <input
-                type="text"
-                placeholder="Company name (optional)"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              />
+            {/* Show what they'll get */}
+            <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+              <p className="text-sm text-slate-300 font-medium mb-2">📊 Your report includes:</p>
+              <ul className="text-sm text-slate-400 space-y-1">
+                <li>• Your AI readiness score & breakdown</li>
+                <li>• Personalized recommendations for your {responses.industry || 'industry'}</li>
+                <li>• {responses.biggest_challenge ? `Solutions for "${responses.biggest_challenge}"` : 'Solutions for your biggest challenge'}</li>
+                <li>• Custom action plan based on your timeline</li>
+              </ul>
             </div>
 
             <button

@@ -186,7 +186,7 @@ export const assessmentFollowUpSequence: EmailSequence = {
           <p>Or, if you want to discuss your specific situation, grab a 15-minute slot on my calendar:</p>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://calendly.com/lorenzo-dc/ai-strategy-call?name={{name}}&email={{email}}&score={{score}}" style="background: #10b981; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://calendly.com/lorenzo-theglobalenterprise/ai-strategy-call?name={{name}}&email={{email}}&score={{score}}" style="background: #10b981; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               📅 Book 15-Minute Call →
             </a>
           </div>
@@ -236,7 +236,7 @@ export const assessmentFollowUpSequence: EmailSequence = {
           <p>Want me to show you the specific playbook? Takes 15 minutes:</p>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://calendly.com/lorenzo-dc/ai-strategy-call" style="background: #10b981; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://calendly.com/lorenzo-theglobalenterprise/ai-strategy-call" style="background: #10b981; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               Show Me the Playbook →
             </a>
           </div>
@@ -356,7 +356,7 @@ export const postCallNurtureSequence: EmailSequence = {
           <p>In the meantime, if you want to move forward, reply to this email or book a follow-up call:</p>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://calendly.com/lorenzo-dc/follow-up-call" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://calendly.com/lorenzo-theglobalenterprise/ai-strategy-call" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               Book Follow-Up Call →
             </a>
           </div>
@@ -417,7 +417,7 @@ export const postCallNurtureSequence: EmailSequence = {
           <p>If you need more time to think it through, no problem. But if you're ready, let's get on the calendar:</p>
 
           <div style="text-align: center; margin: 30px 0;">
-            <a href="https://calendly.com/lorenzo-dc/kickoff-call" style="background: #10b981; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+            <a href="https://calendly.com/lorenzo-theglobalenterprise/ai-strategy-call" style="background: #10b981; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
               Schedule Kickoff Call →
             </a>
           </div>

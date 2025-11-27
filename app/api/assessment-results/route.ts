@@ -3,14 +3,134 @@ import { Resend } from 'resend';
 import { supabaseAdmin } from '../../../lib/supabase/server';
 import crypto from 'crypto';
 import { calculateLeadScore, type LeadScoringData } from '../../../lib/lead-scoring';
+import { generateNurtureSequence, type NurtureSequenceData } from '../../../lib/nurture-sequence';
 
 const resend = new Resend(process.env.RESEND_API_KEY || "placeholder-resend-key");
 
+// Industry-specific AI use cases and recommendations
+const industryInsights: Record<string, { useCases: string[], resources: string, caseStudy: string }> = {
+  'Technology / Software': {
+    useCases: ['Automated code review & documentation', 'AI-powered customer support', 'Predictive analytics for product decisions'],
+    resources: 'AI Integration Playbook for Tech Companies',
+    caseStudy: 'How a SaaS company reduced support tickets by 60% with AI'
+  },
+  'Healthcare / Medical': {
+    useCases: ['Patient intake automation', 'Medical documentation AI', 'Appointment scheduling optimization'],
+    resources: 'HIPAA-Compliant AI Implementation Guide',
+    caseStudy: 'How a medical practice saved 15 hours/week with AI workflows'
+  },
+  'Financial Services / Banking': {
+    useCases: ['Automated compliance monitoring', 'Risk assessment AI', 'Customer onboarding automation'],
+    resources: 'AI in Financial Services: Compliance & Efficiency',
+    caseStudy: 'How a wealth management firm automated 80% of client reporting'
+  },
+  'Professional Services / Consulting': {
+    useCases: ['Proposal generation AI', 'Research & analysis automation', 'Client communication optimization'],
+    resources: 'AI Toolkit for Professional Services',
+    caseStudy: 'How a consulting firm 3x\'d their proposal output with AI'
+  },
+  'Manufacturing / Industrial': {
+    useCases: ['Predictive maintenance AI', 'Supply chain optimization', 'Quality control automation'],
+    resources: 'Industry 4.0: AI Implementation Roadmap',
+    caseStudy: 'How a manufacturer reduced downtime by 40% with predictive AI'
+  },
+  'Retail / E-commerce': {
+    useCases: ['Personalized product recommendations', 'Inventory forecasting AI', 'Customer service chatbots'],
+    resources: 'E-commerce AI Playbook',
+    caseStudy: 'How an e-commerce brand increased AOV by 25% with AI personalization'
+  },
+  'Education / Training': {
+    useCases: ['Personalized learning paths', 'Automated grading & feedback', 'Content creation AI'],
+    resources: 'AI in Education: Implementation Guide',
+    caseStudy: 'How an online course creator 5x\'d content production with AI'
+  },
+  'Ministry / Non-profit': {
+    useCases: ['Donor communication automation', 'Event planning AI', 'Volunteer coordination'],
+    resources: 'AI for Mission-Driven Organizations',
+    caseStudy: 'How a ministry increased engagement 3x with AI-powered outreach'
+  },
+  'Other': {
+    useCases: ['Process automation', 'Customer communication AI', 'Data analysis & insights'],
+    resources: 'Universal AI Implementation Guide',
+    caseStudy: 'How organizations are transforming with AI'
+  }
+};
+
+// Challenge-specific solutions
+const challengeSolutions: Record<string, { solution: string, firstStep: string, resource: string }> = {
+  "Don't know where to start": {
+    solution: 'Start with a focused AI audit of your highest-impact processes',
+    firstStep: 'Identify 3 processes where you spend the most time on repetitive tasks',
+    resource: 'AI Starter Kit: 5 Quick Wins for Any Business'
+  },
+  'Data is messy or scattered': {
+    solution: 'Implement a data consolidation strategy before AI adoption',
+    firstStep: 'Create an inventory of all your data sources and systems',
+    resource: 'Data Readiness Checklist for AI Implementation'
+  },
+  'Team lacks AI skills': {
+    solution: 'Start with no-code AI tools that require minimal technical knowledge',
+    firstStep: 'Have each team member experiment with ChatGPT for one specific task',
+    resource: 'AI Skills Bootcamp: From Zero to Productive in 2 Weeks'
+  },
+  'Hard to prove ROI': {
+    solution: 'Focus on automating tasks with clear time/cost metrics first',
+    firstStep: 'Track time spent on 3 repetitive tasks this week',
+    resource: 'AI ROI Calculator & Business Case Template'
+  },
+  'Finding the right tools': {
+    solution: 'Match tools to specific use cases rather than adopting platforms broadly',
+    firstStep: 'List your top 5 pain points and research AI tools for each',
+    resource: 'AI Tool Selection Guide: 50+ Tools Categorized by Use Case'
+  },
+  'Getting buy-in from leadership': {
+    solution: 'Start with a small pilot project that shows quick wins',
+    firstStep: 'Identify one process that leadership cares about and propose a 30-day AI pilot',
+    resource: 'Executive AI Buy-In Presentation Template'
+  }
+};
+
+// Timeline-specific recommendations
+const timelineRecommendations: Record<string, { approach: string, focus: string }> = {
+  'ASAP - within 30 days': {
+    approach: 'Quick Win Implementation',
+    focus: 'Focus on 1-2 immediate automation opportunities using existing AI tools'
+  },
+  'Next quarter (60-90 days)': {
+    approach: 'Strategic Foundation',
+    focus: 'Build proper AI infrastructure while implementing first use cases'
+  },
+  'Within 6 months': {
+    approach: 'Comprehensive Transformation',
+    focus: 'Develop full AI strategy with multiple implementation phases'
+  },
+  'Within a year': {
+    approach: 'Long-term AI Roadmap',
+    focus: 'Build organizational AI capabilities and culture systematically'
+  },
+  'Just exploring for now': {
+    approach: 'Education & Discovery',
+    focus: 'Learn about AI possibilities and identify future opportunities'
+  }
+};
+
 // Analyze responses to personalize recommendations
-function analyzeResponses(responses: any, scores: Record<string, number>) {
+function analyzeResponses(responses: any, scores: Record<string, number>, extraData: any) {
   const insights: string[] = [];
   let calendarPriority: 'high' | 'medium' | 'low' = 'medium';
   let recommendedService: string = '';
+
+  // Get industry-specific insights
+  const industry = extraData.industry || 'Other';
+  const industryData = industryInsights[industry] || industryInsights['Other'];
+
+  // Get challenge-specific solution
+  const challenge = extraData.biggestChallenge || "Don't know where to start";
+  const challengeData = challengeSolutions[challenge] || challengeSolutions["Don't know where to start"];
+
+  // Get timeline recommendation
+  const timeline = extraData.timeline || 'Within 6 months';
+  const timelineData = timelineRecommendations[timeline] || timelineRecommendations['Within 6 months'];
 
   // Check AI usage level
   if (responses.ai_usage === 'No AI tools in use') {
@@ -46,6 +166,25 @@ function analyzeResponses(responses: any, scores: Record<string, number>) {
     calendarPriority = 'high';
   }
 
+  // Urgency check
+  if (timeline === 'ASAP - within 30 days' || timeline === 'Next quarter (60-90 days)') {
+    calendarPriority = 'high';
+    insights.push(`Your ${timeline.toLowerCase()} timeline means we should connect soon`);
+  }
+
+  // Team size check for service recommendation
+  const teamSize = extraData.teamSize || '';
+  if (teamSize === '200+ employees' || teamSize === '51-200 employees') {
+    if (!recommendedService) recommendedService = 'Full Implementation + Coaching ($35K-75K)';
+    calendarPriority = 'high';
+  }
+
+  // Role check
+  const role = extraData.role || '';
+  if (role === 'Founder / CEO / Owner' || role === 'C-Suite Executive (CTO, COO, etc.)') {
+    calendarPriority = 'high';
+  }
+
   // Low overall = needs foundations
   if (scores.overall < 40) {
     if (!recommendedService) recommendedService = 'AI Strategy Intensive ($5K-7K)';
@@ -62,13 +201,21 @@ function analyzeResponses(responses: any, scores: Record<string, number>) {
     insights,
     calendarPriority,
     recommendedService: recommendedService || '90-Day Implementation Partner ($15K-25K)',
-    bookingUrl: 'https://calendly.com/lorenzo-dc/ai-strategy-call' // Replace with your actual Calendly link
+    bookingUrl: 'https://calendly.com/lorenzo-theglobalenterprise/ai-strategy-call',
+    industryData,
+    challengeData,
+    timelineData,
+    industry,
+    challenge,
+    timeline,
+    teamSize,
+    role
   };
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name, company, responses, scores, timestamp } = await request.json();
+    const { email, name, industry, teamSize, role, biggestChallenge, timeline, responses, scores, timestamp } = await request.json();
 
     if (!email || !name || !scores) {
       return NextResponse.json(
@@ -77,8 +224,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Extra data from new questions
+    const extraData = { industry, teamSize, role, biggestChallenge, timeline };
+
     // Analyze specific responses for personalization
-    const responseAnalysis = analyzeResponses(responses, scores);
+    const responseAnalysis = analyzeResponses(responses, scores, extraData);
 
     // Save assessment to database
     const { data: assessmentData, error: dbError } = await supabaseAdmin
@@ -86,7 +236,7 @@ export async function POST(request: NextRequest) {
       .insert({
         email,
         name,
-        company,
+        company: industry, // Use industry as company identifier
         responses,
         scores,
         overall_score: scores.overall,
@@ -123,7 +273,8 @@ export async function POST(request: NextRequest) {
         .upsert({
           email,
           name,
-          company,
+          company: industry, // Use industry as company identifier
+          role: role,
           lead_score: leadScore.points,
           tier: getTierFromPriority(leadScore.priority),
           status: getStatusFromScore(leadScore.score),
@@ -170,7 +321,7 @@ export async function POST(request: NextRequest) {
     // Generate personalized report
     // NOTE: We do NOT create Supabase user accounts for assessment takers
     // Only admins need Supabase accounts. Assessment takers are just leads in prospect_profiles table.
-    const report = generateReport(scores, name, company, email, responseAnalysis);
+    const report = generateReport(scores, name, industry, email, responseAnalysis);
 
     // Send results email
     const { data: emailData, error: emailError } = await resend.emails.send({
@@ -188,10 +339,55 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Schedule nurture sequence emails
+    let nurtureScheduled = 0;
+    try {
+      const nurtureData: NurtureSequenceData = {
+        email,
+        name,
+        industry: industry || 'Other',
+        teamSize: teamSize || '',
+        role: role || '',
+        biggestChallenge: biggestChallenge || "Don't know where to start",
+        timeline: timeline || 'Within 6 months',
+        overallScore: scores.overall,
+        scores: {
+          current_state: scores.current_state,
+          strategy_vision: scores.strategy_vision,
+          team_capabilities: scores.team_capabilities,
+          implementation: scores.implementation
+        }
+      };
+
+      // Generate personalized nurture sequence
+      const nurtureEmails = generateNurtureSequence(nurtureData);
+
+      // Schedule the emails using Supabase function
+      const { data: scheduleResult, error: scheduleError } = await supabaseAdmin
+        .rpc('schedule_nurture_sequence', {
+          p_email: email,
+          p_name: name,
+          p_assessment_id: assessmentData?.id || null,
+          p_emails: JSON.stringify(nurtureEmails)
+        });
+
+      if (scheduleError) {
+        console.error('Error scheduling nurture emails:', scheduleError);
+        // Don't fail the request - initial email was sent successfully
+      } else {
+        nurtureScheduled = scheduleResult || nurtureEmails.length;
+        console.log(`Scheduled ${nurtureScheduled} nurture emails for ${email}`);
+      }
+    } catch (nurtureError) {
+      console.error('Error generating nurture sequence:', nurtureError);
+      // Don't fail the request - initial email was sent successfully
+    }
+
     return NextResponse.json({
       message: 'Assessment completed and results sent',
       assessmentId: assessmentData?.id,
       emailId: emailData?.id,
+      nurtureEmailsScheduled: nurtureScheduled,
       scores
     });
 
@@ -204,9 +400,9 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateReport(scores: Record<string, number>, name: string, company: string | undefined, email: string | undefined, analysis?: { insights: string[], calendarPriority: string, recommendedService: string, bookingUrl: string }) {
+function generateReport(scores: Record<string, number>, name: string, company: string | undefined, email: string | undefined, analysis?: any) {
   const overallScore = scores.overall;
-  const companyText = company ? ` at ${company}` : '';
+  const industryText = analysis?.industry ? ` in ${analysis.industry}` : '';
 
   // Determine readiness level
   let readinessLevel = '';
@@ -276,7 +472,7 @@ function generateReport(scores: Record<string, number>, name: string, company: s
         <tr>
           <td style="padding: 30px; text-align: center;">
             <h1 style="color: white; margin: 0; font-size: 28px;">🎯 Your AI Readiness Report</h1>
-            <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Personalized for ${name}${companyText}</p>
+            <p style="color: #f0f0f0; margin: 10px 0 0 0; font-size: 16px;">Personalized for ${name}${industryText}</p>
           </td>
         </tr>
       </table>
@@ -363,13 +559,63 @@ function generateReport(scores: Record<string, number>, name: string, company: s
         </ol>
       </div>
 
+      ${analysis?.industryData ? `
+      <!-- INDUSTRY-SPECIFIC AI USE CASES -->
+      <div style="background: #f0fdf4; padding: 25px; border-radius: 8px; border-left: 4px solid #22c55e; margin: 25px 0;">
+        <h3 style="margin-top: 0; color: #166534;">🏢 AI Opportunities for ${analysis.industry}</h3>
+        <p style="margin: 10px 0; color: #166534;">Based on your industry, here are the highest-impact AI use cases:</p>
+        <ul style="margin: 10px 0; padding-left: 20px;">
+          ${analysis.industryData.useCases.map((useCase: string) => `<li style="margin-bottom: 8px; color: #15803d;"><strong>${useCase}</strong></li>`).join('')}
+        </ul>
+        <div style="background: white; padding: 15px; border-radius: 6px; margin-top: 15px;">
+          <p style="margin: 0; font-size: 14px; color: #166534;">
+            📖 <strong>Case Study:</strong> ${analysis.industryData.caseStudy}
+          </p>
+        </div>
+      </div>
+      ` : ''}
+
+      ${analysis?.challengeData ? `
+      <!-- YOUR BIGGEST CHALLENGE - SOLUTION -->
+      <div style="background: #fef3c7; padding: 25px; border-radius: 8px; border-left: 4px solid #f59e0b; margin: 25px 0;">
+        <h3 style="margin-top: 0; color: #92400e;">⚡ Solving: "${analysis.challenge}"</h3>
+        <p style="margin: 10px 0; color: #92400e;">
+          <strong>The Solution:</strong> ${analysis.challengeData.solution}
+        </p>
+        <div style="background: white; padding: 15px; border-radius: 6px; margin: 15px 0;">
+          <p style="margin: 0 0 5px 0; font-size: 14px; color: #78350f;">
+            <strong>🎯 Your First Step (This Week):</strong>
+          </p>
+          <p style="margin: 0; color: #92400e;">
+            ${analysis.challengeData.firstStep}
+          </p>
+        </div>
+        <p style="margin: 10px 0 0 0; font-size: 14px; color: #92400e;">
+          📚 <strong>Free Resource:</strong> ${analysis.challengeData.resource}
+        </p>
+      </div>
+      ` : ''}
+
+      ${analysis?.timelineData ? `
+      <!-- TIMELINE-BASED APPROACH -->
+      <div style="background: #eff6ff; padding: 25px; border-radius: 8px; border-left: 4px solid #3b82f6; margin: 25px 0;">
+        <h3 style="margin-top: 0; color: #1e40af;">📅 Your ${analysis.timeline} Plan</h3>
+        <p style="margin: 10px 0;">
+          <strong style="color: #1e40af;">Approach:</strong> <span style="color: #1e3a8a;">${analysis.timelineData.approach}</span>
+        </p>
+        <p style="margin: 10px 0; color: #1e3a8a;">
+          <strong>Focus:</strong> ${analysis.timelineData.focus}
+        </p>
+      </div>
+      ` : ''}
+
       ${analysis && analysis.insights.length > 0 ? `
       <!-- Personalized Insights -->
       <div style="background: #f0f9ff; padding: 25px; border-radius: 8px; border-left: 4px solid #0ea5e9; margin: 25px 0;">
         <h3 style="margin-top: 0; color: #0369a1;">💡 What I Noticed About Your Results</h3>
         <p style="margin: 10px 0;">Based on your specific answers, here's what stands out:</p>
         <ul style="margin: 10px 0; padding-left: 20px;">
-          ${analysis.insights.map(insight => `<li style="margin-bottom: 8px; color: #0c4a6e;">${insight}</li>`).join('')}
+          ${analysis.insights.map((insight: string) => `<li style="margin-bottom: 8px; color: #0c4a6e;">${insight}</li>`).join('')}
         </ul>
         ${analysis.calendarPriority === 'high' ? `
         <p style="margin: 15px 0 10px 0; font-weight: bold; color: #0369a1;">
