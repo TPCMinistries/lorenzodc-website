@@ -4,6 +4,7 @@ import { supabaseAdmin } from '../../../lib/supabase/server';
 import crypto from 'crypto';
 import { calculateLeadScore, type LeadScoringData } from '../../../lib/lead-scoring';
 import { generateNurtureSequence, type NurtureSequenceData } from '../../../lib/nurture-sequence';
+import { notifyAssessmentCompleted, getAssessmentTier, getTopGaps } from '../../lib/command-center-webhook';
 
 const resend = new Resend(process.env.RESEND_API_KEY || "placeholder-resend-key");
 
@@ -381,6 +382,33 @@ export async function POST(request: NextRequest) {
     } catch (nurtureError) {
       console.error('Error generating nurture sequence:', nurtureError);
       // Don't fail the request - initial email was sent successfully
+    }
+
+    // Notify Command Center about the completed assessment
+    try {
+      await notifyAssessmentCompleted({
+        email,
+        name,
+        score: scores.overall,
+        tier: getAssessmentTier(scores.overall),
+        gaps: getTopGaps({
+          current_state: scores.current_state,
+          strategy_vision: scores.strategy_vision,
+          team_capabilities: scores.team_capabilities,
+          implementation: scores.implementation,
+        }, 3),
+        dimensions: {
+          current_state: scores.current_state,
+          strategy_vision: scores.strategy_vision,
+          team_capabilities: scores.team_capabilities,
+          implementation: scores.implementation,
+        },
+        completed_at: new Date().toISOString(),
+      });
+      console.log('Command Center notified of assessment completion for:', email);
+    } catch (webhookError) {
+      console.error('Error notifying Command Center:', webhookError);
+      // Don't fail the request if webhook fails
     }
 
     return NextResponse.json({
